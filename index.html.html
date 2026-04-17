@@ -97,6 +97,38 @@ textarea{min-height:70px;resize:vertical}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 <script>
+const SUPA_URL='https://mcsofjeuutimqohsdhej.supabase.co';
+const SUPA_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1jc29mamV1dXRpbXFvaHNkaGVqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY0MDk3NjUsImV4cCI6MjA5MTk4NTc2NX0.1pK8Kg6lKvkurJmFdzq8-hSJK5y-0z_lPtg9xZCtbRk';
+const STORAGE_BUCKET='photos';
+
+async function uploadToStorage(file, treeRef, date){
+  // Compress first
+  const compressed = await compressImage(file, 1200, 0.80);
+  const blob = await fetch(compressed).then(r=>r.blob());
+  const ext = 'jpg';
+  const filename = `${treeRef}/${date}/${Date.now()}.${ext}`;
+  const res = await fetch(`${SUPA_URL}/storage/v1/object/${STORAGE_BUCKET}/${filename}`, {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${SUPA_KEY}`,
+      'Content-Type': 'image/jpeg',
+      'x-upsert': 'true'
+    },
+    body: blob
+  });
+  if(!res.ok){ const err=await res.text(); throw new Error('Upload failed: '+err); }
+  return `${SUPA_URL}/storage/v1/object/public/${STORAGE_BUCKET}/${filename}`;
+}
+
+async function deleteFromStorage(url){
+  if(!url||!url.includes('/storage/v1/object/public/')) return;
+  const path = url.split(`/storage/v1/object/public/${STORAGE_BUCKET}/`)[1];
+  if(!path) return;
+  await fetch(`${SUPA_URL}/storage/v1/object/${STORAGE_BUCKET}/${path}`, {
+    method: 'DELETE',
+    headers: { 'Authorization': `Bearer ${SUPA_KEY}` }
+  });
+}
 const TREES=[
   {name:'Forest Whitaker',ref:'R1'},{name:'Keanu Leaves',ref:'R2'},{name:'Treeyonce',ref:'R3'},
   {name:'Queen La Treefa',ref:'R4'},{name:'Tree Diddy',ref:'R5'},{name:'Morgan Treeman',ref:'R6'},
@@ -509,6 +541,7 @@ function renderPhotos(){
       <div><label>Type</label><select id="p-type"><option>Full canopy</option><option>Close-up foliage</option><option>Bark / stem</option><option>Root zone</option><option>New growth</option><option>Pest / disease</option></select></div>
     </div>
     <div style="margin-bottom:10px"><label>Upload photo</label><input type="file" id="p-file" accept="image/*"></div>
+    <p style="font-size:11px;color:var(--color-text-secondary);margin-bottom:10px">Photos uploaded to Supabase Storage (1200px JPEG). No size limit concerns.</p>
     <div style="margin-bottom:10px"><label>Notes</label><textarea id="p-notes" placeholder="Observations..."></textarea></div>
     <button class="primary" onclick="addPhoto()">Save photograph</button>
   </div>
@@ -535,7 +568,7 @@ function renderPhotoProgression(){
   const blocks=Object.entries(byPosition).filter(([,arr])=>arr.length>0).map(([pos,arr])=>{
     const sorted=[...arr].sort((a,b)=>a.date.localeCompare(b.date));
     const cells=sorted.map(e=>`<div class="prog-cell">
-      ${e.imageData?`<img src="${e.imageData}" alt="${pos}">`:`<div class="no-img">${e.filename||'No image'}</div>`}
+      ${(e.imageUrl||e.imageData)?`<img src="${e.imageUrl||e.imageData}" alt="${pos}">`:`<div class="no-img">${e.filename||'No image'}</div>`}
       <div class="prog-date">${fmtDate(e.date)}</div><div class="prog-type">${e.type}</div>
     </div>`).join('');
     return`<div class="progression-position"><h4>${pos} <span style="font-weight:400;color:var(--color-text-tertiary)">(${arr.length})</span></h4><div class="progression-row">${cells}</div></div>`;
@@ -547,7 +580,7 @@ function renderPhotoAll(){
   const data=load(currentTree,'photos');
   if(!data.length)return'<p class="empty">No photographs yet</p>';
   const thumbs=data.slice().reverse().map((e,i)=>{
-    const imgHtml=e.imageData?`<img src="${e.imageData}" alt="${e.position}">`:`<div style="height:110px;display:flex;align-items:center;justify-content:center;color:var(--color-text-tertiary);font-size:12px">No image</div>`;
+    const imgHtml=(e.imageUrl||e.imageData)?`<img src="${e.imageUrl||e.imageData}" alt="${e.position}">`:`<div style="height:110px;display:flex;align-items:center;justify-content:center;color:var(--color-text-tertiary);font-size:12px">No image</div>`;
     return`<div class="photo-thumb">${imgHtml}<div class="photo-meta">
       <div class="photo-label">${e.position}</div>
       <div class="photo-date">${fmtDate(e.date)} · ${e.type}</div>
@@ -558,13 +591,27 @@ function renderPhotoAll(){
   return`<div class="card"><div class="photo-grid">${thumbs}</div></div>`;
 }
 
-function addPhoto(){
+async function addPhoto(){
   const fi=document.getElementById('p-file');
-  const d={date:fv('p-date'),position:fv('p-pos'),type:fv('p-type'),notes:fv('p-notes'),imageData:null,filename:''};
+  const d={date:fv('p-date'),position:fv('p-pos'),type:fv('p-type'),notes:fv('p-notes'),imageData:null,imageUrl:null,filename:''};
   if(!d.date){alert('Date is required');return;}
   const file=fi&&fi.files&&fi.files[0];
-  if(file){d.filename=file.name;const r=new FileReader();r.onload=ev=>{d.imageData=ev.target.result;const arr=load(currentTree,'photos');arr.push(d);save(currentTree,'photos',arr);renderTab();};r.readAsDataURL(file);}
-  else{const arr=load(currentTree,'photos');arr.push(d);save(currentTree,'photos',arr);renderTab();}
+  const btn=document.querySelector('#tab-content button.primary');
+  if(file){
+    d.filename=file.name;
+    if(btn){btn.disabled=true;btn.textContent='Uploading...';}
+    try{
+      const treeRef=TREES[currentTree].ref;
+      const url=await uploadToStorage(file,treeRef,d.date);
+      d.imageUrl=url;
+      d.imageData=null;
+    }catch(e){
+      alert('Photo upload failed: '+e.message);
+      if(btn){btn.disabled=false;btn.textContent='Save photograph';}
+      return;
+    }
+  }
+  const arr=load(currentTree,'photos');arr.push(d);save(currentTree,'photos',arr);renderTab();
 }
 
 function renderTreatments(){
