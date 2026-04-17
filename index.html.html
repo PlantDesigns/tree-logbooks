@@ -1,308 +1,111 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tree Service Logbooks</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Arial,sans-serif;color:#1a1a1a;background:#f5f5f0;min-height:100vh}
-.container{max-width:1100px;margin:0 auto;padding:1.5rem 1rem}
-select,input,textarea{font-family:Arial,sans-serif;font-size:14px;color:#1a1a1a;background:#fff;border:0.5px solid #ccc;border-radius:8px;padding:6px 10px;width:100%}
+body{font-family:var(--font-sans);color:var(--color-text-primary)}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+select,input,textarea{font-family:var(--font-sans);font-size:14px;color:var(--color-text-primary);background:var(--color-background-primary);border:0.5px solid var(--color-border-secondary);border-radius:var(--border-radius-md);padding:6px 10px;width:100%}
 input[type=number]{-moz-appearance:textfield}
 input[type=file]{padding:4px 8px;font-size:13px}
-button{font-family:Arial,sans-serif;font-size:13px;font-weight:500;color:#1a1a1a;background:transparent;border:0.5px solid #ccc;border-radius:8px;padding:6px 14px;cursor:pointer}
-button:hover{background:#f0f0e8}
-button:disabled{opacity:0.5;cursor:not-allowed}
+button{font-family:var(--font-sans);font-size:13px;font-weight:500;color:var(--color-text-primary);background:transparent;border:0.5px solid var(--color-border-secondary);border-radius:var(--border-radius-md);padding:6px 14px;cursor:pointer}
+button:hover{background:var(--color-background-secondary)}
 button.primary{background:#3B6D11;color:#EAF3DE;border-color:#3B6D11}
 button.primary:hover{background:#27500A}
 button.excel{background:#1D6F42;color:#fff;border-color:#1D6F42}
-button.excel:hover:not(:disabled){background:#155232}
-button.danger{background:transparent;color:#a32d2d;border-color:#a32d2d}
-button.danger:hover{background:#fcebeb}
-.tab-bar{display:flex;gap:4px;border-bottom:1px solid #ddd;margin-bottom:1.5rem;overflow-x:auto}
-.tab-bar button{border:none;border-radius:0;border-bottom:2px solid transparent;padding:8px 14px;font-size:13px;white-space:nowrap;background:transparent}
+button.excel:hover{background:#155232}
+button.danger{background:transparent;color:var(--color-text-danger);border-color:var(--color-border-danger)}
+button.danger:hover{background:var(--color-background-danger)}
+.tab-bar{display:flex;gap:4px;border-bottom:0.5px solid var(--color-border-tertiary);margin-bottom:1.5rem;overflow-x:auto}
+.tab-bar button{border:none;border-radius:0;border-bottom:2px solid transparent;padding:8px 14px;font-size:13px;white-space:nowrap}
 .tab-bar button.active{border-bottom-color:#3B6D11;color:#3B6D11}
-.tab-bar button:hover{background:#f0f0e8}
-.card{background:#fff;border:0.5px solid #ddd;border-radius:12px;padding:1rem 1.25rem;margin-bottom:1rem}
+.tab-bar button:hover{background:var(--color-background-secondary)}
+.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:1rem 1.25rem;margin-bottom:1rem}
 .field-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:10px}
-label{font-size:12px;color:#666;display:block;margin-bottom:4px}
+label{font-size:12px;color:var(--color-text-secondary);display:block;margin-bottom:4px}
 .metric-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:1rem}
-.metric{background:#f5f5f0;border-radius:8px;padding:10px 12px}
+.metric{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:10px 12px}
 .metric .val{font-size:20px;font-weight:500;margin-top:2px}
-.metric .lbl{font-size:11px;color:#666}
-.trend-up{color:#3B6D11}.trend-down{color:#A32D2D}.trend-flat{color:#888}
+.metric .lbl{font-size:11px;color:var(--color-text-secondary)}
+.trend-up{color:#3B6D11}.trend-down{color:#A32D2D}.trend-flat{color:var(--color-text-secondary)}
 .chart-wrap{position:relative;height:180px;margin:8px 0}
 .entry-list{display:flex;flex-direction:column;gap:6px;margin-top:8px}
-.entry-item{background:#f5f5f0;border-radius:8px;padding:8px 12px;font-size:13px;display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
-.sign-off{background:#EAF3DE;border:0.5px solid #97C459;border-radius:8px;padding:10px 14px;margin-bottom:8px}
+.entry-item{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:8px 12px;font-size:13px;display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.sign-off{background:#EAF3DE;border:0.5px solid #97C459;border-radius:var(--border-radius-md);padding:10px 14px;margin-bottom:8px}
 .sign-off p{font-size:13px;color:#27500A}
 .tree-selector{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px;margin-bottom:1.5rem}
-.tree-btn{padding:10px 8px;text-align:left;border-radius:8px;border:0.5px solid #ddd;background:#fff}
+.tree-btn{padding:10px 8px;text-align:left;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-tertiary)}
 .tree-btn.active{border:2px solid #3B6D11;background:#EAF3DE;color:#27500A}
 .tree-btn .tree-name{font-size:13px;font-weight:500;display:block}
-.tree-btn .tree-ref{font-size:11px;color:#888}
+.tree-btn .tree-ref{font-size:11px;color:var(--color-text-secondary)}
 .tree-btn.active .tree-ref{color:#3B6D11}
 .section-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
 .badge{font-size:11px;padding:2px 8px;border-radius:20px;background:#EAF3DE;color:#27500A}
 textarea{min-height:70px;resize:vertical}
-.empty{color:#aaa;font-size:13px;padding:16px 0;text-align:center}
+.empty{color:var(--color-text-tertiary);font-size:13px;padding:16px 0;text-align:center}
 .photo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;margin-top:10px}
-.photo-thumb{border-radius:8px;overflow:hidden;border:0.5px solid #ddd;background:#f5f5f0}
+.photo-thumb{border-radius:var(--border-radius-md);overflow:hidden;border:0.5px solid var(--color-border-tertiary);background:var(--color-background-secondary)}
 .photo-thumb img{width:100%;height:110px;object-fit:cover;display:block}
 .photo-thumb .photo-meta{padding:6px 8px}
-.photo-thumb .photo-date{font-size:11px;color:#888}
+.photo-thumb .photo-date{font-size:11px;color:var(--color-text-secondary)}
 .photo-thumb .photo-label{font-size:12px;font-weight:500;margin-top:1px}
 .photo-thumb .photo-remove{width:100%;margin-top:4px;padding:3px 0;font-size:11px}
 .dash-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-bottom:1.5rem}
-.dash-card{background:#fff;border:0.5px solid #ddd;border-radius:12px;padding:12px 14px;cursor:pointer}
-.dash-card:hover{border-color:#999}
-.dash-stat{display:flex;justify-content:space-between;font-size:12px;margin-top:4px;color:#666}
-.nav-top{display:flex;gap:0;margin-bottom:1.5rem;border-bottom:1px solid #ddd}
-.nav-top button{border:none;border-radius:0;border-bottom:2px solid transparent;padding:10px 18px;font-size:14px;font-weight:500;background:transparent}
+.dash-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:12px 14px;cursor:pointer}
+.dash-card:hover{border-color:var(--color-border-primary)}
+.dash-stat{display:flex;justify-content:space-between;font-size:12px;margin-top:4px;color:var(--color-text-secondary)}
+.nav-top{display:flex;gap:8px;margin-bottom:1.5rem;border-bottom:0.5px solid var(--color-border-tertiary)}
+.nav-top button{border:none;border-radius:0;border-bottom:2px solid transparent;padding:8px 16px;font-size:14px;font-weight:500}
 .nav-top button.active{border-bottom-color:#3B6D11;color:#3B6D11}
 .xl-icon{display:inline-block;width:14px;height:14px;margin-right:5px;vertical-align:middle;background:#fff;border-radius:2px;font-size:10px;font-weight:700;color:#1D6F42;text-align:center;line-height:14px}
-.photo-sub-tab-bar{display:flex;gap:4px;margin-bottom:1rem;border-bottom:1px solid #ddd}
-.photo-sub-tab-bar button{border:none;border-radius:0;border-bottom:2px solid transparent;padding:6px 12px;font-size:12px;background:transparent}
+.photo-sub-tab-bar{display:flex;gap:4px;margin-bottom:1rem;border-bottom:0.5px solid var(--color-border-tertiary)}
+.photo-sub-tab-bar button{border:none;border-radius:0;border-bottom:2px solid transparent;padding:6px 12px;font-size:12px}
 .photo-sub-tab-bar button.active{border-bottom-color:#3B6D11;color:#3B6D11}
 .progression-position{margin-bottom:1.5rem}
-.progression-position h4{font-size:11px;font-weight:500;margin-bottom:8px;color:#888;text-transform:uppercase;letter-spacing:0.04em}
+.progression-position h4{font-size:11px;font-weight:500;margin-bottom:8px;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:0.04em}
 .progression-row{display:flex;gap:10px;overflow-x:auto;padding-bottom:6px}
 .prog-cell{flex:0 0 130px;text-align:center}
-.prog-cell img{width:130px;height:100px;object-fit:cover;border-radius:8px;border:0.5px solid #ddd;display:block}
-.prog-cell .no-img{width:130px;height:100px;border-radius:8px;border:0.5px solid #ddd;display:flex;align-items:center;justify-content:center;font-size:11px;color:#aaa;background:#f5f5f0}
-.prog-cell .prog-date{font-size:11px;color:#888;margin-top:4px}
-.prog-cell .prog-type{font-size:11px;color:#aaa}
+.prog-cell img{width:130px;height:100px;object-fit:cover;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-tertiary);display:block}
+.prog-cell .no-img{width:130px;height:100px;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-tertiary);display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--color-text-tertiary);background:var(--color-background-secondary)}
+.prog-cell .prog-date{font-size:11px;color:var(--color-text-secondary);margin-top:4px}
+.prog-cell .prog-type{font-size:11px;color:var(--color-text-tertiary)}
 .lab-badge{display:inline-block;font-size:10px;padding:1px 6px;border-radius:10px;background:#E6F1FB;color:#0C447C;margin-left:6px;vertical-align:middle}
-.notice{background:#E6F1FB;border:0.5px solid #85B7EB;border-radius:8px;padding:10px 14px;margin-bottom:1rem;font-size:13px;color:#0C447C}
+.import-notice{background:#E6F1FB;border:0.5px solid #85B7EB;border-radius:var(--border-radius-md);padding:10px 14px;margin-bottom:1rem;font-size:13px;color:#0C447C}
 .obs-table{width:100%;border-collapse:collapse;font-size:12px;margin-top:8px}
-.obs-table th{background:#EAF3DE;color:#27500A;font-weight:500;padding:6px 10px;text-align:left;border-bottom:1px solid #97C459;white-space:nowrap}
-.obs-table td{padding:6px 10px;border-bottom:0.5px solid #eee;vertical-align:middle}
+.obs-table th{background:#EAF3DE;color:#27500A;font-weight:500;padding:6px 10px;text-align:left;border-bottom:0.5px solid #97C459;white-space:nowrap}
+.obs-table td{padding:6px 10px;border-bottom:0.5px solid var(--color-border-tertiary);vertical-align:middle}
 .obs-table tr:last-child td{border-bottom:none}
-.obs-table tr:nth-child(even) td{background:#f5f5f0}
-.loading{text-align:center;padding:2rem;color:#888;font-size:14px}
-.spinner{display:inline-block;width:20px;height:20px;border:2px solid #ddd;border-top-color:#3B6D11;border-radius:50%;animation:spin 0.7s linear infinite;margin-right:8px;vertical-align:middle}
-@keyframes spin{to{transform:rotate(360deg)}}
-.header-bar{background:#3B6D11;color:#fff;padding:1rem 1.5rem;margin-bottom:0}
-.header-bar h1{font-size:20px;font-weight:500}
-.header-bar p{font-size:13px;opacity:0.8;margin-top:2px}
-.sync-indicator{font-size:11px;padding:3px 10px;border-radius:20px;display:inline-block;margin-left:10px;vertical-align:middle}
-.sync-ok{background:#EAF3DE;color:#27500A}
-.sync-saving{background:#FAEEDA;color:#633806}
-.sync-error{background:#FCEBEB;color:#A32D2D}
+.obs-table tr:nth-child(even) td{background:var(--color-background-secondary)}
 </style>
-</head>
-<body>
 
-<div class="header-bar">
-  <div style="max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
-    <div>
-      <h1>Tree service logbooks</h1>
-      <p>12 trees · all data synced to cloud</p>
-    </div>
-    <div style="display:flex;align-items:center;gap:12px">
-      <span id="sync-status" class="sync-indicator sync-ok">Synced</span>
-      <span id="last-updated" style="font-size:12px;opacity:0.7"></span>
-    </div>
+<h2 class="sr-only">Tree service logbooks — 12 trees with visit observations, soil humidity, leaf drop and water trends</h2>
+
+<div style="padding:1rem 0">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.25rem;flex-wrap:wrap;gap:8px">
+  <div>
+    <h2 style="font-size:18px;font-weight:500">Tree service logbooks</h2>
+    <p style="font-size:13px;color:var(--color-text-secondary);margin-top:2px">12 trees · select a view below</p>
   </div>
+  <div id="last-updated" style="font-size:12px;color:var(--color-text-tertiary)"></div>
 </div>
-
-<div class="container">
-  <div class="nav-top" id="main-nav">
-    <button class="active" onclick="setView('dashboard')">Dashboard</button>
-    <button onclick="setView('trees')">Individual logbooks</button>
-  </div>
-  <div id="view-dashboard"></div>
-  <div id="view-trees" style="display:none"></div>
+<div class="nav-top" id="main-nav">
+  <button class="active" onclick="setView('dashboard')">Dashboard</button>
+  <button onclick="setView('trees')">Individual logbooks</button>
+</div>
+<div id="view-dashboard"></div>
+<div id="view-trees" style="display:none"></div>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 <script>
-
-// ── CONFIG ────────────────────────────────────────────────────────────────────
-const SUPA_URL = 'https://mcsofjeuutimqohsdhej.supabase.co';
-const SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1jc29mamV1dXRpbXFvaHNkaGVqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY0MDk3NjUsImV4cCI6MjA5MTk4NTc2NX0.1pK8Kg6lKvkurJmFdzq8-hSJK5y-0z_lPtg9xZCtbRk';
-
-const HEADERS = {
-  'Content-Type': 'application/json',
-  'apikey': SUPA_KEY,
-  'Authorization': `Bearer ${SUPA_KEY}`,
-  'Prefer': 'return=representation'
-};
-
-const TREES = [
+const TREES=[
   {name:'Forest Whitaker',ref:'R1'},{name:'Keanu Leaves',ref:'R2'},{name:'Treeyonce',ref:'R3'},
   {name:'Queen La Treefa',ref:'R4'},{name:'Tree Diddy',ref:'R5'},{name:'Morgan Treeman',ref:'R6'},
   {name:'Chris Pine',ref:'L1'},{name:'Spruce Willis',ref:'L2'},{name:'Wiz Khalifa',ref:'L3'},
   {name:'Elijah Wood',ref:'L4'},{name:'Woody Harrelson',ref:'L5'},{name:'Justin Timberlake',ref:'L6'}
 ];
-const POSITIONS = ['North fixed point','South fixed point','East fixed point','West fixed point','Canopy overhead','Base / root zone','Custom'];
+const POSITIONS=['North fixed point','South fixed point','East fixed point','West fixed point','Canopy overhead','Base / root zone','Custom'];
 
-let currentTree = 0, currentTab = 0, currentView = 'dashboard', currentPhotoSubTab = 'progression';
-let charts = {};
-// In-memory cache so the UI stays fast after initial load
-let cache = { soil:{}, photos:{}, treatments:{}, canopy:{}, signoffs:{} };
-let cacheLoaded = {};
-
-// ── SUPABASE API ──────────────────────────────────────────────────────────────
-function setSyncStatus(state, msg) {
-  const el = document.getElementById('sync-status');
-  if (!el) return;
-  el.className = 'sync-indicator sync-' + state;
-  el.textContent = msg;
-}
-
-async function dbGet(table, treeIndex) {
-  try {
-    const res = await fetch(`${SUPA_URL}/rest/v1/${table}?tree_index=eq.${treeIndex}&order=date.asc`, {
-      headers: HEADERS
-    });
-    if (!res.ok) throw new Error(await res.text());
-    return await res.json();
-  } catch(e) {
-    console.error('dbGet error', table, e);
-    setSyncStatus('error', 'Sync error');
-    return [];
-  }
-}
-
-async function dbInsert(table, record) {
-  setSyncStatus('saving', 'Saving…');
-  try {
-    const res = await fetch(`${SUPA_URL}/rest/v1/${table}`, {
-      method: 'POST',
-      headers: HEADERS,
-      body: JSON.stringify(record)
-    });
-    if (!res.ok) throw new Error(await res.text());
-    const data = await res.json();
-    setSyncStatus('ok', 'Synced');
-    updateLastUpdated();
-    return Array.isArray(data) ? data[0] : data;
-  } catch(e) {
-    console.error('dbInsert error', table, e);
-    setSyncStatus('error', 'Save failed');
-    return null;
-  }
-}
-
-async function dbDelete(table, id) {
-  setSyncStatus('saving', 'Saving…');
-  try {
-    const res = await fetch(`${SUPA_URL}/rest/v1/${table}?id=eq.${id}`, {
-      method: 'DELETE',
-      headers: HEADERS
-    });
-    if (!res.ok) throw new Error(await res.text());
-    setSyncStatus('ok', 'Synced');
-    updateLastUpdated();
-  } catch(e) {
-    console.error('dbDelete error', table, e);
-    setSyncStatus('error', 'Delete failed');
-  }
-}
-
-function updateLastUpdated() {
-  const el = document.getElementById('last-updated');
-  if (el) el.textContent = 'Last saved ' + new Date().toLocaleTimeString('en-GB', {hour:'2-digit',minute:'2-digit'});
-}
-
-// ── CACHE HELPERS ─────────────────────────────────────────────────────────────
-// Convert DB snake_case rows → app camelCase objects
-function soilFromDb(r) {
-  return {id:r.id, date:r.date, ph:r.ph||'', ec:r.ec||'', recordType:r.record_type||'visit',
-    soilHumidity:r.soil_humidity, leafDrop:r.leaf_drop, water:r.water,
-    newLeaves:r.new_leaves, foliage:r.foliage, discolouration:r.discolouration, pest:r.pest,
-    nitrogen:r.nitrogen||'', phosphorus:r.phosphorus||'', potassium:r.potassium||'',
-    calcium:r.calcium||'', magnesium:r.magnesium||'', labref:r.labref||'', notes:r.notes||''};
-}
-function soilToDb(d, treeIndex) {
-  return {tree_index:treeIndex, date:d.date, ph:d.ph||null, ec:d.ec||null, record_type:d.recordType||'visit',
-    soil_humidity:d.soilHumidity||null, leaf_drop:d.leafDrop||null, water:d.water||null,
-    new_leaves:d.newLeaves||null, foliage:d.foliage||null, discolouration:d.discolouration||null, pest:d.pest||null,
-    nitrogen:d.nitrogen||null, phosphorus:d.phosphorus||null, potassium:d.potassium||null,
-    calcium:d.calcium||null, magnesium:d.magnesium||null, labref:d.labref||null, notes:d.notes||null};
-}
-function photoFromDb(r) {
-  return {id:r.id, date:r.date, position:r.position, type:r.type, filename:r.filename||'', imageData:r.image_data||null, notes:r.notes||''};
-}
-function photoToDb(d, treeIndex) {
-  return {tree_index:treeIndex, date:d.date, position:d.position, type:d.type, filename:d.filename||null, image_data:d.imageData||null, notes:d.notes||null};
-}
-function treatmentFromDb(r) {
-  return {id:r.id, date:r.date, product:r.product, type:r.type, concentration:r.concentration||'', volume:r.volume||'', method:r.method, pest:r.pest||'', substrate:r.substrate||'', notes:r.notes||''};
-}
-function treatmentToDb(d, treeIndex) {
-  return {tree_index:treeIndex, date:d.date, product:d.product, type:d.type, concentration:d.concentration||null, volume:d.volume||null, method:d.method, pest:d.pest||null, substrate:d.substrate||null, notes:d.notes||null};
-}
-function canopyFromDb(r) {
-  return {id:r.id, date:r.date, spread:r.spread, height:r.height, growthpts:r.growthpts, density:r.density, notes:r.notes||''};
-}
-function canopyToDb(d, treeIndex) {
-  return {tree_index:treeIndex, date:d.date, spread:d.spread, height:d.height, growthpts:d.growthpts, density:d.density, notes:d.notes||null};
-}
-function signoffFromDb(r) {
-  return {id:r.id, date:r.date, lead:r.lead, commentary:r.commentary, adjustments:r.adjustments||''};
-}
-function signoffToDb(d, treeIndex) {
-  return {tree_index:treeIndex, date:d.date, lead:d.lead, commentary:d.commentary, adjustments:d.adjustments||null};
-}
-
-async function loadTree(treeIndex) {
-  if (cacheLoaded[treeIndex]) return;
-  showLoading();
-  const [soil, photos, treatments, canopy, signoffs] = await Promise.all([
-    dbGet('soil_records', treeIndex),
-    dbGet('photos', treeIndex),
-    dbGet('treatments', treeIndex),
-    dbGet('canopy_records', treeIndex),
-    dbGet('signoffs', treeIndex)
-  ]);
-  cache.soil[treeIndex] = soil.map(soilFromDb);
-  cache.photos[treeIndex] = photos.map(photoFromDb);
-  cache.treatments[treeIndex] = treatments.map(treatmentFromDb);
-  cache.canopy[treeIndex] = canopy.map(canopyFromDb);
-  cache.signoffs[treeIndex] = signoffs.map(signoffFromDb);
-  cacheLoaded[treeIndex] = true;
-  hideLoading();
-}
-
-async function loadAllTrees() {
-  showLoading();
-  for (let i = 0; i < 12; i++) {
-    if (!cacheLoaded[i]) {
-      const [soil, photos, treatments, canopy, signoffs] = await Promise.all([
-        dbGet('soil_records', i), dbGet('photos', i), dbGet('treatments', i),
-        dbGet('canopy_records', i), dbGet('signoffs', i)
-      ]);
-      cache.soil[i] = soil.map(soilFromDb);
-      cache.photos[i] = photos.map(photoFromDb);
-      cache.treatments[i] = treatments.map(treatmentFromDb);
-      cache.canopy[i] = canopy.map(canopyFromDb);
-      cache.signoffs[i] = signoffs.map(signoffFromDb);
-      cacheLoaded[i] = true;
-    }
-  }
-  hideLoading();
-}
-
-function getCached(section, treeIndex) {
-  return (cache[section][treeIndex] || []).slice().sort((a,b) => a.date.localeCompare(b.date));
-}
-
-function showLoading() {
-  const el = document.getElementById('loading-overlay');
-  if (el) el.style.display = 'flex';
-}
-function hideLoading() {
-  const el = document.getElementById('loading-overlay');
-  if (el) el.style.display = 'none';
-}
-
-// ── SEED DATA ─────────────────────────────────────────────────────────────────
-const VISIT_DATA = {
+const VISIT_DATA={
   0:[{date:'2026-04-08',ph:'',ec:'',soilHumidity:10,leafDrop:10,water:16,newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',notes:'Report #25 — Saskia Portman'},{date:'2026-04-10',ph:'',ec:'',soilHumidity:18,leafDrop:4,water:8,newLeaves:'Few',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',notes:'Report #26 — Tong Zhang. Fertilised with balanced liquid feed + iron chelates 1g/L'},{date:'2026-04-15',ph:'6.2',ec:'',soilHumidity:18,leafDrop:6,water:8,newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',notes:'Report #27 — Saskia Portman. Fertilising visit.'},{date:'2026-04-17',ph:'6.6',ec:'90',soilHumidity:16,leafDrop:5,water:10,newLeaves:'Few',discolouration:'Low',foliage:'Some Gaps',pest:'None observed',notes:'Report #28 — Liz Knight'}],
   1:[{date:'2026-04-08',ph:'',ec:'',soilHumidity:10,leafDrop:58,water:15,newLeaves:'Many',discolouration:'Low',foliage:'Asymetric',pest:'Mealy Bug',notes:'Report #25 — Saskia Portman. Fruits observed.'},{date:'2026-04-10',ph:'',ec:'',soilHumidity:15,leafDrop:45,water:10,newLeaves:'None',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',notes:'Report #26 — Tong Zhang'},{date:'2026-04-15',ph:'6.2',ec:'',soilHumidity:16,leafDrop:21,water:10,newLeaves:'Many',discolouration:'Medium',foliage:'Asymetric',pest:'Mealy Bug',notes:'Report #27 — Saskia Portman'},{date:'2026-04-17',ph:'6.5',ec:'120',soilHumidity:19,leafDrop:12,water:6,newLeaves:'Few',discolouration:'Medium',foliage:'Some Gaps',pest:'None observed',notes:'Report #28 — Liz Knight'}],
   2:[{date:'2026-04-08',ph:'',ec:'',soilHumidity:12,leafDrop:8,water:11,newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',notes:'Report #25'},{date:'2026-04-10',ph:'',ec:'',soilHumidity:19,leafDrop:8,water:8,newLeaves:'Few',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',notes:'Report #26'},{date:'2026-04-15',ph:'6.4',ec:'',soilHumidity:19,leafDrop:2,water:8,newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',notes:'Report #27'},{date:'2026-04-17',ph:'6.5',ec:'120',soilHumidity:17,leafDrop:6,water:10,newLeaves:'Few',discolouration:'Low',foliage:'Some Gaps',pest:'None observed',notes:'Report #28'}],
@@ -316,7 +119,8 @@ const VISIT_DATA = {
   10:[{date:'2026-04-08',ph:'',ec:'',soilHumidity:12,leafDrop:6,water:13,newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',notes:'Report #25'},{date:'2026-04-10',ph:'',ec:'',soilHumidity:22,leafDrop:7,water:6,newLeaves:'Few',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',notes:'Report #26'},{date:'2026-04-15',ph:'6.6',ec:'',soilHumidity:12,leafDrop:2,water:12,newLeaves:'Many',discolouration:'Low',foliage:'Some Gaps',pest:'Mealy Bug',notes:'Report #27'},{date:'2026-04-17',ph:'6.7',ec:'120',soilHumidity:17,leafDrop:2,water:12,newLeaves:'Few',discolouration:'Low',foliage:'Some Gaps',pest:'None observed',notes:'Report #28'}],
   11:[{date:'2026-04-08',ph:'',ec:'',soilHumidity:12,leafDrop:3,water:12,newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',notes:'Report #25'},{date:'2026-04-10',ph:'',ec:'',soilHumidity:19,leafDrop:4,water:8,newLeaves:'Few',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',notes:'Report #26'},{date:'2026-04-15',ph:'6.4',ec:'',soilHumidity:17,leafDrop:0,water:10,newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',notes:'Report #27'},{date:'2026-04-17',ph:'6.7',ec:'90',soilHumidity:14,leafDrop:3,water:12,newLeaves:'Few',discolouration:'Low',foliage:'Some Gaps',pest:'None observed',notes:'Report #28'}]
 };
-const LAB_DATA = {
+
+const LAB_DATA={
   0:{ph:'7.2',ec:'93',nitrogen:'18.9',phosphorus:'4.0',potassium:'14.8',calcium:'28.1',magnesium:'4.2',labref:'Y288/45898 #196584',notes:'Cawood NRM. Nitrate-N 18.1, Ammonia-N 0.8 mg/l. Dry matter 64.9%.'},
   1:{ph:'6.5',ec:'92',nitrogen:'18.6',phosphorus:'1.6',potassium:'14.4',calcium:'28.2',magnesium:'7.2',labref:'Y288/45898 #196587',notes:'Cawood NRM. Lowest P of all trees (1.6 mg/l) — monitor.'},
   2:{ph:'8.1',ec:'118',nitrogen:'14.4',phosphorus:'5.1',potassium:'13.9',calcium:'39.1',magnesium:'7.4',labref:'Y288/45899 #196590',notes:'Cawood NRM. pH 8.1 elevated — alkaline substrate.'},
@@ -331,121 +135,92 @@ const LAB_DATA = {
   11:{ph:'7.5',ec:'155',nitrogen:'24.4',phosphorus:'4.5',potassium:'20.3',calcium:'57.1',magnesium:'7.8',labref:'Y288/45898 #196582',notes:'Cawood NRM. NOTE: lab labelled L3 Justin Timberlake — possible mislabelling (should be L6).'}
 };
 
-async function seedIfEmpty() {
-  // Only seed if tree 0 has no records
-  const existing = await dbGet('soil_records', 0);
-  if (existing.length > 0) return; // already seeded
-  setSyncStatus('saving', 'Loading initial data…');
-  for (let i = 0; i < 12; i++) {
-    const visits = VISIT_DATA[i] || [];
-    for (const v of visits) {
-      await dbInsert('soil_records', soilToDb({
-        date:v.date, ph:v.ph||'', ec:v.ec||'', recordType:'visit',
-        soilHumidity:v.soilHumidity, leafDrop:v.leafDrop, water:v.water,
-        newLeaves:v.newLeaves, discolouration:v.discolouration, foliage:v.foliage, pest:v.pest,
-        nitrogen:'', phosphorus:'', potassium:'', calcium:'', magnesium:'', labref:'', notes:v.notes
-      }, i));
+let currentTree=0,currentTab=0,currentView='dashboard',currentPhotoSubTab='progression';
+let charts={};
+
+function sk(t,s){return `logbook_${t}_${s}`;}
+function load(t,s){try{const r=localStorage.getItem(sk(t,s));return r?JSON.parse(r):[]}catch(e){return[];}}
+function save(t,s,d){try{localStorage.setItem(sk(t,s),JSON.stringify(d));localStorage.setItem('logbook_last_updated',new Date().toISOString());}catch(e){}}
+function today(){return new Date().toISOString().split('T')[0];}
+function fv(id){return(document.getElementById(id)||{}).value||'';}
+
+function lastVisitDate(t){
+  const s=['soil','canopy','treatments','photos'];let l='';
+  s.forEach(sec=>{const d=load(t,sec);if(d.length){const x=d[d.length-1].date;if(x>l)l=x;}});
+  return l;
+}
+
+function fmtDate(ds){
+  if(!ds)return'—';
+  const p=ds.split('-');
+  if(p.length!==3)return ds;
+  return`${p[2]}/${p[1]}/${p[0]}`;
+}
+
+function seedData(){
+  if(localStorage.getItem('logbook_seeded_v4'))return;
+  TREES.forEach((_,i)=>{
+    const visits=VISIT_DATA[i]||[];
+    const existing=load(i,'soil');
+    const existingKeys=new Set(existing.map(e=>e.date+'|'+(e.recordType||'visit')));
+    const newSoil=[...existing];
+    visits.forEach(v=>{
+      if(!existingKeys.has(v.date+'|visit')){
+        newSoil.push({date:v.date,ph:v.ph||'',ec:v.ec||'',recordType:'visit',soilHumidity:v.soilHumidity,leafDrop:v.leafDrop,water:v.water,newLeaves:v.newLeaves,discolouration:v.discolouration,foliage:v.foliage,pest:v.pest,nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',labref:'',notes:v.notes});
+      }
+    });
+    const lab=LAB_DATA[i];
+    if(lab&&!existingKeys.has('2026-03-20|lab')){
+      newSoil.push({date:'2026-03-20',ph:lab.ph,ec:lab.ec,recordType:'lab',nitrogen:lab.nitrogen,phosphorus:lab.phosphorus,potassium:lab.potassium,calcium:lab.calcium,magnesium:lab.magnesium,labref:lab.labref,notes:lab.notes});
     }
-    const lab = LAB_DATA[i];
-    if (lab) {
-      await dbInsert('soil_records', soilToDb({
-        date:'2026-03-20', ph:lab.ph, ec:lab.ec, recordType:'lab',
-        nitrogen:lab.nitrogen, phosphorus:lab.phosphorus, potassium:lab.potassium,
-        calcium:lab.calcium, magnesium:lab.magnesium, labref:lab.labref, notes:lab.notes
-      }, i));
+    newSoil.sort((a,b)=>a.date.localeCompare(b.date));
+    save(i,'soil',newSoil);
+    const treatments=load(i,'treatments');
+    if(!treatments.find(t=>t.date==='2026-04-10'&&t.product==='Balanced liquid feed + Iron chelates')){
+      treatments.push({date:'2026-04-10',product:'Balanced liquid feed + Iron chelates',type:'Foliar feed',concentration:'1 g/L',volume:'',method:'Root drench',pest:'Mealy Bug observed',substrate:'',notes:'Report #26 — Tong Zhang. Applied to all 12 trees.'});
+      save(i,'treatments',treatments);
     }
-    await dbInsert('treatments', treatmentToDb({
-      date:'2026-04-10', product:'Balanced liquid feed + Iron chelates', type:'Foliar feed',
-      concentration:'1 g/L', volume:'', method:'Root drench', pest:'Mealy Bug observed',
-      substrate:'', notes:'Report #26 — Tong Zhang. Applied to all 12 trees.'
-    }, i));
-  }
-  setSyncStatus('ok', 'Synced');
-}
-
-// ── HELPERS ───────────────────────────────────────────────────────────────────
-function today() { return new Date().toISOString().split('T')[0]; }
-function fv(id) { return (document.getElementById(id)||{}).value||''; }
-function fmtDate(ds) {
-  if (!ds) return '—';
-  const p = ds.split('-');
-  return p.length === 3 ? `${p[2]}/${p[1]}/${p[0]}` : ds;
-}
-function lastVisitDate(i) {
-  const sections = ['soil','photos','treatments','canopy'];
-  let latest = '';
-  sections.forEach(s => {
-    const d = getCached(s, i);
-    if (d.length) { const x = d[d.length-1].date; if (x > latest) latest = x; }
   });
-  return latest;
+  localStorage.setItem('logbook_seeded_v4','true');
+  localStorage.setItem('logbook_last_updated',new Date().toISOString());
 }
 
-function compressImage(file, maxPx, quality) {
-  return new Promise(resolve => {
-    const reader = new FileReader();
-    reader.onload = ev => {
-      const img = new Image();
-      img.onload = () => {
-        let w = img.width, h = img.height;
-        if (w > maxPx || h > maxPx) {
-          if (w > h) { h = Math.round(h*(maxPx/w)); w = maxPx; }
-          else { w = Math.round(w*(maxPx/h)); h = maxPx; }
-        }
-        const canvas = document.createElement('canvas');
-        canvas.width = w; canvas.height = h;
-        canvas.getContext('2d').drawImage(img, 0, 0, w, h);
-        resolve(canvas.toDataURL('image/jpeg', quality));
-      };
-      img.src = ev.target.result;
-    };
-    reader.readAsDataURL(file);
-  });
-}
-
-// ── VIEWS ─────────────────────────────────────────────────────────────────────
-function setView(vw) {
-  currentView = vw;
-  document.querySelectorAll('#main-nav button').forEach((b,i) => b.classList.toggle('active', (i===0&&vw==='dashboard')||(i===1&&vw==='trees')));
-  document.getElementById('view-dashboard').style.display = vw==='dashboard' ? 'block' : 'none';
-  document.getElementById('view-trees').style.display = vw==='trees' ? 'block' : 'none';
+function setView(vw){
+  currentView=vw;
+  document.querySelectorAll('#main-nav button').forEach((b,i)=>b.classList.toggle('active',(i===0&&vw==='dashboard')||(i===1&&vw==='trees')));
+  document.getElementById('view-dashboard').style.display=vw==='dashboard'?'block':'none';
+  document.getElementById('view-trees').style.display=vw==='trees'?'block':'none';
   destroyCharts();
-  if (vw === 'dashboard') initDashboard();
+  if(vw==='dashboard')renderDashboard();
   else renderTreesView();
 }
 
-async function initDashboard() {
-  document.getElementById('view-dashboard').innerHTML = `<div class="loading"><span class="spinner"></span>Loading all trees…</div>`;
-  await loadAllTrees();
-  renderDashboard();
-}
-
-function renderDashboard() {
-  const el = document.getElementById('view-dashboard');
-  const cards = TREES.map((t,i) => {
-    const soil = getCached('soil', i);
-    const canopy = getCached('canopy', i);
-    const treatments = getCached('treatments', i);
-    const visitSoil = soil.filter(e => e.recordType !== 'lab' && e.ph);
-    const labSoil = soil.filter(e => e.recordType === 'lab');
-    const ls = visitSoil[visitSoil.length-1];
-    const lc = canopy[canopy.length-1];
-    const lv = lastVisitDate(i);
-    return `<div class="dash-card" onclick="openTree(${i})">
+function renderDashboard(){
+  const el=document.getElementById('view-dashboard');
+  const cards=TREES.map((t,i)=>{
+    const soil=load(i,'soil'),canopy=load(i,'canopy'),signoffs=load(i,'signoffs'),treatments=load(i,'treatments');
+    const visitSoil=soil.filter(e=>e.recordType!=='lab'&&e.ph);
+    const labSoil=soil.filter(e=>e.recordType==='lab');
+    const ls=visitSoil[visitSoil.length-1];
+    const lc=canopy[canopy.length-1];
+    const lv=lastVisitDate(i);
+    return`<div class="dash-card" onclick="openTree(${i})">
       <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:6px">
         <span style="font-weight:500;font-size:14px">${t.name}</span>
-        <span style="font-size:11px;color:#888">${t.ref}</span>
+        <span style="font-size:11px;color:var(--color-text-secondary)">${t.ref}</span>
       </div>
       <div class="dash-stat"><span>Last visit</span><span>${fmtDate(lv)}</span></div>
-      <div class="dash-stat"><span>Latest pH</span><span>${ls ? parseFloat(ls.ph).toFixed(1) : '—'}</span></div>
-      <div class="dash-stat"><span>Latest EC</span><span>${ls&&ls.ec ? ls.ec+' uS/cm' : '—'}</span></div>
-      <div class="dash-stat"><span>Visit readings</span><span>${soil.filter(e=>e.recordType!=='lab').length}</span></div>
+      <div class="dash-stat"><span>Latest pH</span><span>${ls?parseFloat(ls.ph).toFixed(1):'—'}</span></div>
+      <div class="dash-stat"><span>Latest EC</span><span>${ls&&ls.ec?ls.ec+' uS/cm':'—'}</span></div>
+      <div class="dash-stat"><span>Height</span><span>${lc&&lc.height?parseFloat(lc.height).toFixed(2)+'m':'—'}</span></div>
+      <div class="dash-stat"><span>Canopy spread</span><span>${lc&&lc.spread?parseFloat(lc.spread).toFixed(2)+'m':'—'}</span></div>
+      <div class="dash-stat"><span>Canopy density</span><span>${lc&&lc.density?Math.round(lc.density)+'%':'—'}</span></div>
       <div class="dash-stat"><span>Lab analyses</span><span>${labSoil.length}</span></div>
       <div class="dash-stat"><span>Treatments</span><span>${treatments.length}</span></div>
     </div>`;
   }).join('');
-  el.innerHTML = `
-    <div class="notice">All data synced to Supabase cloud — accessible from any device. Click any tree to open its logbook.</div>
+  el.innerHTML=`
+    <div class="import-notice">Data loaded from service reports #25–28 (08–17 Apr 2026) and Cawood NRM lab analyses (Mar 2026). Click any tree to view its full logbook.</div>
     <div class="dash-grid">${cards}</div>
     <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
       <button onclick="exportAllPDF()" class="primary">Export all sign-offs — PDF</button>
@@ -453,38 +228,38 @@ function renderDashboard() {
     </div>`;
 }
 
-function openTree(i) { currentTree = i; currentTab = 0; setView('trees'); renderTreesView(); }
+function openTree(i){currentTree=i;currentTab=0;setView('trees');renderTreesView();}
 
-function renderTreesView() {
-  const el = document.getElementById('view-trees');
-  el.innerHTML = `<div class="tree-selector" id="tree-selector"></div><div id="logbook"></div>`;
+function renderTreesView(){
+  const el=document.getElementById('view-trees');
+  el.innerHTML=`<div class="tree-selector" id="tree-selector"></div><div id="logbook" style="display:none"></div>`;
   initSelector();
-  selectTree(currentTree, false);
+  if(currentView==='trees')selectTree(currentTree,false);
 }
 
-function initSelector() {
-  const el = document.getElementById('tree-selector'); if (!el) return;
-  el.innerHTML = TREES.map((t,i) => `
+function initSelector(){
+  const el=document.getElementById('tree-selector');if(!el)return;
+  el.innerHTML=TREES.map((t,i)=>`
     <button class="tree-btn${i===currentTree?' active':''}" onclick="selectTree(${i},true)">
       <span class="tree-name">${t.name}</span>
       <span class="tree-ref">${t.ref}</span>
     </button>`).join('');
 }
 
-async function selectTree(i, scroll) {
-  currentTree = i; currentTab = 0; currentPhotoSubTab = 'progression';
+function selectTree(i,scroll){
+  currentTree=i;currentTab=0;currentPhotoSubTab='progression';
   initSelector();
-  const lb = document.getElementById('logbook'); if (!lb) return;
-  lb.innerHTML = `<div class="loading"><span class="spinner"></span>Loading ${TREES[i].name}…</div>`;
-  await loadTree(i);
-  const t = TREES[i];
-  lb.innerHTML = `
-    <div style="display:flex;align-items:center;gap:10px;margin-bottom:1.25rem;padding-bottom:1.25rem;border-bottom:1px solid #ddd;flex-wrap:wrap;gap:8px">
+  const lb=document.getElementById('logbook');if(!lb)return;
+  lb.style.display='block';
+  const t=TREES[i];
+  lb.innerHTML=`
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:1.25rem;padding-bottom:1.25rem;border-bottom:0.5px solid var(--color-border-tertiary);flex-wrap:wrap;gap:8px">
       <div style="width:40px;height:40px;border-radius:50%;background:#EAF3DE;display:flex;align-items:center;justify-content:center;font-weight:500;font-size:14px;color:#27500A;flex-shrink:0">${t.name.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase()}</div>
-      <div style="flex:1;min-width:0"><p style="font-weight:500;font-size:16px">${t.name}</p><p style="font-size:12px;color:#888">Reference ${t.ref}</p></div>
+      <div style="flex:1;min-width:0"><p style="font-weight:500;font-size:16px">${t.name}</p><p style="font-size:12px;color:var(--color-text-secondary)">Reference ${t.ref}</p></div>
       <div style="display:flex;gap:8px;flex-wrap:wrap">
         <button onclick="exportTreeExcel(${i})" class="excel"><span class="xl-icon">X</span>Export Excel</button>
         <button onclick="exportTreePDF(${i})">Export PDF</button>
+        <button onclick="exportTreeJSON(${i})">Export JSON</button>
       </div>
     </div>
     <div class="metric-grid" id="summary-metrics"></div>
@@ -497,94 +272,143 @@ async function selectTree(i, scroll) {
       <button onclick="setTab(5)">Sign-off</button>
     </div>
     <div id="tab-content"></div>`;
-  destroyCharts(); renderSummary(); renderTab();
-  if (scroll) lb.scrollIntoView({behavior:'smooth', block:'start'});
+  const lu=localStorage.getItem('logbook_last_updated');
+  if(lu)document.getElementById('last-updated').textContent='Last updated '+new Date(lu).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});
+  destroyCharts();renderSummary();renderTab();
+  if(scroll)lb.scrollIntoView({behavior:'smooth',block:'start'});
 }
 
-function setTab(i) {
-  currentTab = i;
-  document.querySelectorAll('#tab-bar button').forEach((b,j) => b.classList.toggle('active', j===i));
-  destroyCharts(); renderTab();
+function setTab(i){
+  currentTab=i;
+  document.querySelectorAll('#tab-bar button').forEach((b,j)=>b.classList.toggle('active',j===i));
+  destroyCharts();renderTab();
 }
 
-function destroyCharts() { Object.values(charts).forEach(c => { try{c.destroy()}catch(e){} }); charts = {}; }
+function destroyCharts(){Object.values(charts).forEach(c=>{try{c.destroy()}catch(e){}});charts={};}
 
-function renderSummary() {
-  const soil = getCached('soil', currentTree);
-  const canopy = getCached('canopy', currentTree);
-  const treatments = getCached('treatments', currentTree);
-  const signoffs = getCached('signoffs', currentTree);
-  const visitSoil = soil.filter(e => e.recordType !== 'lab' && e.ph);
-  const labSoil = soil.filter(e => e.recordType === 'lab');
-  const ls = visitSoil[visitSoil.length-1];
-  const lc = canopy[canopy.length-1];
-  function trend(arr, key) {
-    if (arr.length < 2) return '';
-    const d = parseFloat(arr[arr.length-1][key]) - parseFloat(arr[arr.length-2][key]);
-    return d > 0 ? '<span class="trend-up"> ▲</span>' : d < 0 ? '<span class="trend-down"> ▼</span>' : '<span class="trend-flat"> —</span>';
-  }
-  const el = document.getElementById('summary-metrics'); if (!el) return;
-  el.innerHTML = `
-    <div class="metric"><div class="lbl">Latest pH</div><div class="val">${ls ? parseFloat(ls.ph).toFixed(1)+trend(visitSoil,'ph') : '—'}</div></div>
-    <div class="metric"><div class="lbl">Latest EC</div><div class="val">${ls&&ls.ec ? ls.ec : '—'}</div></div>
-    <div class="metric"><div class="lbl">Canopy spread</div><div class="val">${lc ? parseFloat(lc.spread).toFixed(1)+'m'+trend(canopy,'spread') : '—'}</div></div>
-    <div class="metric"><div class="lbl">Canopy density</div><div class="val">${lc ? Math.round(lc.density)+'%'+trend(canopy,'density') : '—'}</div></div>
+function renderSummary(){
+  const soil=load(currentTree,'soil'),canopy=load(currentTree,'canopy'),treatments=load(currentTree,'treatments'),signoffs=load(currentTree,'signoffs');
+  const visitSoil=soil.filter(e=>e.recordType!=='lab'&&e.ph);
+  const labSoil=soil.filter(e=>e.recordType==='lab');
+  const ls=visitSoil[visitSoil.length-1];
+  const lc=canopy[canopy.length-1];
+  function trend(arr,key){if(arr.length<2)return'';const d=parseFloat(arr[arr.length-1][key])-parseFloat(arr[arr.length-2][key]);return d>0?'<span class="trend-up"> ▲</span>':d<0?'<span class="trend-down"> ▼</span>':'<span class="trend-flat"> —</span>';}
+  const el=document.getElementById('summary-metrics');if(!el)return;
+  el.innerHTML=`
+    <div class="metric"><div class="lbl">Latest pH</div><div class="val">${ls?parseFloat(ls.ph).toFixed(1)+trend(visitSoil,'ph'):'—'}</div></div>
+    <div class="metric"><div class="lbl">Latest EC</div><div class="val">${ls&&ls.ec?ls.ec:'—'}</div></div>
+    <div class="metric"><div class="lbl">Canopy spread</div><div class="val">${lc?parseFloat(lc.spread).toFixed(1)+'m'+trend(canopy,'spread'):'—'}</div></div>
+    <div class="metric"><div class="lbl">Canopy density</div><div class="val">${lc?Math.round(lc.density)+'%'+trend(canopy,'density'):'—'}</div></div>
     <div class="metric"><div class="lbl">Visit readings</div><div class="val">${soil.filter(e=>e.recordType!=='lab').length}</div></div>
     <div class="metric"><div class="lbl">Lab analyses</div><div class="val">${labSoil.length}</div></div>
     <div class="metric"><div class="lbl">Treatments</div><div class="val">${treatments.length}</div></div>
     <div class="metric"><div class="lbl">Sign-offs</div><div class="val">${signoffs.length}</div></div>`;
 }
 
-function renderTab() {
-  const tc = document.getElementById('tab-content'); if (!tc) return;
-  if (currentTab===0) tc.innerHTML = renderSoil();
-  else if (currentTab===1) tc.innerHTML = renderObservations();
-  else if (currentTab===2) tc.innerHTML = renderPhotos();
-  else if (currentTab===3) tc.innerHTML = renderTreatments();
-  else if (currentTab===4) tc.innerHTML = renderCanopy();
-  else if (currentTab===5) tc.innerHTML = renderSignoff();
-  setTimeout(() => {
-    if (currentTab===0) drawSoilCharts();
-    if (currentTab===1) drawObsCharts();
-    if (currentTab===4) drawCanopyCharts();
-  }, 50);
+function renderTab(){
+  const tc=document.getElementById('tab-content');if(!tc)return;
+  if(currentTab===0)tc.innerHTML=renderSoil();
+  else if(currentTab===1)tc.innerHTML=renderObservations();
+  else if(currentTab===2)tc.innerHTML=renderPhotos();
+  else if(currentTab===3)tc.innerHTML=renderTreatments();
+  else if(currentTab===4)tc.innerHTML=renderCanopy();
+  else if(currentTab===5)tc.innerHTML=renderSignoff();
+  setTimeout(()=>{
+    if(currentTab===0)drawSoilCharts();
+    if(currentTab===1)drawObsCharts();
+    if(currentTab===4)drawCanopyCharts();
+  },50);
+}
+
+// ── VISIT OBSERVATIONS TAB ────────────────────────────────────────────────────
+function renderObservations(){
+  const data=load(currentTree,'soil').filter(e=>e.recordType!=='lab');
+  if(!data.length) return`<p class="empty">No visit records yet. Add readings in the Soil &amp; foliar tab.</p>`;
+
+  const tableRows=data.map(e=>`
+    <tr>
+      <td>${fmtDate(e.date)}</td>
+      <td>${e.soilHumidity!==undefined&&e.soilHumidity!==''?e.soilHumidity+'%':'—'}</td>
+      <td>${e.leafDrop!==undefined&&e.leafDrop!==''?e.leafDrop:'—'}</td>
+      <td>${e.water!==undefined&&e.water!==''?e.water+'L':'—'}</td>
+      <td>${e.newLeaves||'—'}</td>
+      <td>${e.foliage||'—'}</td>
+      <td>${e.discolouration||'—'}</td>
+      <td>${e.pest||'—'}</td>
+    </tr>`).join('');
+
+  const hasObs=data.some(e=>e.soilHumidity!==undefined||e.leafDrop!==undefined||e.water!==undefined);
+  const charts=hasObs&&data.length>=2?`
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:10px;margin-bottom:1rem">
+      <div class="card"><p style="font-size:13px;font-weight:500;margin-bottom:2px">Soil humidity <span style="font-size:11px;font-weight:400;color:var(--color-text-secondary)">(%)</span></p><div class="chart-wrap"><canvas id="chart-humidity" role="img" aria-label="Soil humidity trend"></canvas></div></div>
+      <div class="card"><p style="font-size:13px;font-weight:500;margin-bottom:2px">Leaf drop <span style="font-size:11px;font-weight:400;color:var(--color-text-secondary)">count per visit</span></p><div class="chart-wrap"><canvas id="chart-leafdrop" role="img" aria-label="Leaf drop trend"></canvas></div></div>
+      <div class="card"><p style="font-size:13px;font-weight:500;margin-bottom:2px">Water applied <span style="font-size:11px;font-weight:400;color:var(--color-text-secondary)">(L)</span></p><div class="chart-wrap"><canvas id="chart-water" role="img" aria-label="Water applied trend"></canvas></div></div>
+    </div>`:'';
+
+  return`
+    ${charts}
+    <div class="card">
+      <div class="section-header"><p style="font-weight:500;font-size:14px">Visit observations (${data.length})</p></div>
+      <div style="overflow-x:auto">
+        <table class="obs-table">
+          <thead><tr>
+            <th>Date</th><th>Soil humidity</th><th>Leaf drop</th><th>Water</th><th>New leaves</th><th>Foliage</th><th>Discolouration</th><th>Pest</th>
+          </tr></thead>
+          <tbody>${tableRows}</tbody>
+        </table>
+      </div>
+    </div>`;
+}
+
+function drawObsCharts(){
+  const data=load(currentTree,'soil').filter(e=>e.recordType!=='lab'&&(e.soilHumidity!==undefined||e.leafDrop!==undefined));
+  if(data.length<2)return;
+  const labels=data.map(e=>fmtDate(e.date));
+  const mk=(id,vals,col)=>{
+    const ctx=document.getElementById(id);if(!ctx)return;
+    charts[id]=new Chart(ctx,{type:'line',data:{labels,datasets:[{data:vals,borderColor:col,backgroundColor:col+'22',tension:0.3,pointRadius:4,fill:true,borderWidth:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{font:{size:10},maxRotation:45}},y:{beginAtZero:true,ticks:{font:{size:11}}}}}});
+  };
+  mk('chart-humidity',data.map(e=>e.soilHumidity!==''?parseFloat(e.soilHumidity):null),'#1D9E75');
+  mk('chart-leafdrop',data.map(e=>e.leafDrop!==''?parseFloat(e.leafDrop):null),'#D85A30');
+  mk('chart-water',data.map(e=>e.water!==''?parseFloat(e.water):null),'#185FA5');
 }
 
 // ── SOIL & FOLIAR ─────────────────────────────────────────────────────────────
-function renderSoil() {
-  const data = getCached('soil', currentTree);
-  const entries = data.slice().reverse().map(e => `
+function renderSoil(){
+  const data=load(currentTree,'soil');
+  const entries=data.slice().reverse().map((e,i)=>`
     <div class="entry-item">
       <div>
         <div style="font-weight:500;font-size:13px">
-          ${e.ph ? 'pH '+parseFloat(e.ph).toFixed(1) : 'pH —'}${e.ec ? ' · EC '+e.ec+' uS/cm' : ''}
-          ${e.recordType==='lab' ? '<span class="lab-badge">Lab baseline</span>' : '<span style="display:inline-block;font-size:10px;padding:1px 6px;border-radius:10px;background:#FAEEDA;color:#633806;margin-left:6px;vertical-align:middle">Visit</span>'}
+          ${e.ph?'pH '+parseFloat(e.ph).toFixed(1):'pH —'}${e.ec?' · EC '+e.ec+' uS/cm':''}
+          ${e.recordType==='lab'?'<span class="lab-badge">Lab baseline</span>':'<span style="display:inline-block;font-size:10px;padding:1px 6px;border-radius:10px;background:#FAEEDA;color:#633806;margin-left:6px;vertical-align:middle">Visit</span>'}
         </div>
-        ${e.nitrogen ? `<div style="font-size:12px;color:#666;margin-top:2px">N ${e.nitrogen} · P ${e.phosphorus||'—'} · K ${e.potassium||'—'} · Ca ${e.calcium||'—'} · Mg ${e.magnesium||'—'} mg/L</div>` : ''}
-        ${e.labref ? `<div style="font-size:11px;color:#aaa;margin-top:1px">Ref: ${e.labref}</div>` : ''}
-        ${e.notes ? `<div style="color:#666;font-size:12px;margin-top:3px">${e.notes}</div>` : ''}
+        ${e.nitrogen?`<div style="font-size:12px;color:var(--color-text-secondary);margin-top:2px">N ${e.nitrogen} · P ${e.phosphorus||'—'} · K ${e.potassium||'—'} · Ca ${e.calcium||'—'} · Mg ${e.magnesium||'—'} mg/L</div>`:''}
+        ${e.labref?`<div style="font-size:11px;color:var(--color-text-tertiary);margin-top:1px">Ref: ${e.labref}</div>`:''}
+        ${e.notes?`<div style="color:var(--color-text-secondary);font-size:12px;margin-top:3px">${e.notes}</div>`:''}
       </div>
       <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px">
-        <span style="font-size:11px;color:#888;white-space:nowrap">${fmtDate(e.date)}</span>
-        <button class="danger" style="padding:2px 8px;font-size:11px" onclick="deleteSoil('${e.id}')">Remove</button>
+        <span style="font-size:11px;color:var(--color-text-secondary);white-space:nowrap">${fmtDate(e.date)}</span>
+        <button class="danger" style="padding:2px 8px;font-size:11px" onclick="deleteEntry('soil',${data.length-1-i})">Remove</button>
       </div>
     </div>`).join('');
-  const phData = data.filter(e => e.ph);
-  const hasNPK = data.some(e => e.nitrogen);
-  const hasCaMg = data.some(e => e.calcium);
-  const chartBlocks = phData.length >= 2 ? `
+  const phData=data.filter(e=>e.ph);
+  const hasCharts=phData.length>=2;
+  const hasNPK=data.some(e=>e.nitrogen);
+  const hasCaMg=data.some(e=>e.calcium);
+  const chartBlocks=hasCharts?`
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:10px">
       <div class="card"><p style="font-size:13px;font-weight:500;margin-bottom:2px">pH trend</p><div class="chart-wrap"><canvas id="chart-ph" role="img" aria-label="pH"></canvas></div></div>
-      ${data.filter(e=>e.ec).length>=2 ? `<div class="card"><p style="font-size:13px;font-weight:500;margin-bottom:2px">EC trend <span style="font-size:11px;font-weight:400;color:#888">uS/cm</span></p><div class="chart-wrap"><canvas id="chart-ec" role="img" aria-label="EC"></canvas></div></div>` : ''}
-      ${hasNPK ? `<div class="card"><p style="font-size:13px;font-weight:500;margin-bottom:2px">N <span style="font-size:11px;font-weight:400;color:#888">mg/L · lab</span></p><div class="chart-wrap"><canvas id="chart-n" role="img" aria-label="N"></canvas></div></div>
-      <div class="card"><p style="font-size:13px;font-weight:500;margin-bottom:2px">P <span style="font-size:11px;font-weight:400;color:#888">mg/L · lab</span></p><div class="chart-wrap"><canvas id="chart-p" role="img" aria-label="P"></canvas></div></div>
-      <div class="card"><p style="font-size:13px;font-weight:500;margin-bottom:2px">K <span style="font-size:11px;font-weight:400;color:#888">mg/L · lab</span></p><div class="chart-wrap"><canvas id="chart-k" role="img" aria-label="K"></canvas></div></div>` : ''}
-      ${hasCaMg ? `<div class="card"><p style="font-size:13px;font-weight:500;margin-bottom:2px">Ca &amp; Mg <span style="font-size:11px;font-weight:400;color:#888">mg/L · lab</span></p><div class="chart-wrap"><canvas id="chart-camg" role="img" aria-label="CaMg"></canvas></div></div>` : ''}
-    </div>` : '';
-  return `<div class="card">
+      ${data.filter(e=>e.ec).length>=2?`<div class="card"><p style="font-size:13px;font-weight:500;margin-bottom:2px">EC trend <span style="font-size:11px;font-weight:400;color:var(--color-text-secondary)">uS/cm</span></p><div class="chart-wrap"><canvas id="chart-ec" role="img" aria-label="EC"></canvas></div></div>`:''}
+      ${hasNPK?`<div class="card"><p style="font-size:13px;font-weight:500;margin-bottom:2px">N <span style="font-size:11px;font-weight:400;color:var(--color-text-secondary)">mg/L · lab</span></p><div class="chart-wrap"><canvas id="chart-n" role="img" aria-label="N"></canvas></div></div>
+      <div class="card"><p style="font-size:13px;font-weight:500;margin-bottom:2px">P <span style="font-size:11px;font-weight:400;color:var(--color-text-secondary)">mg/L · lab</span></p><div class="chart-wrap"><canvas id="chart-p" role="img" aria-label="P"></canvas></div></div>
+      <div class="card"><p style="font-size:13px;font-weight:500;margin-bottom:2px">K <span style="font-size:11px;font-weight:400;color:var(--color-text-secondary)">mg/L · lab</span></p><div class="chart-wrap"><canvas id="chart-k" role="img" aria-label="K"></canvas></div></div>`:''}
+      ${hasCaMg?`<div class="card"><p style="font-size:13px;font-weight:500;margin-bottom:2px">Ca &amp; Mg <span style="font-size:11px;font-weight:400;color:var(--color-text-secondary)">mg/L · lab</span></p><div class="chart-wrap"><canvas id="chart-camg" role="img" aria-label="CaMg"></canvas></div></div>`:''}
+    </div>`:'';
+  return`<div class="card">
     <div class="section-header"><p style="font-weight:500;font-size:14px">Log reading</p>
       <div style="display:flex;gap:8px;align-items:center">
-        <label style="margin:0;font-size:12px;color:#666">Type</label>
+        <label style="margin:0;font-size:12px;color:var(--color-text-secondary)">Type</label>
         <select id="s-type" style="width:auto;padding:4px 8px;font-size:12px" onchange="toggleLabFields()">
           <option value="visit">Visit reading</option>
           <option value="lab">Lab test</option>
@@ -598,16 +422,18 @@ function renderSoil() {
     </div>
     <div id="visit-obs-fields">
       <div class="field-row">
-        <div><label>Soil humidity (%)</label><input type="number" id="s-humidity" step="1" min="0" max="100"></div>
-        <div><label>Leaf drop count</label><input type="number" id="s-leafdrop" step="1" min="0"></div>
-        <div><label>Water applied (L)</label><input type="number" id="s-water" step="1" min="0"></div>
+        <div><label>Soil humidity (%)</label><input type="number" id="s-humidity" step="1" min="0" max="100" placeholder="15"></div>
+        <div><label>Leaf drop count</label><input type="number" id="s-leafdrop" step="1" min="0" placeholder="5"></div>
+        <div><label>Water applied (L)</label><input type="number" id="s-water" step="1" min="0" placeholder="10"></div>
       </div>
       <div class="field-row">
         <div><label>New leaves</label><select id="s-newleaves"><option>—</option><option>None</option><option>Few</option><option>Many</option></select></div>
         <div><label>Foliage condition</label><select id="s-foliage"><option>—</option><option>Uniform</option><option>Asymetric</option><option>Some Gaps</option><option>Sparse</option></select></div>
         <div><label>Discolouration</label><select id="s-discolouration"><option>—</option><option>Low</option><option>Medium</option><option>High</option></select></div>
       </div>
-      <div class="field-row"><div><label>Pest / disease</label><input type="text" id="s-pest" placeholder="e.g. Mealy Bug"></div></div>
+      <div class="field-row">
+        <div><label>Pest / disease</label><input type="text" id="s-pest" placeholder="e.g. Mealy Bug"></div>
+      </div>
     </div>
     <div id="lab-fields" style="display:none">
       <div class="field-row">
@@ -622,7 +448,7 @@ function renderSoil() {
       </div>
     </div>
     <div style="margin-bottom:10px"><label>Notes</label><textarea id="s-notes" placeholder="Observations..."></textarea></div>
-    <button class="primary" id="save-soil-btn" onclick="addSoil()">Save reading</button>
+    <button class="primary" onclick="addSoil()">Save reading</button>
   </div>
   ${chartBlocks}
   <div class="card">
@@ -633,116 +459,49 @@ function renderSoil() {
         <span style="background:#FAEEDA;color:#633806;padding:1px 7px;border-radius:10px">Visit</span>
       </div>
     </div>
-    ${data.length===0 ? '<p class="empty">No records yet</p>' : '<div class="entry-list">'+entries+'</div>'}
+    ${data.length===0?'<p class="empty">No records yet</p>':'<div class="entry-list">'+entries+'</div>'}
   </div>`;
 }
 
-function toggleLabFields() {
-  const isLab = fv('s-type') === 'lab';
-  const lf = document.getElementById('lab-fields');
-  const vf = document.getElementById('visit-obs-fields');
-  if (lf) lf.style.display = isLab ? 'block' : 'none';
-  if (vf) vf.style.display = isLab ? 'none' : 'block';
+function toggleLabFields(){
+  const isLab=fv('s-type')==='lab';
+  const lf=document.getElementById('lab-fields');
+  const vf=document.getElementById('visit-obs-fields');
+  if(lf)lf.style.display=isLab?'block':'none';
+  if(vf)vf.style.display=isLab?'none':'block';
 }
 
-function drawSoilCharts() {
-  const data = getCached('soil', currentTree);
-  const phData = data.filter(e => e.ph);
-  const ecData = data.filter(e => e.ec);
-  const labData = data.filter(e => e.recordType==='lab' && e.nitrogen);
-  const mk = (id, vals, dates, col) => {
-    const ctx = document.getElementById(id); if (!ctx||vals.length<1) return;
-    charts[id] = new Chart(ctx, {type:'line', data:{labels:dates, datasets:[{data:vals, borderColor:col, backgroundColor:col+'22', tension:0.3, pointRadius:4, fill:true, borderWidth:2}]}, options:{responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}}, scales:{x:{ticks:{font:{size:10}, maxRotation:45}}, y:{ticks:{font:{size:11}}}}}});
-  };
-  mk('chart-ph', phData.map(e=>parseFloat(e.ph)), phData.map(e=>fmtDate(e.date)), '#639922');
-  mk('chart-ec', ecData.map(e=>parseFloat(e.ec)), ecData.map(e=>fmtDate(e.date)), '#1D9E75');
-  if (labData.length) {
-    const ld = labData.map(e=>fmtDate(e.date));
-    mk('chart-n', labData.map(e=>parseFloat(e.nitrogen)), ld, '#185FA5');
-    mk('chart-p', labData.map(e=>parseFloat(e.phosphorus)), ld, '#7F77DD');
-    mk('chart-k', labData.map(e=>parseFloat(e.potassium)), ld, '#BA7517');
-    if (document.getElementById('chart-camg')) {
-      charts['chart-camg'] = new Chart(document.getElementById('chart-camg'), {type:'line', data:{labels:ld, datasets:[{label:'Ca', data:labData.map(e=>parseFloat(e.calcium)), borderColor:'#D85A30', tension:0.3, pointRadius:4, borderWidth:2},{label:'Mg', data:labData.map(e=>parseFloat(e.magnesium)), borderColor:'#0F6E56', tension:0.3, pointRadius:4, borderWidth:2, borderDash:[4,3]}]}, options:{responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}}, scales:{x:{ticks:{font:{size:10}}}, y:{ticks:{font:{size:11}}}}}});
+function drawSoilCharts(){
+  const data=load(currentTree,'soil');
+  const phData=data.filter(e=>e.ph);
+  const ecData=data.filter(e=>e.ec);
+  const labData=data.filter(e=>e.recordType==='lab'&&e.nitrogen);
+  const mk=(id,vals,dates,col)=>{const ctx=document.getElementById(id);if(!ctx||vals.length<1)return;charts[id]=new Chart(ctx,{type:'line',data:{labels:dates,datasets:[{data:vals,borderColor:col,backgroundColor:col+'22',tension:0.3,pointRadius:4,fill:true,borderWidth:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{font:{size:10},maxRotation:45}},y:{ticks:{font:{size:11}}}}}});};
+  mk('chart-ph',phData.map(e=>parseFloat(e.ph)),phData.map(e=>fmtDate(e.date)),'#639922');
+  mk('chart-ec',ecData.map(e=>parseFloat(e.ec)),ecData.map(e=>fmtDate(e.date)),'#1D9E75');
+  if(labData.length){
+    const ld=labData.map(e=>fmtDate(e.date));
+    if(document.getElementById('chart-n'))mk('chart-n',labData.map(e=>parseFloat(e.nitrogen)),ld,'#185FA5');
+    if(document.getElementById('chart-p'))mk('chart-p',labData.map(e=>parseFloat(e.phosphorus)),ld,'#7F77DD');
+    if(document.getElementById('chart-k'))mk('chart-k',labData.map(e=>parseFloat(e.potassium)),ld,'#BA7517');
+    if(document.getElementById('chart-camg')){
+      charts['chart-camg']=new Chart(document.getElementById('chart-camg'),{type:'line',data:{labels:ld,datasets:[{label:'Ca',data:labData.map(e=>parseFloat(e.calcium)),borderColor:'#D85A30',tension:0.3,pointRadius:4,borderWidth:2},{label:'Mg',data:labData.map(e=>parseFloat(e.magnesium)),borderColor:'#0F6E56',tension:0.3,pointRadius:4,borderWidth:2,borderDash:[4,3]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{font:{size:10}}},y:{ticks:{font:{size:11}}}}}});
     }
   }
 }
 
-async function addSoil() {
-  const isLab = fv('s-type') === 'lab';
-  const d = {
-    date:fv('s-date'), ph:fv('s-ph'), ec:fv('s-ec'), recordType:fv('s-type'),
-    soilHumidity:isLab?'':fv('s-humidity'), leafDrop:isLab?'':fv('s-leafdrop'), water:isLab?'':fv('s-water'),
-    newLeaves:isLab?'':fv('s-newleaves'), foliage:isLab?'':fv('s-foliage'), discolouration:isLab?'':fv('s-discolouration'), pest:isLab?'':fv('s-pest'),
-    nitrogen:fv('s-n'), phosphorus:fv('s-p'), potassium:fv('s-k'), calcium:fv('s-ca'), magnesium:fv('s-mg'), labref:fv('s-labref'), notes:fv('s-notes')
-  };
-  if (!d.date || !d.ph) { alert('Date and pH are required'); return; }
-  const btn = document.getElementById('save-soil-btn');
-  if (btn) { btn.disabled = true; btn.textContent = 'Saving…'; }
-  const row = await dbInsert('soil_records', soilToDb(d, currentTree));
-  if (row) {
-    if (!cache.soil[currentTree]) cache.soil[currentTree] = [];
-    cache.soil[currentTree].push(soilFromDb(row));
-    cache.soil[currentTree].sort((a,b) => a.date.localeCompare(b.date));
-  }
-  renderSummary(); renderTab();
+function addSoil(){
+  const isLab=fv('s-type')==='lab';
+  const d={date:fv('s-date'),ph:fv('s-ph'),ec:fv('s-ec'),recordType:fv('s-type'),
+    soilHumidity:isLab?'':fv('s-humidity'),leafDrop:isLab?'':fv('s-leafdrop'),water:isLab?'':fv('s-water'),
+    newLeaves:isLab?'':fv('s-newleaves'),foliage:isLab?'':fv('s-foliage'),discolouration:isLab?'':fv('s-discolouration'),pest:isLab?'':fv('s-pest'),
+    nitrogen:fv('s-n'),phosphorus:fv('s-p'),potassium:fv('s-k'),calcium:fv('s-ca'),magnesium:fv('s-mg'),labref:fv('s-labref'),notes:fv('s-notes')};
+  if(!d.date||!d.ph){alert('Date and pH are required');return;}
+  const arr=load(currentTree,'soil');arr.push(d);arr.sort((a,b)=>a.date.localeCompare(b.date));save(currentTree,'soil',arr);renderSummary();renderTab();
 }
 
-async function deleteSoil(id) {
-  if (!confirm('Remove this record?')) return;
-  await dbDelete('soil_records', id);
-  if (cache.soil[currentTree]) cache.soil[currentTree] = cache.soil[currentTree].filter(e => e.id !== id);
-  renderSummary(); renderTab();
-}
-
-// ── VISIT OBSERVATIONS ────────────────────────────────────────────────────────
-function renderObservations() {
-  const data = getCached('soil', currentTree).filter(e => e.recordType !== 'lab');
-  if (!data.length) return `<p class="empty">No visit records yet.</p>`;
-  const tableRows = data.map(e => `
-    <tr>
-      <td>${fmtDate(e.date)}</td>
-      <td>${e.soilHumidity!==null&&e.soilHumidity!==undefined&&e.soilHumidity!=='' ? e.soilHumidity+'%' : '—'}</td>
-      <td>${e.leafDrop!==null&&e.leafDrop!==undefined&&e.leafDrop!=='' ? e.leafDrop : '—'}</td>
-      <td>${e.water!==null&&e.water!==undefined&&e.water!=='' ? e.water+'L' : '—'}</td>
-      <td>${e.newLeaves||'—'}</td>
-      <td>${e.foliage||'—'}</td>
-      <td>${e.discolouration||'—'}</td>
-      <td>${e.pest||'—'}</td>
-    </tr>`).join('');
-  const chartBlock = data.length >= 2 ? `
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:10px;margin-bottom:1rem">
-      <div class="card"><p style="font-size:13px;font-weight:500;margin-bottom:2px">Soil humidity <span style="font-size:11px;font-weight:400;color:#888">(%)</span></p><div class="chart-wrap"><canvas id="chart-humidity" role="img" aria-label="Soil humidity"></canvas></div></div>
-      <div class="card"><p style="font-size:13px;font-weight:500;margin-bottom:2px">Leaf drop <span style="font-size:11px;font-weight:400;color:#888">count per visit</span></p><div class="chart-wrap"><canvas id="chart-leafdrop" role="img" aria-label="Leaf drop"></canvas></div></div>
-      <div class="card"><p style="font-size:13px;font-weight:500;margin-bottom:2px">Water applied <span style="font-size:11px;font-weight:400;color:#888">(L)</span></p><div class="chart-wrap"><canvas id="chart-water" role="img" aria-label="Water applied"></canvas></div></div>
-    </div>` : '';
-  return `${chartBlock}
-    <div class="card">
-      <div class="section-header"><p style="font-weight:500;font-size:14px">Visit observations (${data.length})</p></div>
-      <div style="overflow-x:auto">
-        <table class="obs-table">
-          <thead><tr><th>Date</th><th>Soil humidity</th><th>Leaf drop</th><th>Water</th><th>New leaves</th><th>Foliage</th><th>Discolouration</th><th>Pest</th></tr></thead>
-          <tbody>${tableRows}</tbody>
-        </table>
-      </div>
-    </div>`;
-}
-
-function drawObsCharts() {
-  const data = getCached('soil', currentTree).filter(e => e.recordType !== 'lab');
-  if (data.length < 2) return;
-  const labels = data.map(e => fmtDate(e.date));
-  const mk = (id, vals, col) => {
-    const ctx = document.getElementById(id); if (!ctx) return;
-    charts[id] = new Chart(ctx, {type:'line', data:{labels, datasets:[{data:vals, borderColor:col, backgroundColor:col+'22', tension:0.3, pointRadius:4, fill:true, borderWidth:2}]}, options:{responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}}, scales:{x:{ticks:{font:{size:10}, maxRotation:45}}, y:{beginAtZero:true, ticks:{font:{size:11}}}}}});
-  };
-  mk('chart-humidity', data.map(e => e.soilHumidity!==''&&e.soilHumidity!=null ? parseFloat(e.soilHumidity) : null), '#1D9E75');
-  mk('chart-leafdrop', data.map(e => e.leafDrop!==''&&e.leafDrop!=null ? parseFloat(e.leafDrop) : null), '#D85A30');
-  mk('chart-water', data.map(e => e.water!==''&&e.water!=null ? parseFloat(e.water) : null), '#185FA5');
-}
-
-// ── PHOTOGRAPHS ───────────────────────────────────────────────────────────────
-function renderPhotos() {
-  return `<div class="card">
+function renderPhotos(){
+  return`<div class="card">
     <div class="section-header"><p style="font-weight:500;font-size:14px">Log photograph</p><span class="badge">Visit record</span></div>
     <div class="field-row">
       <div><label>Date</label><input type="date" id="p-date" value="${today()}"></div>
@@ -751,8 +510,7 @@ function renderPhotos() {
     </div>
     <div style="margin-bottom:10px"><label>Upload photo</label><input type="file" id="p-file" accept="image/*"></div>
     <div style="margin-bottom:10px"><label>Notes</label><textarea id="p-notes" placeholder="Observations..."></textarea></div>
-    <p style="font-size:11px;color:#888;margin-bottom:10px">Photos compressed to 800px JPEG before upload.</p>
-    <button class="primary" id="save-photo-btn" onclick="addPhoto()">Save photograph</button>
+    <button class="primary" onclick="addPhoto()">Save photograph</button>
   </div>
   <div class="photo-sub-tab-bar">
     <button class="${currentPhotoSubTab==='progression'?'active':''}" onclick="setPhotoSubTab('progression')">Monthly progression</button>
@@ -761,92 +519,69 @@ function renderPhotos() {
   <div id="photo-content">${renderPhotoContent()}</div>`;
 }
 
-function setPhotoSubTab(t) {
-  currentPhotoSubTab = t;
-  document.querySelectorAll('.photo-sub-tab-bar button').forEach((b,i) => b.classList.toggle('active', (i===0&&t==='progression')||(i===1&&t==='all')));
-  const pc = document.getElementById('photo-content');
-  if (pc) pc.innerHTML = renderPhotoContent();
+function setPhotoSubTab(t){
+  currentPhotoSubTab=t;
+  document.querySelectorAll('.photo-sub-tab-bar button').forEach((b,i)=>b.classList.toggle('active',(i===0&&t==='progression')||(i===1&&t==='all')));
+  const pc=document.getElementById('photo-content');if(pc)pc.innerHTML=renderPhotoContent();
 }
 
-function renderPhotoContent() { return currentPhotoSubTab==='progression' ? renderPhotoProgression() : renderPhotoAll(); }
+function renderPhotoContent(){return currentPhotoSubTab==='progression'?renderPhotoProgression():renderPhotoAll();}
 
-function renderPhotoProgression() {
-  const data = getCached('photos', currentTree);
-  if (!data.length) return '<p class="empty">No photographs logged yet.</p>';
-  const byPosition = {};
-  POSITIONS.forEach(p => byPosition[p] = []);
-  data.forEach(e => { const pos = e.position||'Custom'; if(!byPosition[pos]) byPosition[pos]=[]; byPosition[pos].push(e); });
-  const blocks = Object.entries(byPosition).filter(([,arr]) => arr.length>0).map(([pos,arr]) => {
-    const sorted = [...arr].sort((a,b) => a.date.localeCompare(b.date));
-    const cells = sorted.map(e => `<div class="prog-cell">
-      ${e.imageData ? `<img src="${e.imageData}" alt="${pos}">` : `<div class="no-img">${e.filename||'No image'}</div>`}
+function renderPhotoProgression(){
+  const data=load(currentTree,'photos');
+  if(!data.length)return'<p class="empty">No photographs logged yet.</p>';
+  const byPosition={};POSITIONS.forEach(p=>byPosition[p]=[]);
+  data.forEach(e=>{const pos=e.position||'Custom';if(!byPosition[pos])byPosition[pos]=[];byPosition[pos].push(e);});
+  const blocks=Object.entries(byPosition).filter(([,arr])=>arr.length>0).map(([pos,arr])=>{
+    const sorted=[...arr].sort((a,b)=>a.date.localeCompare(b.date));
+    const cells=sorted.map(e=>`<div class="prog-cell">
+      ${e.imageData?`<img src="${e.imageData}" alt="${pos}">`:`<div class="no-img">${e.filename||'No image'}</div>`}
       <div class="prog-date">${fmtDate(e.date)}</div><div class="prog-type">${e.type}</div>
     </div>`).join('');
-    return `<div class="progression-position"><h4>${pos} <span style="font-weight:400;color:#aaa">(${arr.length})</span></h4><div class="progression-row">${cells}</div></div>`;
+    return`<div class="progression-position"><h4>${pos} <span style="font-weight:400;color:var(--color-text-tertiary)">(${arr.length})</span></h4><div class="progression-row">${cells}</div></div>`;
   }).join('');
-  return `<div class="card">${blocks}</div>`;
+  return`<div class="card">${blocks}</div>`;
 }
 
-function renderPhotoAll() {
-  const data = getCached('photos', currentTree);
-  if (!data.length) return '<p class="empty">No photographs yet</p>';
-  const thumbs = data.slice().reverse().map(e => {
-    const imgHtml = e.imageData ? `<img src="${e.imageData}" alt="${e.position}">` : `<div style="height:110px;display:flex;align-items:center;justify-content:center;color:#aaa;font-size:12px">No image</div>`;
-    return `<div class="photo-thumb">${imgHtml}<div class="photo-meta">
+function renderPhotoAll(){
+  const data=load(currentTree,'photos');
+  if(!data.length)return'<p class="empty">No photographs yet</p>';
+  const thumbs=data.slice().reverse().map((e,i)=>{
+    const imgHtml=e.imageData?`<img src="${e.imageData}" alt="${e.position}">`:`<div style="height:110px;display:flex;align-items:center;justify-content:center;color:var(--color-text-tertiary);font-size:12px">No image</div>`;
+    return`<div class="photo-thumb">${imgHtml}<div class="photo-meta">
       <div class="photo-label">${e.position}</div>
       <div class="photo-date">${fmtDate(e.date)} · ${e.type}</div>
-      ${e.notes ? `<div style="font-size:11px;color:#888;margin-top:2px">${e.notes}</div>` : ''}
-      <button class="danger photo-remove" onclick="deletePhoto('${e.id}')">Remove</button>
+      ${e.notes?`<div style="font-size:11px;color:var(--color-text-secondary);margin-top:2px">${e.notes}</div>`:''}
+      <button class="danger photo-remove" onclick="deleteEntry('photos',${data.length-1-i})">Remove</button>
     </div></div>`;
   }).join('');
-  return `<div class="card"><div class="photo-grid">${thumbs}</div></div>`;
+  return`<div class="card"><div class="photo-grid">${thumbs}</div></div>`;
 }
 
-async function addPhoto() {
-  const fi = document.getElementById('p-file');
-  const d = {date:fv('p-date'), position:fv('p-pos'), type:fv('p-type'), notes:fv('p-notes'), imageData:null, filename:''};
-  if (!d.date) { alert('Date is required'); return; }
-  const btn = document.getElementById('save-photo-btn');
-  const file = fi && fi.files && fi.files[0];
-  if (file) {
-    d.filename = file.name;
-    if (btn) { btn.disabled=true; btn.textContent='Compressing…'; }
-    const compressed = await compressImage(file, 800, 0.65);
-    d.imageData = compressed;
-    if (btn) btn.textContent = 'Uploading…';
-  }
-  const row = await dbInsert('photos', photoToDb(d, currentTree));
-  if (row) {
-    if (!cache.photos[currentTree]) cache.photos[currentTree] = [];
-    cache.photos[currentTree].push(photoFromDb(row));
-    cache.photos[currentTree].sort((a,b) => a.date.localeCompare(b.date));
-  }
-  renderTab();
+function addPhoto(){
+  const fi=document.getElementById('p-file');
+  const d={date:fv('p-date'),position:fv('p-pos'),type:fv('p-type'),notes:fv('p-notes'),imageData:null,filename:''};
+  if(!d.date){alert('Date is required');return;}
+  const file=fi&&fi.files&&fi.files[0];
+  if(file){d.filename=file.name;const r=new FileReader();r.onload=ev=>{d.imageData=ev.target.result;const arr=load(currentTree,'photos');arr.push(d);save(currentTree,'photos',arr);renderTab();};r.readAsDataURL(file);}
+  else{const arr=load(currentTree,'photos');arr.push(d);save(currentTree,'photos',arr);renderTab();}
 }
 
-async function deletePhoto(id) {
-  if (!confirm('Remove this photograph?')) return;
-  await dbDelete('photos', id);
-  if (cache.photos[currentTree]) cache.photos[currentTree] = cache.photos[currentTree].filter(e => e.id !== id);
-  renderTab();
-}
-
-// ── TREATMENTS ────────────────────────────────────────────────────────────────
-function renderTreatments() {
-  const data = getCached('treatments', currentTree);
-  const entries = data.slice().reverse().map(e => `
+function renderTreatments(){
+  const data=load(currentTree,'treatments');
+  const entries=data.slice().reverse().map((e,i)=>`
     <div class="entry-item">
       <div><div style="font-weight:500;font-size:13px">${e.product} — ${e.method}</div>
-      <div style="color:#666;font-size:12px;margin-top:2px">Conc: ${e.concentration||'—'} · Vol: ${e.volume||'—'} · Type: ${e.type}</div>
-      ${e.pest ? `<div style="font-size:12px;color:#a32d2d;margin-top:2px">Pest/disease: ${e.pest}</div>` : ''}
-      ${e.substrate ? `<div style="font-size:12px;color:#666;margin-top:2px">Substrate: ${e.substrate}</div>` : ''}
-      ${e.notes ? `<div style="font-size:12px;color:#666;margin-top:2px">${e.notes}</div>` : ''}</div>
+      <div style="color:var(--color-text-secondary);font-size:12px;margin-top:2px">Conc: ${e.concentration||'—'} · Vol: ${e.volume||'—'} · Type: ${e.type}</div>
+      ${e.pest?`<div style="font-size:12px;color:var(--color-text-danger);margin-top:2px">Pest/disease: ${e.pest}</div>`:''}
+      ${e.substrate?`<div style="font-size:12px;color:var(--color-text-secondary);margin-top:2px">Substrate: ${e.substrate}</div>`:''}
+      ${e.notes?`<div style="font-size:12px;color:var(--color-text-secondary);margin-top:2px">${e.notes}</div>`:''}</div>
       <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px">
-        <span style="font-size:11px;color:#888;white-space:nowrap">${fmtDate(e.date)}</span>
-        <button class="danger" style="padding:2px 8px;font-size:11px" onclick="deleteTreatment('${e.id}')">Remove</button>
+        <span style="font-size:11px;color:var(--color-text-secondary);white-space:nowrap">${fmtDate(e.date)}</span>
+        <button class="danger" style="padding:2px 8px;font-size:11px" onclick="deleteEntry('treatments',${data.length-1-i})">Remove</button>
       </div>
     </div>`).join('');
-  return `<div class="card">
+  return`<div class="card">
     <div class="section-header"><p style="font-weight:500;font-size:14px">Log treatment</p><span class="badge">Visit record</span></div>
     <div class="field-row">
       <div><label>Date</label><input type="date" id="t-date" value="${today()}"></div>
@@ -863,54 +598,38 @@ function renderTreatments() {
       <div><label>Substrate intervention</label><input type="text" id="t-substrate" placeholder="e.g. Aeration, mulch top-up"></div>
     </div>
     <div style="margin-bottom:10px"><label>Notes</label><textarea id="t-notes"></textarea></div>
-    <button class="primary" id="save-treatment-btn" onclick="addTreatment()">Save treatment</button>
+    <button class="primary" onclick="addTreatment()">Save treatment</button>
   </div>
   <div class="card"><div class="section-header"><p style="font-weight:500;font-size:14px">All records (${data.length})</p></div>
-    ${data.length===0 ? '<p class="empty">No records yet</p>' : '<div class="entry-list">'+entries+'</div>'}
+    ${data.length===0?'<p class="empty">No records yet</p>':'<div class="entry-list">'+entries+'</div>'}
   </div>`;
 }
 
-async function addTreatment() {
-  const d = {date:fv('t-date'),product:fv('t-product'),type:fv('t-type'),concentration:fv('t-conc'),volume:fv('t-vol'),method:fv('t-method'),pest:fv('t-pest'),substrate:fv('t-substrate'),notes:fv('t-notes')};
-  if (!d.date || !d.product) { alert('Date and product are required'); return; }
-  const btn = document.getElementById('save-treatment-btn');
-  if (btn) { btn.disabled=true; btn.textContent='Saving…'; }
-  const row = await dbInsert('treatments', treatmentToDb(d, currentTree));
-  if (row) {
-    if (!cache.treatments[currentTree]) cache.treatments[currentTree] = [];
-    cache.treatments[currentTree].push(treatmentFromDb(row));
-    cache.treatments[currentTree].sort((a,b) => a.date.localeCompare(b.date));
-  }
-  renderSummary(); renderTab();
+function addTreatment(){
+  const d={date:fv('t-date'),product:fv('t-product'),type:fv('t-type'),concentration:fv('t-conc'),volume:fv('t-vol'),method:fv('t-method'),pest:fv('t-pest'),substrate:fv('t-substrate'),notes:fv('t-notes')};
+  if(!d.date||!d.product){alert('Date and product are required');return;}
+  const arr=load(currentTree,'treatments');arr.push(d);arr.sort((a,b)=>a.date.localeCompare(b.date));save(currentTree,'treatments',arr);renderSummary();renderTab();
 }
 
-async function deleteTreatment(id) {
-  if (!confirm('Remove this record?')) return;
-  await dbDelete('treatments', id);
-  if (cache.treatments[currentTree]) cache.treatments[currentTree] = cache.treatments[currentTree].filter(e => e.id !== id);
-  renderSummary(); renderTab();
-}
-
-// ── CANOPY ────────────────────────────────────────────────────────────────────
-function renderCanopy() {
-  const data = getCached('canopy', currentTree);
-  const entries = data.slice().reverse().map(e => `
+function renderCanopy(){
+  const data=load(currentTree,'canopy');
+  const entries=data.slice().reverse().map((e,i)=>`
     <div class="entry-item">
       <div><div style="font-weight:500;font-size:13px">Spread ${parseFloat(e.spread).toFixed(1)}m · Height ${parseFloat(e.height).toFixed(1)}m · Growth pts ${e.growthpts} · Density ${Math.round(e.density)}%</div>
-      ${e.notes ? `<div style="color:#666;font-size:12px;margin-top:3px">${e.notes}</div>` : ''}</div>
+      ${e.notes?`<div style="color:var(--color-text-secondary);font-size:12px;margin-top:3px">${e.notes}</div>`:''}</div>
       <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px">
-        <span style="font-size:11px;color:#888;white-space:nowrap">${fmtDate(e.date)}</span>
-        <button class="danger" style="padding:2px 8px;font-size:11px" onclick="deleteCanopy('${e.id}')">Remove</button>
+        <span style="font-size:11px;color:var(--color-text-secondary);white-space:nowrap">${fmtDate(e.date)}</span>
+        <button class="danger" style="padding:2px 8px;font-size:11px" onclick="deleteEntry('canopy',${data.length-1-i})">Remove</button>
       </div>
     </div>`).join('');
-  const sc = data.length >= 2 ? `
+  const sc=data.length>=2?`
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:10px">
       <div class="card"><p style="font-size:13px;font-weight:500;margin-bottom:2px">Canopy spread (m)</p><div class="chart-wrap"><canvas id="chart-spread" role="img" aria-label="spread"></canvas></div></div>
       <div class="card"><p style="font-size:13px;font-weight:500;margin-bottom:2px">Tree height (m)</p><div class="chart-wrap"><canvas id="chart-height" role="img" aria-label="height"></canvas></div></div>
       <div class="card"><p style="font-size:13px;font-weight:500;margin-bottom:2px">New growth points</p><div class="chart-wrap"><canvas id="chart-growth" role="img" aria-label="growth"></canvas></div></div>
       <div class="card"><p style="font-size:13px;font-weight:500;margin-bottom:2px">Canopy density (%)</p><div class="chart-wrap"><canvas id="chart-density" role="img" aria-label="density"></canvas></div></div>
-    </div>` : '';
-  return `<div class="card">
+    </div>`:'';
+  return`<div class="card">
     <div class="section-header"><p style="font-weight:500;font-size:14px">Log canopy measurement</p><span class="badge">Visit record</span></div>
     <div class="field-row">
       <div><label>Date</label><input type="date" id="c-date" value="${today()}"></div>
@@ -922,62 +641,43 @@ function renderCanopy() {
       <div><label>Canopy density (%)</label><input type="number" id="c-density" step="1" min="0" max="100" placeholder="78"></div>
     </div>
     <div style="margin-bottom:10px"><label>Notes</label><textarea id="c-notes" placeholder="Observations..."></textarea></div>
-    <button class="primary" id="save-canopy-btn" onclick="addCanopy()">Save measurement</button>
+    <button class="primary" onclick="addCanopy()">Save measurement</button>
   </div>${sc}
   <div class="card"><div class="section-header"><p style="font-weight:500;font-size:14px">All records (${data.length})</p></div>
-    ${data.length===0 ? '<p class="empty">No records yet</p>' : '<div class="entry-list">'+entries+'</div>'}
+    ${data.length===0?'<p class="empty">No records yet</p>':'<div class="entry-list">'+entries+'</div>'}
   </div>`;
 }
 
-function drawCanopyCharts() {
-  const data = getCached('canopy', currentTree); if (data.length < 2) return;
-  const labels = data.map(e => fmtDate(e.date));
-  const mk = (id, vals, col) => {
-    const ctx = document.getElementById(id); if (!ctx) return;
-    charts[id] = new Chart(ctx, {type:'line', data:{labels, datasets:[{data:vals, borderColor:col, backgroundColor:col+'22', tension:0.3, pointRadius:4, fill:true, borderWidth:2}]}, options:{responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}}, scales:{x:{ticks:{font:{size:10}, maxRotation:45}}, y:{ticks:{font:{size:11}}}}}});
-  };
-  mk('chart-spread', data.map(e=>parseFloat(e.spread)), '#639922');
-  mk('chart-height', data.map(e=>parseFloat(e.height)), '#1D9E75');
-  mk('chart-growth', data.map(e=>parseInt(e.growthpts)), '#BA7517');
-  mk('chart-density', data.map(e=>Math.round(parseFloat(e.density))), '#7F77DD');
+function drawCanopyCharts(){
+  const data=load(currentTree,'canopy');if(data.length<2)return;
+  const labels=data.map(e=>fmtDate(e.date));
+  const mk=(id,vals,col)=>{const ctx=document.getElementById(id);if(!ctx)return;charts[id]=new Chart(ctx,{type:'line',data:{labels,datasets:[{data:vals,borderColor:col,backgroundColor:col+'22',tension:0.3,pointRadius:4,fill:true,borderWidth:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{font:{size:10},maxRotation:45}},y:{ticks:{font:{size:11}}}}}});};
+  mk('chart-spread',data.map(e=>parseFloat(e.spread)),'#639922');
+  mk('chart-height',data.map(e=>parseFloat(e.height)),'#1D9E75');
+  mk('chart-growth',data.map(e=>parseInt(e.growthpts)),'#BA7517');
+  mk('chart-density',data.map(e=>Math.round(parseFloat(e.density))),'#7F77DD');
 }
 
-async function addCanopy() {
-  const d = {date:fv('c-date'),spread:fv('c-spread'),height:fv('c-height'),growthpts:fv('c-growth'),density:fv('c-density'),notes:fv('c-notes')};
-  if (!d.date || !d.spread || !d.height) { alert('Date, spread and height are required'); return; }
-  const btn = document.getElementById('save-canopy-btn');
-  if (btn) { btn.disabled=true; btn.textContent='Saving…'; }
-  const row = await dbInsert('canopy_records', canopyToDb(d, currentTree));
-  if (row) {
-    if (!cache.canopy[currentTree]) cache.canopy[currentTree] = [];
-    cache.canopy[currentTree].push(canopyFromDb(row));
-    cache.canopy[currentTree].sort((a,b) => a.date.localeCompare(b.date));
-  }
-  renderSummary(); renderTab();
+function addCanopy(){
+  const d={date:fv('c-date'),spread:fv('c-spread'),height:fv('c-height'),growthpts:fv('c-growth'),density:fv('c-density'),notes:fv('c-notes')};
+  if(!d.date||!d.spread||!d.height){alert('Date, spread and height are required');return;}
+  const arr=load(currentTree,'canopy');arr.push(d);arr.sort((a,b)=>a.date.localeCompare(b.date));save(currentTree,'canopy',arr);renderSummary();renderTab();
 }
 
-async function deleteCanopy(id) {
-  if (!confirm('Remove this record?')) return;
-  await dbDelete('canopy_records', id);
-  if (cache.canopy[currentTree]) cache.canopy[currentTree] = cache.canopy[currentTree].filter(e => e.id !== id);
-  renderSummary(); renderTab();
-}
-
-// ── SIGN-OFF ──────────────────────────────────────────────────────────────────
-function renderSignoff() {
-  const data = getCached('signoffs', currentTree);
-  const entries = data.slice().reverse().map(e => `
+function renderSignoff(){
+  const data=load(currentTree,'signoffs');
+  const entries=data.slice().reverse().map((e,i)=>`
     <div class="sign-off">
       <div style="display:flex;justify-content:space-between;align-items:flex-start">
         <div>
           <p style="font-size:12px;color:#27500A;font-weight:500;margin-bottom:4px">${fmtDate(e.date)} — signed off by ${e.lead}</p>
           <p style="font-size:13px;color:#27500A">${e.commentary}</p>
-          ${e.adjustments ? `<p style="font-size:12px;color:#3B6D11;margin-top:4px">Programme adjustments: ${e.adjustments}</p>` : ''}
+          ${e.adjustments?`<p style="font-size:12px;color:#3B6D11;margin-top:4px">Programme adjustments: ${e.adjustments}</p>`:''}
         </div>
-        <button class="danger" style="padding:2px 8px;font-size:11px;flex-shrink:0;margin-left:8px" onclick="deleteSignoff('${e.id}')">Remove</button>
+        <button class="danger" style="padding:2px 8px;font-size:11px;flex-shrink:0;margin-left:8px" onclick="deleteEntry('signoffs',${data.length-1-i})">Remove</button>
       </div>
     </div>`).join('');
-  return `<div class="card">
+  return`<div class="card">
     <div class="section-header"><p style="font-weight:500;font-size:14px">Monthly sign-off</p><span class="badge">Senior lead</span></div>
     <div class="field-row">
       <div><label>Date</label><input type="date" id="so-date" value="${today()}"></div>
@@ -985,44 +685,33 @@ function renderSignoff() {
     </div>
     <div style="margin-bottom:10px"><label>Commentary</label><textarea id="so-commentary" placeholder="Review trends, overall condition, concerns..."></textarea></div>
     <div style="margin-bottom:10px"><label>Programme adjustments</label><textarea id="so-adj" placeholder="Any changes to feeding, treatment or monitoring schedule..."></textarea></div>
-    <button class="primary" id="save-signoff-btn" onclick="addSignoff()">Save sign-off</button>
+    <button class="primary" onclick="addSignoff()">Save sign-off</button>
   </div>
   <div class="card"><div class="section-header"><p style="font-weight:500;font-size:14px">All sign-offs (${data.length})</p></div>
-    ${data.length===0 ? '<p class="empty">No sign-offs yet</p>' : entries}
+    ${data.length===0?'<p class="empty">No sign-offs yet</p>':entries}
   </div>`;
 }
 
-async function addSignoff() {
-  const d = {date:fv('so-date'),lead:fv('so-lead'),commentary:fv('so-commentary'),adjustments:fv('so-adj')};
-  if (!d.date || !d.lead || !d.commentary) { alert('Date, lead name and commentary are required'); return; }
-  const btn = document.getElementById('save-signoff-btn');
-  if (btn) { btn.disabled=true; btn.textContent='Saving…'; }
-  const row = await dbInsert('signoffs', signoffToDb(d, currentTree));
-  if (row) {
-    if (!cache.signoffs[currentTree]) cache.signoffs[currentTree] = [];
-    cache.signoffs[currentTree].push(signoffFromDb(row));
-    cache.signoffs[currentTree].sort((a,b) => a.date.localeCompare(b.date));
-  }
-  renderSummary(); renderTab();
+function addSignoff(){
+  const d={date:fv('so-date'),lead:fv('so-lead'),commentary:fv('so-commentary'),adjustments:fv('so-adj')};
+  if(!d.date||!d.lead||!d.commentary){alert('Date, lead name and commentary are required');return;}
+  const arr=load(currentTree,'signoffs');arr.push(d);save(currentTree,'signoffs',arr);renderSummary();renderTab();
 }
 
-async function deleteSignoff(id) {
-  if (!confirm('Remove this sign-off?')) return;
-  await dbDelete('signoffs', id);
-  if (cache.signoffs[currentTree]) cache.signoffs[currentTree] = cache.signoffs[currentTree].filter(e => e.id !== id);
-  renderSummary(); renderTab();
+function deleteEntry(section,idx){
+  if(!confirm('Remove this record?'))return;
+  const arr=load(currentTree,section);arr.splice(idx,1);save(currentTree,section,arr);renderSummary();renderTab();
 }
 
-// ── EXPORTS ───────────────────────────────────────────────────────────────────
-function excelDate(ds) { if(!ds)return''; const p=ds.split('-'); return p.length===3?`${p[2]}/${p[1]}/${p[0]}`:ds; }
+function excelDate(ds){if(!ds)return'';const p=ds.split('-');return p.length===3?`${p[2]}/${p[1]}/${p[0]}`:ds;}
 function applyCell(ws,ref,value,type,bold,bg,fc){if(!ws[ref])ws[ref]={};ws[ref].v=value;ws[ref].t=type||'s';ws[ref].s={font:{name:'Arial',sz:bold?11:10,bold:!!bold,color:{rgb:fc||'333333'}},fill:{fgColor:{rgb:bg||'FFFFFF'},patternType:'solid'},alignment:{horizontal:'left',vertical:'center',wrapText:true},border:{top:{style:'thin',color:{rgb:'CCCCCC'}},bottom:{style:'thin',color:{rgb:'CCCCCC'}},left:{style:'thin',color:{rgb:'CCCCCC'}},right:{style:'thin',color:{rgb:'CCCCCC'}}}};}
 function makeHdr(ws,row,headers){headers.forEach((h,i)=>{const ref=XLSX.utils.encode_cell({r:row,c:i});applyCell(ws,ref,h,'s',true,'243D10','FFFFFF');ws[ref].s.font.sz=9;ws[ref].s.alignment={horizontal:'center',vertical:'center',wrapText:true};});}
 function makeTitleRow(ws,ref,text){applyCell(ws,ref,text,'s',true,'3B6D11','FFFFFF');ws[ref].s.font.sz=12;}
 function dataRows(ws,startRow,rows){rows.forEach((row,ri)=>{const bg=ri%2===0?'F4FAF0':'FFFFFF';row.forEach((val,ci)=>{const ref=XLSX.utils.encode_cell({r:startRow+ri,c:ci});applyCell(ws,ref,val===undefined||val===null?'':val,typeof val==='number'?'n':'s',false,bg);});});}
 function mergeRange(ws,r1,c1,r2,c2){if(!ws['!merges'])ws['!merges']=[];ws['!merges'].push({s:{r:r1,c:c1},e:{r:r2,c:c2}});}
 
-function buildExcelWorkbook(ti) {
-  const t=TREES[ti],soil=getCached('soil',ti),photos=getCached('photos',ti),treatments=getCached('treatments',ti),canopy=getCached('canopy',ti),signoffs=getCached('signoffs',ti);
+function buildExcelWorkbook(ti){
+  const t=TREES[ti],soil=load(ti,'soil'),photos=load(ti,'photos'),treatments=load(ti,'treatments'),canopy=load(ti,'canopy'),signoffs=load(ti,'signoffs');
   const wb=XLSX.utils.book_new();
   const vs=soil.filter(e=>e.recordType!=='lab'&&e.ph);const ls=vs[vs.length-1];const lc=canopy[canopy.length-1];
   const sum={};makeTitleRow(sum,'A1',`${t.name} | ${t.ref} — Tree Service Logbook`);mergeRange(sum,0,0,0,4);
@@ -1032,27 +721,32 @@ function buildExcelWorkbook(ti) {
   dataRows(sum,6,signoffs.length?signoffs.map(s=>[excelDate(s.date),s.lead,s.commentary,s.adjustments||'']):[[' ',' ',' ',' ']]);
   sum['!cols']=[{wch:14},{wch:24},{wch:44},{wch:44}];sum['!ref']='A1:E'+(7+signoffs.length);
   XLSX.utils.book_append_sheet(wb,sum,'Summary');
+
   const sf={};makeTitleRow(sf,'A1',`${t.name} (${t.ref}) — Soil & Foliar Records`);mergeRange(sf,0,0,0,10);
   makeHdr(sf,2,['Date','Record type','pH','EC (uS/cm)','Total N (mg/L)','P (mg/L)','K (mg/L)','Ca (mg/L)','Mg (mg/L)','Lab ref','Notes']);
   dataRows(sf,3,soil.length?soil.map(e=>[excelDate(e.date),e.recordType==='lab'?'Lab baseline':'Visit reading',e.ph?parseFloat(e.ph):'',e.ec?parseFloat(e.ec):'',e.nitrogen||'',e.phosphorus||'',e.potassium||'',e.calcium||'',e.magnesium||'',e.labref||'',e.notes||'']):[[' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ']]);
   sf['!cols']=[{wch:13},{wch:15},{wch:8},{wch:12},{wch:12},{wch:10},{wch:10},{wch:10},{wch:10},{wch:20},{wch:44}];sf['!ref']='A1:K'+(4+soil.length);
   XLSX.utils.book_append_sheet(wb,sf,'Soil & Foliar');
+
   const obsRows=soil.filter(e=>e.recordType!=='lab');
   const obs={};makeTitleRow(obs,'A1',`${t.name} (${t.ref}) — Visit Observations`);mergeRange(obs,0,0,0,7);
   makeHdr(obs,2,['Date','Soil humidity (%)','Leaf drop','Water (L)','New leaves','Foliage','Discolouration','Pest / disease']);
-  dataRows(obs,3,obsRows.length?obsRows.map(e=>[excelDate(e.date),e.soilHumidity!=null?parseFloat(e.soilHumidity):'',e.leafDrop!=null?parseFloat(e.leafDrop):'',e.water!=null?parseFloat(e.water):'',e.newLeaves||'',e.foliage||'',e.discolouration||'',e.pest||'']):[[' ',' ',' ',' ',' ',' ',' ',' ']]);
+  dataRows(obs,3,obsRows.length?obsRows.map(e=>[excelDate(e.date),e.soilHumidity!==''?parseFloat(e.soilHumidity):'',e.leafDrop!==''?parseFloat(e.leafDrop):'',e.water!==''?parseFloat(e.water):'',e.newLeaves||'',e.foliage||'',e.discolouration||'',e.pest||'']):[[' ',' ',' ',' ',' ',' ',' ',' ']]);
   obs['!cols']=[{wch:13},{wch:16},{wch:12},{wch:12},{wch:14},{wch:16},{wch:16},{wch:20}];obs['!ref']='A1:H'+(4+obsRows.length);
   XLSX.utils.book_append_sheet(wb,obs,'Visit Observations');
+
   const ph={};makeTitleRow(ph,'A1',`${t.name} (${t.ref}) — Photograph Log`);mergeRange(ph,0,0,0,4);
   makeHdr(ph,2,['Date','Reference position','Type','Filename','Notes']);
   dataRows(ph,3,photos.length?photos.map(e=>[excelDate(e.date),e.position,e.type,e.filename||'',e.notes||'']):[[' ',' ',' ',' ',' ']]);
   ph['!cols']=[{wch:13},{wch:22},{wch:22},{wch:22},{wch:40}];ph['!ref']='A1:E'+(4+photos.length);
   XLSX.utils.book_append_sheet(wb,ph,'Photographs');
+
   const tr={};makeTitleRow(tr,'A1',`${t.name} (${t.ref}) — Treatment Record`);mergeRange(tr,0,0,0,8);
   makeHdr(tr,2,['Date','Product','Type','Concentration','Volume','Method','Pest / disease','Substrate','Notes']);
   dataRows(tr,3,treatments.length?treatments.map(e=>[excelDate(e.date),e.product,e.type,e.concentration||'',e.volume||'',e.method,e.pest||'',e.substrate||'',e.notes||'']):[[' ',' ',' ',' ',' ',' ',' ',' ',' ']]);
   tr['!cols']=[{wch:13},{wch:22},{wch:18},{wch:14},{wch:12},{wch:18},{wch:22},{wch:22},{wch:36}];tr['!ref']='A1:I'+(4+treatments.length);
   XLSX.utils.book_append_sheet(wb,tr,'Treatments');
+
   const ca={};makeTitleRow(ca,'A1',`${t.name} (${t.ref}) — Canopy Measurements`);mergeRange(ca,0,0,0,6);
   makeHdr(ca,2,['Date','Visit #','Canopy spread (m)','Height (m)','New growth points','Density (%)','Notes']);
   dataRows(ca,3,canopy.length?canopy.map((e,idx)=>[excelDate(e.date),idx+1,e.spread?parseFloat(e.spread):'',e.height?parseFloat(e.height):'',e.growthpts?parseInt(e.growthpts):'',e.density?Math.round(parseFloat(e.density)):'',e.notes||'']):[[' ',' ',' ',' ',' ',' ',' ']]);
@@ -1061,12 +755,12 @@ function buildExcelWorkbook(ti) {
   return wb;
 }
 
-function exportTreeExcel(i) { const t=TREES[i]; XLSX.writeFile(buildExcelWorkbook(i), `${t.ref}_${t.name.replace(/\s+/g,'_')}_Logbook.xlsx`); }
-async function exportAllExcel() { await loadAllTrees(); TREES.forEach((_,i) => exportTreeExcel(i)); }
+function exportTreeExcel(i){const t=TREES[i];XLSX.writeFile(buildExcelWorkbook(i),`${t.ref}_${t.name.replace(/\s+/g,'_')}_Logbook.xlsx`);}
+function exportAllExcel(){TREES.forEach((_,i)=>exportTreeExcel(i));}
 
-function exportTreePDF(i) {
+function exportTreePDF(i){
   const{jsPDF}=window.jspdf;const doc=new jsPDF({unit:'mm',format:'a4'});
-  const t=TREES[i],soil=getCached('soil',i),canopy=getCached('canopy',i),treatments=getCached('treatments',i),signoffs=getCached('signoffs',i);
+  const t=TREES[i],soil=load(i,'soil'),canopy=load(i,'canopy'),treatments=load(i,'treatments'),signoffs=load(i,'signoffs');
   const pW=210,m=18,cW=pW-m*2;let y=m;
   const chk=(h=10)=>{if(y+h>285){doc.addPage();y=m;}};
   const ln=(txt,sz=11,bold=false,col=[40,40,40])=>{doc.setFontSize(sz);doc.setFont('helvetica',bold?'bold':'normal');doc.setTextColor(...col);const ls=doc.splitTextToSize(txt,cW);chk(ls.length*sz*0.4+2);doc.text(ls,m,y);y+=ls.length*(sz*0.42)+1;};
@@ -1075,7 +769,7 @@ function exportTreePDF(i) {
   const vs=soil.filter(e=>e.recordType!=='lab');
   ln('Visit observations',13,true,[30,80,10]);rule();
   if(!vs.length)ln('No visit records.',10,false,[120,120,120]);
-  else vs.forEach(e=>{ln(`${fmtDate(e.date)}  pH ${e.ph?parseFloat(e.ph).toFixed(1):'—'}  EC ${e.ec||'—'}  Humidity ${e.soilHumidity!=null?e.soilHumidity+'%':'—'}  Leaf drop ${e.leafDrop!=null?e.leafDrop:'—'}  Water ${e.water!=null?e.water+'L':'—'}  Pest: ${e.pest||'—'}`,10);if(e.notes)ln(e.notes,9,false,[100,100,100]);y+=1;});
+  else vs.forEach(e=>{ln(`${fmtDate(e.date)}  pH ${e.ph?parseFloat(e.ph).toFixed(1):'—'}  EC ${e.ec||'—'}  Humidity ${e.soilHumidity!==''?e.soilHumidity+'%':'—'}  Leaf drop ${e.leafDrop!==''?e.leafDrop:'—'}  Water ${e.water!==''?e.water+'L':'—'}  Pest: ${e.pest||'—'}`,10);if(e.notes)ln(e.notes,9,false,[100,100,100]);y+=1;});
   y+=4;ln('Lab baselines (Cawood NRM)',13,true,[30,80,10]);rule();
   const labs=soil.filter(e=>e.recordType==='lab');
   if(!labs.length)ln('No lab data.',10,false,[120,120,120]);
@@ -1092,13 +786,12 @@ function exportTreePDF(i) {
   doc.save(`${t.ref}_${t.name.replace(/\s+/g,'_')}_Logbook.pdf`);
 }
 
-async function exportAllPDF() {
-  await loadAllTrees();
+function exportAllPDF(){
   const{jsPDF}=window.jspdf;const doc=new jsPDF({unit:'mm',format:'a4'});const m=18,pW=210;
   TREES.forEach((t,i)=>{
     if(i>0)doc.addPage();
     doc.setFillColor(59,109,17);doc.rect(0,0,210,28,'F');doc.setTextColor(255,255,255);doc.setFontSize(16);doc.setFont('helvetica','bold');doc.text(t.name,m,13);doc.setFontSize(10);doc.setFont('helvetica','normal');doc.text(`${t.ref} · Sign-off summary · ${new Date().toLocaleDateString('en-GB')}`,m,21);
-    let y=36;const signoffs=getCached('signoffs',i),soil=getCached('soil',i),canopy=getCached('canopy',i);
+    let y=36;const signoffs=load(i,'signoffs'),soil=load(i,'soil'),canopy=load(i,'canopy');
     const vs=soil.filter(e=>e.recordType!=='lab'&&e.ph);const ls=vs[vs.length-1];const lab=soil.find(e=>e.recordType==='lab');const lc=canopy[canopy.length-1];
     doc.setFontSize(10);doc.setFont('helvetica','normal');doc.setTextColor(60,60,60);
     doc.text(`Visit pH: ${ls?parseFloat(ls.ph).toFixed(1):'—'}  EC: ${ls&&ls.ec?ls.ec:'—'}  Lab pH: ${lab?lab.ph:'—'}  Spread: ${lc?parseFloat(lc.spread).toFixed(1)+'m':'—'}`,m,y);y+=8;
@@ -1114,19 +807,13 @@ async function exportAllPDF() {
   doc.save(`all_tree_signoffs_${new Date().toISOString().split('T')[0]}.pdf`);
 }
 
-// ── INIT ──────────────────────────────────────────────────────────────────────
-(async () => {
-  await seedIfEmpty();
-  setView('dashboard');
-})();
+function exportTreeJSON(i){
+  const t=TREES[i];const d={tree:t,soil:load(i,'soil'),photos:load(i,'photos').map(p=>({...p,imageData:'[omitted]'})),treatments:load(i,'treatments'),canopy:load(i,'canopy'),signoffs:load(i,'signoffs')};
+  const b=new Blob([JSON.stringify(d,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=`${t.ref}_${t.name.replace(/\s+/g,'_')}.json`;a.click();
+}
 
+seedData();
+const lu=localStorage.getItem('logbook_last_updated');
+if(lu)document.getElementById('last-updated').textContent='Last updated '+new Date(lu).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});
+setView('dashboard');
 </script>
-
-<!-- Loading overlay -->
-<div id="loading-overlay" style="display:none;position:fixed;inset:0;background:rgba(255,255,255,0.85);z-index:999;align-items:center;justify-content:center;flex-direction:column;gap:12px">
-  <div style="width:36px;height:36px;border:3px solid #ddd;border-top-color:#3B6D11;border-radius:50%;animation:spin 0.7s linear infinite"></div>
-  <p style="font-size:14px;color:#666">Loading…</p>
-</div>
-
-</body>
-</html>
