@@ -26,6 +26,7 @@ button.danger:hover{background:var(--color-background-danger)}
 .tab-bar{display:flex;gap:4px;border-bottom:0.5px solid var(--color-border-tertiary);margin-bottom:1.5rem;overflow-x:auto}
 .tab-bar button{border:none;border-radius:0;border-bottom:2px solid transparent;padding:8px 14px;font-size:13px;white-space:nowrap;background:transparent}
 .tab-bar button.active{border-bottom-color:#3B6D11;color:#3B6D11}
+.tab-bar button:hover{background:var(--color-background-secondary)}
 .card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:1rem 1.25rem;margin-bottom:1rem}
 .field-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:10px}
 label{font-size:12px;color:var(--color-text-secondary);display:block;margin-bottom:4px}
@@ -38,11 +39,13 @@ label{font-size:12px;color:var(--color-text-secondary);display:block;margin-bott
 .entry-list{display:flex;flex-direction:column;gap:6px;margin-top:8px}
 .entry-item{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:8px 12px;font-size:13px;display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
 .sign-off{background:#EAF3DE;border:0.5px solid #97C459;border-radius:var(--border-radius-md);padding:10px 14px;margin-bottom:8px}
+.sign-off p{font-size:13px;color:#27500A}
 .tree-selector{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px;margin-bottom:1.5rem}
 .tree-btn{padding:10px 8px;text-align:left;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-tertiary);background:var(--color-background-primary)}
 .tree-btn.active{border:2px solid #3B6D11;background:#EAF3DE;color:#27500A}
 .tree-btn .tree-name{font-size:13px;font-weight:500;display:block}
 .tree-btn .tree-ref{font-size:11px;color:var(--color-text-secondary)}
+.tree-btn.active .tree-ref{color:#3B6D11}
 .section-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
 .badge{font-size:11px;padding:2px 8px;border-radius:20px;background:#EAF3DE;color:#27500A}
 textarea{min-height:70px;resize:vertical}
@@ -53,6 +56,7 @@ textarea{min-height:70px;resize:vertical}
 .photo-thumb .photo-meta{padding:6px 8px}
 .photo-thumb .photo-date{font-size:11px;color:var(--color-text-secondary)}
 .photo-thumb .photo-label{font-size:12px;font-weight:500;margin-top:1px}
+.photo-thumb .photo-remove{width:100%;margin-top:4px;padding:3px 0;font-size:11px}
 .dash-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-bottom:1.5rem}
 .dash-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:12px 14px;cursor:pointer}
 .dash-card:hover{border-color:var(--color-border-primary)}
@@ -71,9 +75,11 @@ textarea{min-height:70px;resize:vertical}
 .prog-cell img{width:130px;height:100px;object-fit:cover;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-tertiary);display:block}
 .prog-cell .no-img{width:130px;height:100px;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-tertiary);display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--color-text-tertiary);background:var(--color-background-secondary)}
 .prog-cell .prog-date{font-size:11px;color:var(--color-text-secondary);margin-top:4px}
+.prog-cell .prog-type{font-size:11px;color:var(--color-text-tertiary)}
 .lab-badge{display:inline-block;font-size:10px;padding:1px 6px;border-radius:10px;background:#E6F1FB;color:#0C447C;margin-left:6px;vertical-align:middle}
 .import-notice{background:#E6F1FB;border:0.5px solid #85B7EB;border-radius:var(--border-radius-md);padding:10px 14px;margin-bottom:1rem;font-size:13px;color:#0C447C}
 .correction-notice{background:#FCEBEB;border:0.5px solid #F09595;border-radius:var(--border-radius-md);padding:10px 14px;margin-bottom:1rem;font-size:13px;color:#791F1F}
+.success-notice{background:#EAF3DE;border:0.5px solid #97C459;border-radius:var(--border-radius-md);padding:10px 14px;margin-bottom:1rem;font-size:13px;color:#27500A}
 .obs-table{width:100%;border-collapse:collapse;font-size:12px;margin-top:8px}
 .obs-table th{background:#EAF3DE;color:#27500A;font-weight:500;padding:6px 10px;text-align:left;border-bottom:0.5px solid #97C459;white-space:nowrap}
 .obs-table td{padding:6px 10px;border-bottom:0.5px solid var(--color-border-tertiary);vertical-align:middle}
@@ -92,9 +98,6 @@ textarea{min-height:70px;resize:vertical}
 .lab-table tr:last-child td{border-bottom:none}
 .rag-legend{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:1rem;font-size:12px;align-items:center}
 .rag-legend-item{display:flex;align-items:center;gap:4px}
-.loading{text-align:center;padding:2rem;color:var(--color-text-secondary);font-size:13px}
-.spinner{display:inline-block;width:20px;height:20px;border:2px solid var(--color-border-tertiary);border-top-color:#3B6D11;border-radius:50%;animation:spin 0.8s linear infinite;margin-right:8px;vertical-align:middle}
-@keyframes spin{to{transform:rotate(360deg)}}
 </style>
 </head>
 <body>
@@ -113,54 +116,27 @@ textarea{min-height:70px;resize:vertical}
 <div id="view-dashboard"></div>
 <div id="view-trees" style="display:none"></div>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 <script>
-// ── SUPABASE CONFIG ───────────────────────────────────────────────────────────
-const SUPA_URL='https://wujwuspbwwvbhzwnupv.supabase.co';
-const SUPA_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind1and1c3Bid3d2dmJoendudXB2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY2MTQ0ODMsImV4cCI6MjA5MjE5MDQ4M30.SQcff7OLA9Jq0NkkC5753UQpraIH3BMA-zPrUfLlKhE';
+const SUPA_URL='https://mcsofjeuutimqohsdhej.supabase.co';
+const SUPA_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1jc29mamV1dXRpbXFvaHNkaGVqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY0MDk3NjUsImV4cCI6MjA5MTk4NTc2NX0.1pK8Kg6lKvkurJmFdzq8-hSJK5y-0z_lPtg9xZCtbRk';
 const STORAGE_BUCKET='photos';
-const HDR={'Content-Type':'application/json','apikey':SUPA_KEY,'Authorization':`Bearer ${SUPA_KEY}`};
 
-async function sbGet(table, filter=''){
-  const res=await fetch(`${SUPA_URL}/rest/v1/${table}?${filter}&order=date.asc`,{headers:{...HDR,'Prefer':'return=representation'}});
-  if(!res.ok) throw new Error(await res.text());
-  return res.json();
-}
-async function sbInsert(table, row){
-  const res=await fetch(`${SUPA_URL}/rest/v1/${table}`,{method:'POST',headers:{...HDR,'Prefer':'return=representation'},body:JSON.stringify(row)});
-  if(!res.ok) throw new Error(await res.text());
-  return res.json();
-}
-async function sbDelete(table, id){
-  const res=await fetch(`${SUPA_URL}/rest/v1/${table}?id=eq.${id}`,{method:'DELETE',headers:HDR});
-  if(!res.ok) throw new Error(await res.text());
-}
-async function sbUpdate(table, id, row){
-  const res=await fetch(`${SUPA_URL}/rest/v1/${table}?id=eq.${id}`,{method:'PATCH',headers:{...HDR,'Prefer':'return=representation'},body:JSON.stringify(row)});
-  if(!res.ok) throw new Error(await res.text());
-  return res.json();
-}
-
-// Photo upload
 async function compressImage(file,maxW,quality){return new Promise(res=>{const img=new Image(),url=URL.createObjectURL(file);img.onload=()=>{let w=img.width,h=img.height;if(w>maxW){h=Math.round(h*maxW/w);w=maxW;}const c=document.createElement('canvas');c.width=w;c.height=h;c.getContext('2d').drawImage(img,0,0,w,h);res(c.toDataURL('image/jpeg',quality));URL.revokeObjectURL(url);};img.src=url;});}
-async function uploadPhoto(file,treeRef,date){
+async function uploadToStorage(file,treeRef,date){
   const compressed=await compressImage(file,1200,0.80);
   const blob=await fetch(compressed).then(r=>r.blob());
   const filename=`${treeRef}/${date}/${Date.now()}.jpg`;
   const res=await fetch(`${SUPA_URL}/storage/v1/object/${STORAGE_BUCKET}/${filename}`,{method:'POST',headers:{'Authorization':`Bearer ${SUPA_KEY}`,'Content-Type':'image/jpeg','x-upsert':'true'},body:blob});
-  if(!res.ok) throw new Error('Upload failed');
+  if(!res.ok){const err=await res.text();throw new Error('Upload failed: '+err);}
   return`${SUPA_URL}/storage/v1/object/public/${STORAGE_BUCKET}/${filename}`;
 }
-async function deletePhoto(url){
+async function deleteFromStorage(url){
   if(!url||!url.includes('/storage/v1/object/public/'))return;
   const path=url.split(`/storage/v1/object/public/${STORAGE_BUCKET}/`)[1];
   if(!path)return;
   await fetch(`${SUPA_URL}/storage/v1/object/${STORAGE_BUCKET}/${path}`,{method:'DELETE',headers:{'Authorization':`Bearer ${SUPA_KEY}`}});
 }
 
-// ── CONSTANTS ─────────────────────────────────────────────────────────────────
 const TREES=[
   {name:'Forest Whitaker',ref:'R1'},{name:'Keanu Leaves',ref:'R2'},{name:'Treeyonce',ref:'R3'},
   {name:'Queen La Treefa',ref:'R4'},{name:'Tree Diddy',ref:'R5'},{name:'Morgan Treeman',ref:'R6'},
@@ -169,7 +145,6 @@ const TREES=[
 ];
 const POSITIONS=['North fixed point','South fixed point','East fixed point','West fixed point','Canopy overhead','Base / root zone','Custom'];
 
-// ── RAG ───────────────────────────────────────────────────────────────────────
 function paramRAG(key,val){
   if(val===undefined||val===null||val==='')return null;
   const v=parseFloat(val);if(isNaN(v))return null;
@@ -186,10 +161,11 @@ function paramRAG(key,val){
     default:return null;
   }
 }
+
 const RAG_DISPLAY={
   ph:{label:'pH',unit:'',green:'6.0–7.0',amber:'7.0–7.8',red:'>7.8'},
   ec:{label:'EC',unit:'µS/cm',green:'200–500',amber:'120–200',red:'<120'},
-  nitrogen:{label:'Total N',unit:'mg/l',green:'50–150',amber:'20–50',red:'<20'},
+  nitrogen:{label:'Total N (mg/l)',unit:'mg/l',green:'50–150',amber:'20–50',red:'<20'},
   phosphorus:{label:'Phosphorus (P)',unit:'mg/l',green:'5–20',amber:'3–5',red:'<3'},
   potassium:{label:'Potassium (K)',unit:'mg/l',green:'50–150',amber:'20–50',red:'<20'},
   calcium:{label:'Calcium (Ca)',unit:'mg/l',green:'20–50',amber:'50–70',red:'>70'},
@@ -197,10 +173,12 @@ const RAG_DISPLAY={
   iron:{label:'Iron (Fe)',unit:'mg/l',green:'5–15',amber:'3–5',red:'<3'},
   sodium:{label:'Sodium (Na)',unit:'mg/l',green:'<25',amber:'25–30',red:'>30'}
 };
-function calcRAG(visits){
-  const lab=visits.find(e=>e.record_type==='lab');
-  const vis=visits.filter(e=>e.record_type!=='lab'&&e.ph);
-  const latest=vis[vis.length-1];
+
+function calcTreeRAG(ti){
+  const soil=load(ti,'soil');
+  const lab=soil.find(e=>e.recordType==='lab');
+  const visits=soil.filter(e=>e.recordType!=='lab'&&e.ph);
+  const latest=visits[visits.length-1];
   const checks=[];
   if(latest){checks.push(paramRAG('ph',latest.ph));checks.push(paramRAG('ec',latest.ec));}
   if(lab){['ph','ec','nitrogen','phosphorus','potassium','calcium','magnesium','iron','sodium'].forEach(k=>checks.push(paramRAG(k,lab[k])));}
@@ -208,11 +186,13 @@ function calcRAG(visits){
   if(!valid.length)return null;
   if(valid.includes('R'))return'R'; if(valid.includes('A'))return'A'; return'G';
 }
+
 function ragPill(rag,big){
   if(!rag)return`<span class="rag-pill rag-none${big?' rag-big':''}"><span class="rag-dot"></span>No data</span>`;
   const labels={R:'Attention',A:'Monitor',G:'Good'};
   return`<span class="rag-pill rag-${rag}${big?' rag-big':''}"><span class="rag-dot"></span>${labels[rag]}</span>`;
 }
+
 function ragParamRow(key,value){
   const d=RAG_DISPLAY[key];if(!d)return'';
   if(value===undefined||value===null||value==='')return`<tr><td style="color:var(--color-text-secondary)">${d.label}</td><td style="color:var(--color-text-tertiary)">—</td><td></td><td style="color:var(--color-text-tertiary);font-size:11px">${d.green}</td><td style="color:var(--color-text-tertiary);font-size:11px">${d.amber}</td><td style="color:var(--color-text-tertiary);font-size:11px">${d.red}</td></tr>`;
@@ -221,50 +201,155 @@ function ragParamRow(key,value){
   return`<tr><td style="color:var(--color-text-secondary)">${d.label}</td><td style="font-weight:500">${value}${d.unit?' '+d.unit:''}</td><td>${ragCell}</td><td style="color:var(--color-text-tertiary);font-size:11px">${d.green}</td><td style="color:var(--color-text-tertiary);font-size:11px">${d.amber}</td><td style="color:var(--color-text-tertiary);font-size:11px">${d.red}</td></tr>`;
 }
 
-// ── STATE ─────────────────────────────────────────────────────────────────────
+const LAB_DATA={
+  0:{ph:'7.2',ec:'93',nitrogen:'18.9',phosphorus:'4.0',potassium:'14.8',calcium:'28.1',magnesium:'4.2',iron:'4.4',sodium:'18.3',labref:'Y288/45898 #196584',notes:'Cawood NRM. Nitrate-N 18.1, Ammonia-N 0.8 mg/l. Dry matter 64.9%.'},
+  1:{ph:'6.5',ec:'92',nitrogen:'18.6',phosphorus:'1.6',potassium:'14.4',calcium:'28.2',magnesium:'7.2',iron:'2.1',sodium:'21.3',labref:'Y288/45898 #196587',notes:'Cawood NRM. Lowest P of all trees (1.6 mg/l) — monitor.'},
+  2:{ph:'8.1',ec:'118',nitrogen:'14.4',phosphorus:'5.1',potassium:'13.9',calcium:'39.1',magnesium:'7.4',iron:'5.9',sodium:'20.5',labref:'Y288/45899 #196590',notes:'Cawood NRM. pH 8.1 CONFIRMED — corrected following transposition with Queen La Treefa R4. Urgent pH intervention required.'},
+  3:{ph:'7.7',ec:'124',nitrogen:'19.6',phosphorus:'5.5',potassium:'15.5',calcium:'33.1',magnesium:'14.5',iron:'13.3',sodium:'20.6',labref:'Y288/45899 #196589',notes:'Cawood NRM. pH 7.7 confirmed — corrected following transposition with Treeyonce R3.'},
+  4:{ph:'7.0',ec:'156',nitrogen:'25.3',phosphorus:'3.3',potassium:'22.0',calcium:'77.7',magnesium:'14.0',iron:'4.0',sodium:'22.0',labref:'Y288/45898 #196586',notes:'Cawood NRM. High Ca 77.7 mg/l.'},
+  5:{ph:'7.5',ec:'178',nitrogen:'40.2',phosphorus:'7.3',potassium:'37.0',calcium:'63.7',magnesium:'15.6',iron:'6.0',sodium:'32.7',labref:'Y288/45899 #196591',notes:'Cawood NRM. Highest N (40.2 mg/l). High K 37.0 mg/l.'},
+  6:{ph:'7.4',ec:'116',nitrogen:'21.1',phosphorus:'4.6',potassium:'29.4',calcium:'36.0',magnesium:'10.3',iron:'6.6',sodium:'21.1',labref:'Y288/45898 #196580',notes:'Cawood NRM.'},
+  7:{ph:'7.8',ec:'112',nitrogen:'14.1',phosphorus:'6.6',potassium:'38.4',calcium:'27.9',magnesium:'9.8',iron:'8.7',sodium:'25.9',labref:'Y288/45898 #196581',notes:'Cawood NRM. High K 38.4 mg/l.'},
+  8:{ph:'8.0',ec:'153',nitrogen:'26.4',phosphorus:'6.0',potassium:'23.9',calcium:'54.7',magnesium:'17.3',iron:'10.0',sodium:'26.7',labref:'Y288/45898 #196588',notes:'Cawood NRM. pH 8.0 elevated. NOTE: possible lab mislabelling — see Justin Timberlake L6.'},
+  9:{ph:'8.3',ec:'163',nitrogen:'24.5',phosphorus:'3.0',potassium:'19.5',calcium:'81.1',magnesium:'8.6',iron:'3.0',sodium:'22.2',labref:'Y288/45898 #196585',notes:'Cawood NRM. Highest pH (8.3) and Ca (81.1 mg/l). Monitor — may need acidification.'},
+  10:{ph:'7.5',ec:'124',nitrogen:'20.5',phosphorus:'3.1',potassium:'20.0',calcium:'49.0',magnesium:'6.5',iron:'5.1',sodium:'19.5',labref:'Y288/45898 #196583',notes:'Cawood NRM. Copper <0.01 mg/l below detection.'},
+  11:{ph:'7.5',ec:'155',nitrogen:'24.4',phosphorus:'4.5',potassium:'20.3',calcium:'57.1',magnesium:'7.8',iron:'3.5',sodium:'28.2',labref:'Y288/45898 #196582',notes:'Cawood NRM. NOTE: possible lab mislabelling (should be L6).'}
+};
+
+const PREV_VISITS={
+  0:[{date:'2026-04-08',ph:'',ec:'',soilHumidity:10,leafDrop:10,water:16,newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',notes:'Report #25 — Saskia Portman'},{date:'2026-04-10',ph:'',ec:'',soilHumidity:18,leafDrop:4,water:8,newLeaves:'Few',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',notes:'Report #26 — Tong Zhang. Fertilised with balanced liquid feed + iron chelates 1g/L'},{date:'2026-04-15',ph:'6.2',ec:'',soilHumidity:18,leafDrop:6,water:8,newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',notes:'Report #27 — Saskia Portman'},{date:'2026-04-17',ph:'6.6',ec:'90',soilHumidity:16,leafDrop:5,water:10,newLeaves:'Few',discolouration:'Low',foliage:'Some Gaps',pest:'None observed',notes:'Report #28 — Liz Knight'}],
+  1:[{date:'2026-04-08',ph:'',ec:'',soilHumidity:10,leafDrop:58,water:15,newLeaves:'Many',discolouration:'Low',foliage:'Asymetric',pest:'Mealy Bug',notes:'Report #25 — Saskia Portman. Fruits observed.'},{date:'2026-04-10',ph:'',ec:'',soilHumidity:15,leafDrop:45,water:10,newLeaves:'None',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',notes:'Report #26 — Tong Zhang'},{date:'2026-04-15',ph:'6.2',ec:'',soilHumidity:16,leafDrop:21,water:10,newLeaves:'Many',discolouration:'Medium',foliage:'Asymetric',pest:'Mealy Bug',notes:'Report #27 — Saskia Portman'},{date:'2026-04-17',ph:'6.5',ec:'120',soilHumidity:19,leafDrop:12,water:6,newLeaves:'Few',discolouration:'Medium',foliage:'Some Gaps',pest:'None observed',notes:'Report #28 — Liz Knight'}],
+  2:[{date:'2026-04-08',ph:'',ec:'',soilHumidity:12,leafDrop:8,water:11,newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',notes:'Report #25'},{date:'2026-04-10',ph:'',ec:'',soilHumidity:19,leafDrop:8,water:8,newLeaves:'Few',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',notes:'Report #26'},{date:'2026-04-15',ph:'6.4',ec:'',soilHumidity:19,leafDrop:2,water:8,newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',notes:'Report #27'},{date:'2026-04-17',ph:'6.5',ec:'120',soilHumidity:17,leafDrop:6,water:10,newLeaves:'Few',discolouration:'Low',foliage:'Some Gaps',pest:'None observed',notes:'Report #28'}],
+  3:[{date:'2026-04-08',ph:'',ec:'',soilHumidity:8,leafDrop:4,water:19,newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',notes:'Report #25'},{date:'2026-04-10',ph:'',ec:'',soilHumidity:23,leafDrop:2,water:6,newLeaves:'Few',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',notes:'Report #26'},{date:'2026-04-15',ph:'6.8',ec:'',soilHumidity:14,leafDrop:14,water:12,newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',notes:'Report #27'},{date:'2026-04-17',ph:'6.5',ec:'120',soilHumidity:23,leafDrop:1,water:6,newLeaves:'Few',discolouration:'Low',foliage:'Some Gaps',pest:'None observed',notes:'Report #28'}],
+  4:[{date:'2026-04-08',ph:'',ec:'',soilHumidity:10,leafDrop:1,water:16,newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',notes:'Report #25'},{date:'2026-04-10',ph:'',ec:'',soilHumidity:22,leafDrop:3,water:6,newLeaves:'Few',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',notes:'Report #26'},{date:'2026-04-15',ph:'6.7',ec:'',soilHumidity:13,leafDrop:5,water:10,newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',notes:'Report #27'},{date:'2026-04-17',ph:'6.6',ec:'110',soilHumidity:19,leafDrop:1,water:8,newLeaves:'Few',discolouration:'Low',foliage:'Some Gaps',pest:'None observed',notes:'Report #28'}],
+  5:[{date:'2026-04-08',ph:'',ec:'',soilHumidity:8,leafDrop:5,water:20,newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',notes:'Report #25'},{date:'2026-04-10',ph:'',ec:'',soilHumidity:20,leafDrop:9,water:6,newLeaves:'Few',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',notes:'Report #26'},{date:'2026-04-15',ph:'6.5',ec:'',soilHumidity:14,leafDrop:1,water:12,newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',notes:'Report #27'},{date:'2026-04-17',ph:'6.6',ec:'100',soilHumidity:22,leafDrop:2,water:6,newLeaves:'Few',discolouration:'Low',foliage:'Some Gaps',pest:'None observed',notes:'Report #28'}],
+  6:[{date:'2026-04-08',ph:'',ec:'',soilHumidity:8,leafDrop:34,water:19,newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',notes:'Report #25'},{date:'2026-04-10',ph:'',ec:'',soilHumidity:18,leafDrop:17,water:8,newLeaves:'Few',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',notes:'Report #26'},{date:'2026-04-15',ph:'6.6',ec:'',soilHumidity:12,leafDrop:0,water:12,newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',notes:'Report #27'},{date:'2026-04-17',ph:'6.6',ec:'180',soilHumidity:15,leafDrop:7,water:12,newLeaves:'Few',discolouration:'Low',foliage:'Some Gaps',pest:'None observed',notes:'Report #28'}],
+  7:[{date:'2026-04-08',ph:'',ec:'',soilHumidity:12,leafDrop:1,water:10,newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',notes:'Report #25'},{date:'2026-04-10',ph:'',ec:'',soilHumidity:17,leafDrop:3,water:8,newLeaves:'Few',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',notes:'Report #26'},{date:'2026-04-15',ph:'6.7',ec:'',soilHumidity:14,leafDrop:1,water:12,newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',notes:'Report #27'},{date:'2026-04-17',ph:'6.6',ec:'180',soilHumidity:13,leafDrop:2,water:12,newLeaves:'Few',discolouration:'Low',foliage:'Some Gaps',pest:'None observed',notes:'Report #28'}],
+  8:[{date:'2026-04-08',ph:'',ec:'',soilHumidity:12,leafDrop:0,water:12,newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',notes:'Report #25'},{date:'2026-04-10',ph:'',ec:'',soilHumidity:21,leafDrop:2,water:6,newLeaves:'Few',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',notes:'Report #26'},{date:'2026-04-15',ph:'6.7',ec:'',soilHumidity:17,leafDrop:1,water:10,newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',notes:'Report #27'},{date:'2026-04-17',ph:'6.5',ec:'110',soilHumidity:13,leafDrop:3,water:12,newLeaves:'Few',discolouration:'Low',foliage:'Some Gaps',pest:'None observed',notes:'Report #28'}],
+  9:[{date:'2026-04-08',ph:'',ec:'',soilHumidity:12,leafDrop:6,water:9,newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',notes:'Report #25'},{date:'2026-04-10',ph:'',ec:'',soilHumidity:17,leafDrop:6,water:8,newLeaves:'Few',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',notes:'Report #26'},{date:'2026-04-15',ph:'6.5',ec:'',soilHumidity:13,leafDrop:2,water:12,newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',notes:'Report #27'},{date:'2026-04-17',ph:'6.6',ec:'140',soilHumidity:17,leafDrop:1,water:10,newLeaves:'Few',discolouration:'Low',foliage:'Some Gaps',pest:'None observed',notes:'Report #28'}],
+  10:[{date:'2026-04-08',ph:'',ec:'',soilHumidity:12,leafDrop:6,water:13,newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',notes:'Report #25'},{date:'2026-04-10',ph:'',ec:'',soilHumidity:22,leafDrop:7,water:6,newLeaves:'Few',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',notes:'Report #26'},{date:'2026-04-15',ph:'6.6',ec:'',soilHumidity:12,leafDrop:2,water:12,newLeaves:'Many',discolouration:'Low',foliage:'Some Gaps',pest:'Mealy Bug',notes:'Report #27'},{date:'2026-04-17',ph:'6.7',ec:'120',soilHumidity:17,leafDrop:2,water:12,newLeaves:'Few',discolouration:'Low',foliage:'Some Gaps',pest:'None observed',notes:'Report #28'}],
+  11:[{date:'2026-04-08',ph:'',ec:'',soilHumidity:12,leafDrop:3,water:12,newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',notes:'Report #25'},{date:'2026-04-10',ph:'',ec:'',soilHumidity:19,leafDrop:4,water:8,newLeaves:'Few',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',notes:'Report #26'},{date:'2026-04-15',ph:'6.4',ec:'',soilHumidity:17,leafDrop:0,water:10,newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',notes:'Report #27'},{date:'2026-04-17',ph:'6.7',ec:'90',soilHumidity:14,leafDrop:3,water:12,newLeaves:'Few',discolouration:'Low',foliage:'Some Gaps',pest:'None observed',notes:'Report #28'}]
+};
+
+const REPORT31=[
+  {water:8,leafDrop:5,soilHumidity:17,newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',ec:'150',treatment:'Intensive feed + Epsom salts, Balanced liquid feed (20-10-20 + micros)'},
+  {water:8,leafDrop:11,soilHumidity:16,newLeaves:'Many',discolouration:'Medium',foliage:'Asymetric',pest:'Mealy Bug',ec:'100',treatment:'High-P feed + chelated Fe (rescue), Balanced liquid feed (20-10-20 + micros)'},
+  {water:6,leafDrop:3,soilHumidity:22,newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',ec:'140',treatment:'Balanced liquid feed (20-10-20 + micros)'},
+  {water:6,leafDrop:9,soilHumidity:21,newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',ec:'250',treatment:'Acidifying drench (Iron sulphate), Balanced liquid feed (20-10-20 + micros)'},
+  {water:6,leafDrop:7,soilHumidity:22,newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',ec:'150',treatment:'Balanced liquid feed (20-10-20 + micros)'},
+  {water:6,leafDrop:9,soilHumidity:24,newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',ec:'240',treatment:'Balanced liquid feed (20-10-20 + micros)'},
+  {water:6,leafDrop:5,soilHumidity:20,newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',ec:'100',treatment:'Balanced liquid feed (20-10-20 + micros)'},
+  {water:6,leafDrop:6,soilHumidity:21,newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',ec:'100',treatment:'Balanced liquid feed (20-10-20 + micros)'},
+  {water:6,leafDrop:0,soilHumidity:23,newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',ec:'60',treatment:'Acidifying drench (Iron sulphate), Balanced liquid feed (20-10-20 + micros)'},
+  {water:6,leafDrop:1,soilHumidity:21,newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',ec:'160',treatment:'Balanced liquid feed (20-10-20 + micros)'},
+  {water:6,leafDrop:2,soilHumidity:22,newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',ec:'160',treatment:'Balanced liquid feed (20-10-20 + micros)'},
+  {water:8,leafDrop:0,soilHumidity:17,newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',ec:'110',treatment:'Balanced liquid feed (20-10-20 + micros)'}
+];
+
+// Report #32 — Tong Zhang, 01/05/2026 (first report with pH readings for all trees)
+const REPORT32=[
+  {water:8,leafDrop:7,soilHumidity:20,newLeaves:'Few',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',ph:'6.4',ec:'280',treatment:'Balanced liquid feed + Potassium sulphate supplement'},
+  {water:8,leafDrop:9,soilHumidity:18,newLeaves:'Few',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',ph:'6.6',ec:'110',treatment:'Balanced liquid feed High P + Potassium sulphate supplement'},
+  {water:8,leafDrop:5,soilHumidity:20,newLeaves:'Few',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',ph:'6.5',ec:'120',treatment:'Balanced liquid feed + Potassium sulphate supplement'},
+  {water:8,leafDrop:10,soilHumidity:21,newLeaves:'Few',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',ph:'6.8',ec:'200',treatment:'Balanced liquid feed + Iron sulphate + Potassium sulphate supplement. Fruits observed.'},
+  {water:8,leafDrop:5,soilHumidity:20,newLeaves:'Few',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',ph:'6.5',ec:'150',treatment:'Balanced liquid feed + Epsom salt drench (MgSO\u2084) + Potassium sulphate supplement'},
+  {water:6,leafDrop:10,soilHumidity:25,newLeaves:'Few',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',ph:'6.1',ec:'170',treatment:'Balanced liquid feed + Potassium sulphate supplement'},
+  {water:8,leafDrop:9,soilHumidity:19,newLeaves:'Few',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',ph:'6.5',ec:'80',treatment:'Balanced liquid feed + Potassium sulphate supplement'},
+  {water:8,leafDrop:2,soilHumidity:21,newLeaves:'Few',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',ph:'6.6',ec:'330',treatment:'Balanced liquid feed + Potassium sulphate supplement'},
+  {water:6,leafDrop:1,soilHumidity:30,newLeaves:'Few',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',ph:'6.4',ec:'230',treatment:'Balanced liquid feed + Epsom salt drench (MgSO\u2084) + Potassium sulphate supplement. NOTE: wet on top, dry lower down — check moisture gradient.'},
+  {water:8,leafDrop:2,soilHumidity:19,newLeaves:'Few',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',ph:'6.8',ec:'80',treatment:'Balanced liquid feed + Epsom salt drench (MgSO\u2084) + Potassium sulphate supplement'},
+  {water:8,leafDrop:11,soilHumidity:19,newLeaves:'Few',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',ph:'6.5',ec:'80',treatment:'Balanced liquid feed + Potassium sulphate supplement'},
+  {water:8,leafDrop:2,soilHumidity:18,newLeaves:'Few',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',ph:'6.5',ec:'220',treatment:'Balanced liquid feed + Potassium sulphate supplement'}
+];
+
 let currentTree=0,currentTab=0,currentView='dashboard',currentPhotoSubTab='progression';
-let treeData={};  // cache: {ref: {visits:[], treatments:[], canopy:[], signoffs:[], photos:[]}}
 let charts={};
 
-function fmtDate(ds){if(!ds)return'—';const p=ds.split('-');if(p.length!==3)return ds;return`${p[2]}/${p[1]}/${p[0]}`;}
+function sk(t,s){return`logbook_${t}_${s}`;}
+function load(t,s){try{const r=localStorage.getItem(sk(t,s));return r?JSON.parse(r):[]}catch(e){return[];}}
+function save(t,s,d){try{localStorage.setItem(sk(t,s),JSON.stringify(d));localStorage.setItem('logbook_last_updated',new Date().toISOString());}catch(e){}}
 function today(){return new Date().toISOString().split('T')[0];}
 function fv(id){return(document.getElementById(id)||{}).value||'';}
-function loading(msg='Loading...'){return`<div class="loading"><span class="spinner"></span>${msg}</div>`;}
-function destroyCharts(){Object.values(charts).forEach(c=>{try{c.destroy()}catch(e){}});charts={};}
+function fmtDate(ds){if(!ds)return'—';const p=ds.split('-');if(p.length!==3)return ds;return`${p[2]}/${p[1]}/${p[0]}`;}
+function lastVisitDate(t){const s=['soil','canopy','treatments','photos'];let l='';s.forEach(sec=>{const d=load(t,sec);if(d.length){const x=d[d.length-1].date;if(x>l)l=x;}});return l;}
 
-// ── DATA LAYER ────────────────────────────────────────────────────────────────
-async function loadTree(ref){
-  const [visits,treatments,canopy,signoffs,photos]=await Promise.all([
-    sbGet('visits',`tree_ref=eq.${ref}`),
-    sbGet('treatments',`tree_ref=eq.${ref}`),
-    sbGet('canopy',`tree_ref=eq.${ref}`),
-    sbGet('signoffs',`tree_ref=eq.${ref}`),
-    sbGet('photos',`tree_ref=eq.${ref}`)
-  ]);
-  treeData[ref]={visits,treatments,canopy,signoffs,photos};
-  return treeData[ref];
-}
+function seedData(){
+  // Seed base visits + lab data only if never done before
+  if(!localStorage.getItem('logbook_seeded_v4')&&!localStorage.getItem('logbook_seeded_v9')&&!localStorage.getItem('logbook_seeded_v10')){
+    TREES.forEach((_,i)=>{
+      const existing=load(i,'soil');
+      const existingKeys=new Set(existing.map(e=>e.date+'|'+(e.recordType||'visit')));
+      const newSoil=[...existing];
+      (PREV_VISITS[i]||[]).forEach(v=>{
+        if(!existingKeys.has(v.date+'|visit')){
+          newSoil.push({date:v.date,ph:v.ph||'',ec:v.ec||'',recordType:'visit',soilHumidity:v.soilHumidity,leafDrop:v.leafDrop,water:v.water,newLeaves:v.newLeaves,discolouration:v.discolouration,foliage:v.foliage,pest:v.pest,nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:v.notes});
+        }
+      });
+      const lab=LAB_DATA[i];
+      if(lab&&!existingKeys.has('2026-03-20|lab')){
+        newSoil.push({date:'2026-03-20',ph:lab.ph,ec:lab.ec,recordType:'lab',nitrogen:lab.nitrogen,phosphorus:lab.phosphorus,potassium:lab.potassium,calcium:lab.calcium,magnesium:lab.magnesium,iron:lab.iron||'',sodium:lab.sodium||'',labref:lab.labref,notes:lab.notes});
+      }
+      newSoil.sort((a,b)=>a.date.localeCompare(b.date));
+      save(i,'soil',newSoil);
+      const treatments=load(i,'treatments');
+      if(!treatments.find(t=>t.date==='2026-04-10'&&t.product==='Balanced liquid feed + Iron chelates')){
+        treatments.push({date:'2026-04-10',product:'Balanced liquid feed + Iron chelates',type:'Foliar feed',concentration:'1 g/L',volume:'',method:'Root drench',pest:'Mealy Bug observed',substrate:'',notes:'Report #26 — Tong Zhang. Applied to all 12 trees.'});
+        save(i,'treatments',treatments);
+      }
+    });
+    localStorage.setItem('logbook_seeded_v10','true');
+  }
 
-async function loadAllTrees(){
-  const [visits,treatments,canopy,signoffs,photos]=await Promise.all([
-    sbGet('visits',''),
-    sbGet('treatments',''),
-    sbGet('canopy',''),
-    sbGet('signoffs',''),
-    sbGet('photos','')
-  ]);
-  TREES.forEach(t=>{
-    treeData[t.ref]={
-      visits:visits.filter(e=>e.tree_ref===t.ref),
-      treatments:treatments.filter(e=>e.tree_ref===t.ref),
-      canopy:canopy.filter(e=>e.tree_ref===t.ref),
-      signoffs:signoffs.filter(e=>e.tree_ref===t.ref),
-      photos:photos.filter(e=>e.tree_ref===t.ref)
-    };
+  // Always apply pH corrections for R3/R4 (idempotent)
+  [2,3].forEach(i=>{
+    const soil=load(i,'soil');
+    const labIdx=soil.findIndex(e=>e.recordType==='lab');
+    if(labIdx>=0&&soil[labIdx].ph!==LAB_DATA[i].ph){
+      soil[labIdx].ph=LAB_DATA[i].ph;
+      soil[labIdx].notes=LAB_DATA[i].notes;
+      save(i,'soil',soil);
+    }
   });
+
+  // Always add Report #31 if not present — safe, never overwrites existing data
+  const R31_DATE='2026-04-29';
+  TREES.forEach((_,i)=>{
+    const r=REPORT31[i];
+    const soil=load(i,'soil');
+    if(!soil.find(e=>e.date===R31_DATE&&e.notes&&e.notes.includes('Report #31'))){
+      soil.push({date:R31_DATE,recordType:'visit',ph:'',ec:r.ec,soilHumidity:r.soilHumidity,leafDrop:r.leafDrop,water:r.water,newLeaves:r.newLeaves,discolouration:r.discolouration,foliage:r.foliage,pest:r.pest,nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:`Report #31 — Saskia Portman. ${r.treatment}`});
+      soil.sort((a,b)=>a.date.localeCompare(b.date));
+      save(i,'soil',soil);
+    }
+    const treatments=load(i,'treatments');
+    if(!treatments.find(t=>t.notes&&t.notes.includes('Report #31'))){
+      treatments.push({date:R31_DATE,product:r.treatment,type:'Foliar feed',concentration:'Per programme',volume:`${r.water}L`,method:'Root drench',pest:r.pest,substrate:'',notes:'Report #31 — Saskia Portman'});
+      treatments.sort((a,b)=>a.date.localeCompare(b.date));
+      save(i,'treatments',treatments);
+    }
+  });
+
+  // Always add Report #32 if not present — safe, never overwrites existing data
+  const R32_DATE='2026-05-01';
+  TREES.forEach((_,i)=>{
+    const r=REPORT32[i];
+    const soil=load(i,'soil');
+    if(!soil.find(e=>e.date===R32_DATE&&e.notes&&e.notes.includes('Report #32'))){
+      soil.push({date:R32_DATE,recordType:'visit',ph:r.ph||'',ec:r.ec,soilHumidity:r.soilHumidity,leafDrop:r.leafDrop,water:r.water,newLeaves:r.newLeaves,discolouration:r.discolouration,foliage:r.foliage,pest:r.pest,nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:`Report #32 — Tong Zhang. ${r.treatment}`});
+      soil.sort((a,b)=>a.date.localeCompare(b.date));
+      save(i,'soil',soil);
+    }
+    const treatments=load(i,'treatments');
+    if(!treatments.find(t=>t.notes&&t.notes.includes('Report #32'))){
+      treatments.push({date:R32_DATE,product:r.treatment,type:'Foliar feed',concentration:'Per programme',volume:`${r.water}L`,method:'Root drench',pest:r.pest,substrate:'',notes:'Report #32 — Tong Zhang'});
+      treatments.sort((a,b)=>a.date.localeCompare(b.date));
+      save(i,'treatments',treatments);
+    }
+  });
+
+  localStorage.setItem('logbook_last_updated',new Date().toISOString());
 }
 
-// ── VIEWS ─────────────────────────────────────────────────────────────────────
 function setView(vw){
   currentView=vw;
   document.querySelectorAll('#main-nav button').forEach((b,i)=>b.classList.toggle('active',(i===0&&vw==='dashboard')||(i===1&&vw==='trees')));
@@ -275,95 +360,92 @@ function setView(vw){
   else renderTreesView();
 }
 
-async function renderDashboard(){
+function renderDashboard(){
   const el=document.getElementById('view-dashboard');
-  el.innerHTML=loading('Loading all trees...');
-  try{
-    await loadAllTrees();
-    const cards=TREES.map((t,i)=>{
-      const d=treeData[t.ref];
-      const visits=d.visits.filter(e=>e.record_type!=='lab');
-      const labs=d.visits.filter(e=>e.record_type==='lab');
-      const lv=visits[visits.length-1];
-      const ll=labs[labs.length-1];
-      const lc=d.canopy[d.canopy.length-1];
-      const rag=calcRAG(d.visits);
-      return`<div class="dash-card" onclick="openTree(${i})">
-        <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:6px">
-          <span style="font-weight:500;font-size:14px">${t.name}</span>
-          <span style="font-size:11px;color:var(--color-text-secondary)">${t.ref}</span>
-        </div>
-        <div style="margin-bottom:8px">${ragPill(rag)}</div>
-        <div class="dash-stat"><span>Last visit</span><span>${fmtDate(lv?.date)}</span></div>
-        <div class="dash-stat"><span>Latest EC</span><span>${lv?.ec?lv.ec+' µS/cm':'—'}</span></div>
-        <div class="dash-stat"><span>Lab pH</span><span>${ll?.ph||'—'}</span></div>
-        <div class="dash-stat"><span>Height</span><span>${lc?.height?parseFloat(lc.height).toFixed(2)+'m':'—'}</span></div>
-        <div class="dash-stat"><span>Treatments</span><span>${d.treatments.length}</span></div>
-      </div>`;
-    }).join('');
-    el.innerHTML=`
-      <div class="import-notice">All data stored in Supabase — live across all devices. Click any tree for its full logbook.</div>
-      <div class="dash-grid">${cards}</div>
-      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
-        <button onclick="exportAllPDF()" class="primary">Export all sign-offs — PDF</button>
-        <button onclick="exportAllExcel()" class="excel"><span class="xl-icon">X</span>Export all logbooks — Excel</button>
-      </div>`;
-  }catch(e){el.innerHTML=`<div class="correction-notice">Error loading data: ${e.message}</div>`;}
+  const cards=TREES.map((t,i)=>{
+    const soil=load(i,'soil'),canopy=load(i,'canopy'),treatments=load(i,'treatments');
+    const visitSoil=soil.filter(e=>e.recordType!=='lab'&&e.ec);
+    const labSoil=soil.filter(e=>e.recordType==='lab');
+    const ls=visitSoil[visitSoil.length-1];
+    const lc=canopy[canopy.length-1];
+    const lv=lastVisitDate(i);
+    return`<div class="dash-card" onclick="openTree(${i})">
+      <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:6px">
+        <span style="font-weight:500;font-size:14px">${t.name}</span>
+        <span style="font-size:11px;color:var(--color-text-secondary)">${t.ref}</span>
+      </div>
+      <div class="dash-stat"><span>Last visit</span><span>${fmtDate(lv)}</span></div>
+      <div class="dash-stat"><span>Latest EC</span><span>${ls&&ls.ec?ls.ec+' µS/cm':'—'}</span></div>
+      <div class="dash-stat"><span>Lab pH</span><span>${labSoil.length?labSoil[labSoil.length-1].ph:'—'}</span></div>
+      <div class="dash-stat"><span>Lab EC</span><span>${labSoil.length&&labSoil[labSoil.length-1].ec?labSoil[labSoil.length-1].ec+' µS/cm':'—'}</span></div>
+      <div class="dash-stat"><span>Height</span><span>${lc&&lc.height?parseFloat(lc.height).toFixed(2)+'m':'—'}</span></div>
+      <div class="dash-stat"><span>Treatments</span><span>${treatments.length}</span></div>
+    </div>`;
+  }).join('');
+  el.innerHTML=`
+    <div class="success-notice">✓ Reports #31 (29/04/2026 — Saskia Portman) and #32 (01/05/2026 — Tong Zhang) loaded. Report #32 includes pH readings for all 12 trees for the first time.</div>
+    <div class="correction-notice">Lab corrections applied: Treeyonce R3 pH = 8.1 · Queen La Treefa R4 pH = 7.7 · EC ideal range = 200–500 µS/cm.</div>
+    <div class="import-notice">Data from service reports #25–31 and Cawood NRM lab analyses (Mar 2026). Click any tree for full logbook and RAG ratings.</div>
+    <div class="dash-grid">${cards}</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
+      <button onclick="exportAllPDF()" class="primary">Export all sign-offs — PDF</button>
+      <button onclick="exportAllExcel()" class="excel"><span class="xl-icon">X</span>Export all logbooks — Excel</button>
+    </div>`;
 }
 
-function openTree(i){currentTree=i;currentTab=0;setView('trees');}
+function openTree(i){currentTree=i;currentTab=0;setView('trees');renderTreesView();}
 
 function renderTreesView(){
   const el=document.getElementById('view-trees');
-  el.innerHTML=`<div class="tree-selector" id="tree-selector"></div><div id="logbook"></div>`;
+  el.innerHTML=`<div class="tree-selector" id="tree-selector"></div><div id="logbook" style="display:none"></div>`;
   initSelector();
-  selectTree(currentTree);
+  if(currentView==='trees')selectTree(currentTree,false);
 }
 
 function initSelector(){
   const el=document.getElementById('tree-selector');if(!el)return;
   el.innerHTML=TREES.map((t,i)=>`
-    <button class="tree-btn${i===currentTree?' active':''}" onclick="selectTree(${i})">
+    <button class="tree-btn${i===currentTree?' active':''}" onclick="selectTree(${i},true)">
       <span class="tree-name">${t.name}</span>
       <span class="tree-ref">${t.ref}</span>
     </button>`).join('');
 }
 
-async function selectTree(i){
+function selectTree(i,scroll){
   currentTree=i;currentTab=0;currentPhotoSubTab='progression';
   initSelector();
   const lb=document.getElementById('logbook');if(!lb)return;
-  const t=TREES[i];
-  lb.innerHTML=loading(`Loading ${t.name}...`);
-  try{
-    await loadTree(t.ref);
-    const d=treeData[t.ref];
-    const rag=calcRAG(d.visits);
-    lb.innerHTML=`
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:1.25rem;padding-bottom:1.25rem;border-bottom:0.5px solid var(--color-border-tertiary);flex-wrap:wrap;gap:8px">
-        <div style="width:40px;height:40px;border-radius:50%;background:#EAF3DE;display:flex;align-items:center;justify-content:center;font-weight:500;font-size:14px;color:#27500A;flex-shrink:0">${t.name.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase()}</div>
-        <div style="flex:1;min-width:0">
-          <p style="font-weight:500;font-size:16px">${t.name}</p>
-          <p style="font-size:12px;color:var(--color-text-secondary)">Reference ${t.ref} &nbsp;${ragPill(rag,true)}</p>
-        </div>
-        <div style="display:flex;gap:8px;flex-wrap:wrap">
-          <button onclick="exportTreeExcel(${i})" class="excel"><span class="xl-icon">X</span>Export Excel</button>
-          <button onclick="exportTreePDF(${i})">Export PDF</button>
-        </div>
+  lb.style.display='block';
+  const t=TREES[i];const rag=calcTreeRAG(i);
+  const isCorrected=(i===2||i===3);
+  lb.innerHTML=`
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:1.25rem;padding-bottom:1.25rem;border-bottom:0.5px solid var(--color-border-tertiary);flex-wrap:wrap;gap:8px">
+      <div style="width:40px;height:40px;border-radius:50%;background:#EAF3DE;display:flex;align-items:center;justify-content:center;font-weight:500;font-size:14px;color:#27500A;flex-shrink:0">${t.name.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase()}</div>
+      <div style="flex:1;min-width:0">
+        <p style="font-weight:500;font-size:16px">${t.name}</p>
+        <p style="font-size:12px;color:var(--color-text-secondary)">Reference ${t.ref} &nbsp;${ragPill(rag,true)}${isCorrected?'&nbsp;<span style="font-size:10px;padding:1px 7px;border-radius:10px;background:#FCEBEB;color:#791F1F;vertical-align:middle">Lab pH corrected</span>':''}</p>
       </div>
-      <div class="metric-grid" id="summary-metrics"></div>
-      <div class="tab-bar" id="tab-bar">
-        <button class="active" onclick="setTab(0)">Soil &amp; foliar</button>
-        <button onclick="setTab(1)">Lab analysis</button>
-        <button onclick="setTab(2)">Visit observations</button>
-        <button onclick="setTab(3)">Photographs</button>
-        <button onclick="setTab(4)">Treatments</button>
-        <button onclick="setTab(5)">Canopy</button>
-        <button onclick="setTab(6)">Sign-off</button>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button onclick="exportTreeExcel(${i})" class="excel"><span class="xl-icon">X</span>Export Excel</button>
+        <button onclick="exportTreePDF(${i})">Export PDF</button>
+        <button onclick="exportTreeJSON(${i})">Export JSON</button>
       </div>
-      <div id="tab-content"></div>`;
-    renderSummary();renderTab();
-  }catch(e){lb.innerHTML=`<div class="correction-notice">Error loading ${t.name}: ${e.message}</div>`;}
+    </div>
+    <div class="metric-grid" id="summary-metrics"></div>
+    <div class="tab-bar" id="tab-bar">
+      <button class="active" onclick="setTab(0)">Soil &amp; foliar</button>
+      <button onclick="setTab(1)">Lab analysis</button>
+      <button onclick="setTab(2)">Visit observations</button>
+      <button onclick="setTab(3)">Photographs</button>
+      <button onclick="setTab(4)">Treatments</button>
+      <button onclick="setTab(5)">Canopy</button>
+      <button onclick="setTab(6)">Sign-off</button>
+    </div>
+    <div id="tab-content"></div>`;
+  const lu=localStorage.getItem('logbook_last_updated');
+  if(lu)document.getElementById('last-updated').textContent='Last updated '+new Date(lu).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});
+  destroyCharts();renderSummary();renderTab();
+  if(scroll)lb.scrollIntoView({behavior:'smooth',block:'start'});
 }
 
 function setTab(i){
@@ -371,24 +453,24 @@ function setTab(i){
   document.querySelectorAll('#tab-bar button').forEach((b,j)=>b.classList.toggle('active',j===i));
   destroyCharts();renderTab();
 }
+function destroyCharts(){Object.values(charts).forEach(c=>{try{c.destroy()}catch(e){}});charts={};}
 
 function renderSummary(){
-  const t=TREES[currentTree];const d=treeData[t.ref];if(!d)return;
-  const visits=d.visits.filter(e=>e.record_type!=='lab');
-  const labs=d.visits.filter(e=>e.record_type==='lab');
-  const lv=visits[visits.length-1];const lc=d.canopy[d.canopy.length-1];
-  function trend(arr,key){if(arr.length<2)return'';const a=parseFloat(arr[arr.length-1][key]),b=parseFloat(arr[arr.length-2][key]);if(isNaN(a)||isNaN(b))return'';const df=a-b;return df>0?'<span class="trend-up"> ▲</span>':df<0?'<span class="trend-down"> ▼</span>':'<span class="trend-flat"> —</span>';}
+  const soil=load(currentTree,'soil'),canopy=load(currentTree,'canopy'),treatments=load(currentTree,'treatments'),signoffs=load(currentTree,'signoffs');
+  const visitSoil=soil.filter(e=>e.recordType!=='lab');
+  const labSoil=soil.filter(e=>e.recordType==='lab');
+  const ls=visitSoil[visitSoil.length-1];const lc=canopy[canopy.length-1];
+  function trend(arr,key){if(arr.length<2)return'';const a=parseFloat(arr[arr.length-1][key]),b=parseFloat(arr[arr.length-2][key]);if(isNaN(a)||isNaN(b))return'';const d=a-b;return d>0?'<span class="trend-up"> ▲</span>':d<0?'<span class="trend-down"> ▼</span>':'<span class="trend-flat"> —</span>';}
   const el=document.getElementById('summary-metrics');if(!el)return;
-  const ecVisits=visits.filter(e=>e.ec);
   el.innerHTML=`
-    <div class="metric"><div class="lbl">Latest EC</div><div class="val">${lv?.ec?lv.ec+trend(ecVisits,'ec'):'—'}</div></div>
-    <div class="metric"><div class="lbl">Lab pH</div><div class="val">${labs.length?labs[labs.length-1].ph:'—'}</div></div>
-    <div class="metric"><div class="lbl">Canopy spread</div><div class="val">${lc?parseFloat(lc.spread).toFixed(1)+'m'+trend(d.canopy,'spread'):'—'}</div></div>
-    <div class="metric"><div class="lbl">Canopy density</div><div class="val">${lc?Math.round(lc.density)+'%'+trend(d.canopy,'density'):'—'}</div></div>
-    <div class="metric"><div class="lbl">Visit readings</div><div class="val">${visits.length}</div></div>
-    <div class="metric"><div class="lbl">Lab analyses</div><div class="val">${labs.length}</div></div>
-    <div class="metric"><div class="lbl">Treatments</div><div class="val">${d.treatments.length}</div></div>
-    <div class="metric"><div class="lbl">Sign-offs</div><div class="val">${d.signoffs.length}</div></div>`;
+    <div class="metric"><div class="lbl">Latest EC (visit)</div><div class="val">${ls&&ls.ec?ls.ec+trend(visitSoil.filter(e=>e.ec),'ec'):'—'}</div></div>
+    <div class="metric"><div class="lbl">Lab pH</div><div class="val">${labSoil.length?labSoil[labSoil.length-1].ph:'—'}</div></div>
+    <div class="metric"><div class="lbl">Canopy spread</div><div class="val">${lc?parseFloat(lc.spread).toFixed(1)+'m'+trend(canopy,'spread'):'—'}</div></div>
+    <div class="metric"><div class="lbl">Canopy density</div><div class="val">${lc?Math.round(lc.density)+'%'+trend(canopy,'density'):'—'}</div></div>
+    <div class="metric"><div class="lbl">Visit readings</div><div class="val">${visitSoil.length}</div></div>
+    <div class="metric"><div class="lbl">Lab analyses</div><div class="val">${labSoil.length}</div></div>
+    <div class="metric"><div class="lbl">Treatments</div><div class="val">${treatments.length}</div></div>
+    <div class="metric"><div class="lbl">Sign-offs</div><div class="val">${signoffs.length}</div></div>`;
 }
 
 function renderTab(){
@@ -403,28 +485,91 @@ function renderTab(){
   setTimeout(()=>{if(currentTab===0)drawSoilCharts();if(currentTab===2)drawObsCharts();if(currentTab===5)drawCanopyCharts();},50);
 }
 
-// ── SOIL & FOLIAR ─────────────────────────────────────────────────────────────
+function renderLabAnalysis(){
+  const soil=load(currentTree,'soil');
+  const labs=soil.filter(e=>e.recordType==='lab');
+  if(!labs.length)return`<p class="empty">No lab records yet.</p>`;
+  const lab=labs[labs.length-1];const rag=calcTreeRAG(currentTree);
+  return`<div class="card">
+    <div class="section-header"><p style="font-weight:500;font-size:14px">Overall RAG rating</p><span class="badge">Cawood NRM · ${fmtDate(lab.date)}</span></div>
+    <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">${ragPill(rag,true)}<p style="font-size:13px;color:var(--color-text-secondary)">Based on Ficus nitida water extraction ideal ranges. Worst-case parameter drives the overall rating.</p></div>
+    ${lab.notes?`<p style="font-size:12px;color:var(--color-text-secondary);margin-top:10px;border-top:0.5px solid var(--color-border-tertiary);padding-top:10px">${lab.notes}</p>`:''}
+    ${lab.labref?`<p style="font-size:11px;color:var(--color-text-tertiary);margin-top:4px">Lab ref: ${lab.labref}</p>`:''}
+  </div>
+  <div class="card">
+    <div class="section-header"><p style="font-weight:500;font-size:14px">Parameter breakdown</p>
+      <div class="rag-legend" style="margin:0">
+        <span class="rag-legend-item"><span class="rag-dot" style="background:#3B6D11"></span><span style="font-size:11px">Green — ideal</span></span>
+        <span class="rag-legend-item"><span class="rag-dot" style="background:#EF9F27"></span><span style="font-size:11px">Amber — borderline</span></span>
+        <span class="rag-legend-item"><span class="rag-dot" style="background:#E24B4A"></span><span style="font-size:11px">Red — action needed</span></span>
+      </div>
+    </div>
+    <div style="overflow-x:auto"><table class="lab-table">
+      <thead><tr><th>Parameter</th><th>Value</th><th>Rating</th><th>Ideal (green)</th><th>Borderline (amber)</th><th>Action needed (red)</th></tr></thead>
+      <tbody>
+        ${ragParamRow('ph',lab.ph)}${ragParamRow('ec',lab.ec)}
+        ${ragParamRow('nitrogen',lab.nitrogen)}${ragParamRow('phosphorus',lab.phosphorus)}
+        ${ragParamRow('potassium',lab.potassium)}${ragParamRow('calcium',lab.calcium)}
+        ${ragParamRow('magnesium',lab.magnesium)}${ragParamRow('iron',lab.iron||'')}${ragParamRow('sodium',lab.sodium||'')}
+      </tbody>
+    </table></div>
+  </div>`;
+}
+
+function renderObservations(){
+  const data=load(currentTree,'soil').filter(e=>e.recordType!=='lab');
+  if(!data.length)return`<p class="empty">No visit records yet.</p>`;
+  const tableRows=data.map(e=>`<tr>
+    <td>${fmtDate(e.date)}</td>
+    <td>${e.soilHumidity!==undefined&&e.soilHumidity!==''?e.soilHumidity+'%':'—'}</td>
+    <td>${e.leafDrop!==undefined&&e.leafDrop!==''?e.leafDrop:'—'}</td>
+    <td>${e.water!==undefined&&e.water!==''?e.water+'L':'—'}</td>
+    <td>${e.newLeaves||'—'}</td><td>${e.foliage||'—'}</td><td>${e.discolouration||'—'}</td><td>${e.pest||'—'}</td>
+  </tr>`).join('');
+  const chartHtml=data.length>=2?`<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:10px;margin-bottom:1rem">
+    <div class="card"><p style="font-size:13px;font-weight:500;margin-bottom:2px">Soil humidity (%)</p><div class="chart-wrap"><canvas id="chart-humidity"></canvas></div></div>
+    <div class="card"><p style="font-size:13px;font-weight:500;margin-bottom:2px">Leaf drop</p><div class="chart-wrap"><canvas id="chart-leafdrop"></canvas></div></div>
+    <div class="card"><p style="font-size:13px;font-weight:500;margin-bottom:2px">Water applied (L)</p><div class="chart-wrap"><canvas id="chart-water"></canvas></div></div>
+  </div>`:'';
+  return`${chartHtml}<div class="card">
+    <div class="section-header"><p style="font-weight:500;font-size:14px">Visit observations (${data.length})</p></div>
+    <div style="overflow-x:auto"><table class="obs-table">
+      <thead><tr><th>Date</th><th>Soil humidity</th><th>Leaf drop</th><th>Water</th><th>New leaves</th><th>Foliage</th><th>Discolouration</th><th>Pest</th></tr></thead>
+      <tbody>${tableRows}</tbody>
+    </table></div>
+  </div>`;
+}
+
+function drawObsCharts(){
+  const data=load(currentTree,'soil').filter(e=>e.recordType!=='lab');
+  if(data.length<2)return;
+  const labels=data.map(e=>fmtDate(e.date));
+  const mk=(id,vals,col)=>{const ctx=document.getElementById(id);if(!ctx)return;charts[id]=new Chart(ctx,{type:'line',data:{labels,datasets:[{data:vals,borderColor:col,backgroundColor:col+'22',tension:0.3,pointRadius:4,fill:true,borderWidth:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{font:{size:10},maxRotation:45}},y:{beginAtZero:true,ticks:{font:{size:11}}}}}});};
+  mk('chart-humidity',data.map(e=>e.soilHumidity!==''?parseFloat(e.soilHumidity):null),'#1D9E75');
+  mk('chart-leafdrop',data.map(e=>e.leafDrop!==''?parseFloat(e.leafDrop):null),'#D85A30');
+  mk('chart-water',data.map(e=>e.water!==''?parseFloat(e.water):null),'#185FA5');
+}
+
 function renderSoil(){
-  const t=TREES[currentTree];const d=treeData[t.ref];if(!d)return'';
-  const visits=d.visits;
-  const entries=visits.slice().reverse().map(e=>`
+  const data=load(currentTree,'soil');
+  const entries=data.slice().reverse().map((e,i)=>`
     <div class="entry-item">
       <div>
         <div style="font-weight:500;font-size:13px">
-          ${e.ph?'pH '+parseFloat(e.ph).toFixed(1):''}${e.ec?(e.ph?' · ':'')+' EC '+e.ec+' µS/cm':(!e.ph?'No pH/EC':'') }
-          ${e.record_type==='lab'?'<span class="lab-badge">Lab</span>':'<span style="display:inline-block;font-size:10px;padding:1px 6px;border-radius:10px;background:#FAEEDA;color:#633806;margin-left:6px;vertical-align:middle">Visit</span>'}
+          ${e.ph?'pH '+parseFloat(e.ph).toFixed(1):''}${e.ec?(e.ph?' · ':'')+' EC '+e.ec+' µS/cm':(!e.ph?'No pH/EC recorded':'')}
+          ${e.recordType==='lab'?'<span class="lab-badge">Lab</span>':'<span style="display:inline-block;font-size:10px;padding:1px 6px;border-radius:10px;background:#FAEEDA;color:#633806;margin-left:6px;vertical-align:middle">Visit</span>'}
         </div>
         ${e.nitrogen?`<div style="font-size:12px;color:var(--color-text-secondary);margin-top:2px">N ${e.nitrogen} · P ${e.phosphorus||'—'} · K ${e.potassium||'—'} · Ca ${e.calcium||'—'} · Mg ${e.magnesium||'—'} · Fe ${e.iron||'—'} · Na ${e.sodium||'—'} mg/l</div>`:''}
         ${e.notes?`<div style="color:var(--color-text-secondary);font-size:12px;margin-top:3px">${e.notes}</div>`:''}
       </div>
       <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px">
         <span style="font-size:11px;color:var(--color-text-secondary);white-space:nowrap">${fmtDate(e.date)}</span>
-        <button class="danger" style="padding:2px 8px;font-size:11px" onclick="deleteVisit('${e.id}')">Remove</button>
+        <button class="danger" style="padding:2px 8px;font-size:11px" onclick="deleteEntry('soil',${data.length-1-i})">Remove</button>
       </div>
     </div>`).join('');
-  const phData=visits.filter(e=>e.ph);
-  const ecData=visits.filter(e=>e.ec);
-  const hasNPK=visits.some(e=>e.nitrogen);
+  const phData=data.filter(e=>e.ph);
+  const ecData=data.filter(e=>e.ec);
+  const hasNPK=data.some(e=>e.nitrogen);
   const chartBlocks=(phData.length>=2||ecData.length>=2)?`<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:10px">
     ${phData.length>=2?`<div class="card"><p style="font-size:13px;font-weight:500;margin-bottom:2px">pH trend</p><div class="chart-wrap"><canvas id="chart-ph"></canvas></div></div>`:''}
     ${ecData.length>=2?`<div class="card"><p style="font-size:13px;font-weight:500;margin-bottom:2px">EC trend <span style="font-size:11px;font-weight:400;color:var(--color-text-secondary)">µS/cm</span></p><div class="chart-wrap"><canvas id="chart-ec"></canvas></div></div>`:''}
@@ -471,17 +616,17 @@ function renderSoil(){
       </div>
     </div>
     <div style="margin-bottom:10px"><label>Notes</label><textarea id="s-notes" placeholder="Observations..."></textarea></div>
-    <button class="primary" id="s-save-btn" onclick="addVisit()">Save reading</button>
+    <button class="primary" onclick="addSoil()">Save reading</button>
   </div>
   ${chartBlocks}
   <div class="card">
-    <div class="section-header"><p style="font-weight:500;font-size:14px">All records (${visits.length})</p>
+    <div class="section-header"><p style="font-weight:500;font-size:14px">All records (${data.length})</p>
       <div style="display:flex;gap:6px;font-size:11px">
         <span style="background:#E6F1FB;color:#0C447C;padding:1px 7px;border-radius:10px">Lab</span>
         <span style="background:#FAEEDA;color:#633806;padding:1px 7px;border-radius:10px">Visit</span>
       </div>
     </div>
-    ${visits.length===0?'<p class="empty">No records yet</p>':'<div class="entry-list">'+entries+'</div>'}
+    ${data.length===0?'<p class="empty">No records yet</p>':'<div class="entry-list">'+entries+'</div>'}
   </div>`;
 }
 
@@ -491,128 +636,25 @@ function toggleLabFields(){
   document.getElementById('visit-obs-fields').style.display=isLab?'none':'block';
 }
 
-async function addVisit(){
-  const t=TREES[currentTree];
-  const isLab=fv('s-type')==='lab';
-  const btn=document.getElementById('s-save-btn');
-  if(btn){btn.disabled=true;btn.textContent='Saving...';}
-  try{
-    const row={
-      tree_ref:t.ref, date:fv('s-date'), record_type:fv('s-type'),
-      ph:fv('s-ph')||null, ec:fv('s-ec')||null,
-      soil_humidity:isLab?null:(fv('s-humidity')||null),
-      leaf_drop:isLab?null:(fv('s-leafdrop')||null),
-      water:isLab?null:(fv('s-water')||null),
-      new_leaves:isLab?null:(fv('s-newleaves')||null),
-      foliage:isLab?null:(fv('s-foliage')||null),
-      discolouration:isLab?null:(fv('s-discolouration')||null),
-      pest:isLab?null:(fv('s-pest')||null),
-      nitrogen:fv('s-n')||null, phosphorus:fv('s-p')||null,
-      potassium:fv('s-k')||null, calcium:fv('s-ca')||null,
-      magnesium:fv('s-mg')||null, iron:fv('s-fe')||null,
-      sodium:fv('s-na')||null, labref:fv('s-labref')||null,
-      notes:fv('s-notes')||null
-    };
-    if(!row.date){alert('Date is required');return;}
-    await sbInsert('visits',row);
-    await loadTree(t.ref);
-    renderSummary();renderTab();
-  }catch(e){alert('Error saving: '+e.message);}
-  finally{if(btn){btn.disabled=false;btn.textContent='Save reading';}}
-}
-
-async function deleteVisit(id){
-  if(!confirm('Remove this record?'))return;
-  const t=TREES[currentTree];
-  try{await sbDelete('visits',id);await loadTree(t.ref);renderSummary();renderTab();}
-  catch(e){alert('Error: '+e.message);}
-}
-
 function drawSoilCharts(){
-  const t=TREES[currentTree];const d=treeData[t.ref];if(!d)return;
-  const visits=d.visits;
-  const phData=visits.filter(e=>e.ph);
-  const ecData=visits.filter(e=>e.ec);
-  const labData=visits.filter(e=>e.record_type==='lab'&&e.nitrogen);
-  const mk=(id,labels,datasets)=>{const ctx=document.getElementById(id);if(!ctx)return;charts[id]=new Chart(ctx,{type:'line',data:{labels,datasets},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:datasets.length>1,labels:{font:{size:10}}}},scales:{x:{ticks:{font:{size:10},maxRotation:45}},y:{ticks:{font:{size:11}}}}}});};
+  const data=load(currentTree,'soil');
+  const phData=data.filter(e=>e.ph);
+  const ecData=data.filter(e=>e.ec);
+  const labData=data.filter(e=>e.recordType==='lab'&&e.nitrogen);
+  const mk=(id,labels,datasets)=>{const ctx=document.getElementById(id);if(!ctx)return;charts[id]=new Chart(ctx,{type:'line',data:{labels,datasets},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:datasets.length>1,labels:{font:{size:10}}}},scales:{x:{ticks:{font:{size:10},maxRotation:45}},enforceAspectRatio:false,y:{ticks:{font:{size:11}}}}}});};
   if(phData.length>=2)mk('chart-ph',phData.map(e=>fmtDate(e.date)),[{data:phData.map(e=>parseFloat(e.ph)),borderColor:'#639922',backgroundColor:'#63992222',tension:0.3,pointRadius:4,fill:true,borderWidth:2,label:'pH'}]);
   if(ecData.length>=2)mk('chart-ec',ecData.map(e=>fmtDate(e.date)),[{data:ecData.map(e=>parseFloat(e.ec)),borderColor:'#1D9E75',backgroundColor:'#1D9E7522',tension:0.3,pointRadius:4,fill:true,borderWidth:2,label:'EC'}]);
   if(labData.length>=1){const ld=labData.map(e=>fmtDate(e.date));mk('chart-npk',ld,[{data:labData.map(e=>parseFloat(e.nitrogen)),borderColor:'#185FA5',tension:0.3,pointRadius:4,borderWidth:2,label:'N'},{data:labData.map(e=>parseFloat(e.phosphorus)),borderColor:'#7F77DD',tension:0.3,pointRadius:4,borderWidth:2,label:'P'},{data:labData.map(e=>parseFloat(e.potassium)),borderColor:'#BA7517',tension:0.3,pointRadius:4,borderWidth:2,label:'K'}]);}
 }
 
-// ── LAB ANALYSIS ──────────────────────────────────────────────────────────────
-function renderLabAnalysis(){
-  const t=TREES[currentTree];const d=treeData[t.ref];if(!d)return'';
-  const labs=d.visits.filter(e=>e.record_type==='lab');
-  if(!labs.length)return`<p class="empty">No lab records yet. Add one in the Soil &amp; foliar tab.</p>`;
-  const lab=labs[labs.length-1];
-  const rag=calcRAG(d.visits);
-  return`<div class="card">
-    <div class="section-header"><p style="font-weight:500;font-size:14px">Overall RAG rating</p><span class="badge">Cawood NRM · ${fmtDate(lab.date)}</span></div>
-    <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">${ragPill(rag,true)}<p style="font-size:13px;color:var(--color-text-secondary)">Based on Ficus nitida water extraction ideal ranges.</p></div>
-    ${lab.notes?`<p style="font-size:12px;color:var(--color-text-secondary);margin-top:10px;border-top:0.5px solid var(--color-border-tertiary);padding-top:10px">${lab.notes}</p>`:''}
-    ${lab.labref?`<p style="font-size:11px;color:var(--color-text-tertiary);margin-top:4px">Lab ref: ${lab.labref}</p>`:''}
-  </div>
-  <div class="card">
-    <div class="section-header"><p style="font-weight:500;font-size:14px">Parameter breakdown</p>
-      <div class="rag-legend" style="margin:0">
-        <span class="rag-legend-item"><span class="rag-dot" style="background:#3B6D11"></span><span style="font-size:11px">Green</span></span>
-        <span class="rag-legend-item"><span class="rag-dot" style="background:#EF9F27"></span><span style="font-size:11px">Amber</span></span>
-        <span class="rag-legend-item"><span class="rag-dot" style="background:#E24B4A"></span><span style="font-size:11px">Red</span></span>
-      </div>
-    </div>
-    <div style="overflow-x:auto"><table class="lab-table">
-      <thead><tr><th>Parameter</th><th>Value</th><th>Rating</th><th>Ideal</th><th>Borderline</th><th>Action needed</th></tr></thead>
-      <tbody>
-        ${ragParamRow('ph',lab.ph)}${ragParamRow('ec',lab.ec)}
-        ${ragParamRow('nitrogen',lab.nitrogen)}${ragParamRow('phosphorus',lab.phosphorus)}
-        ${ragParamRow('potassium',lab.potassium)}${ragParamRow('calcium',lab.calcium)}
-        ${ragParamRow('magnesium',lab.magnesium)}${ragParamRow('iron',lab.iron||'')}${ragParamRow('sodium',lab.sodium||'')}
-      </tbody>
-    </table></div>
-  </div>`;
+function addSoil(){
+  const isLab=fv('s-type')==='lab';
+  const d={date:fv('s-date'),ph:fv('s-ph'),ec:fv('s-ec'),recordType:fv('s-type'),soilHumidity:isLab?'':fv('s-humidity'),leafDrop:isLab?'':fv('s-leafdrop'),water:isLab?'':fv('s-water'),newLeaves:isLab?'':fv('s-newleaves'),foliage:isLab?'':fv('s-foliage'),discolouration:isLab?'':fv('s-discolouration'),pest:isLab?'':fv('s-pest'),nitrogen:fv('s-n'),phosphorus:fv('s-p'),potassium:fv('s-k'),calcium:fv('s-ca'),magnesium:fv('s-mg'),iron:fv('s-fe'),sodium:fv('s-na'),labref:fv('s-labref'),notes:fv('s-notes')};
+  if(!d.date){alert('Date is required');return;}
+  const arr=load(currentTree,'soil');arr.push(d);arr.sort((a,b)=>a.date.localeCompare(b.date));save(currentTree,'soil',arr);renderSummary();renderTab();
 }
 
-// ── VISIT OBSERVATIONS ────────────────────────────────────────────────────────
-function renderObservations(){
-  const t=TREES[currentTree];const d=treeData[t.ref];if(!d)return'';
-  const data=d.visits.filter(e=>e.record_type!=='lab');
-  if(!data.length)return`<p class="empty">No visit records yet.</p>`;
-  const tableRows=data.map(e=>`<tr>
-    <td>${fmtDate(e.date)}</td>
-    <td>${e.soil_humidity!=null?e.soil_humidity+'%':'—'}</td>
-    <td>${e.leaf_drop!=null?e.leaf_drop:'—'}</td>
-    <td>${e.water!=null?e.water+'L':'—'}</td>
-    <td>${e.new_leaves||'—'}</td><td>${e.foliage||'—'}</td><td>${e.discolouration||'—'}</td><td>${e.pest||'—'}</td>
-  </tr>`).join('');
-  const chartHtml=data.length>=2?`<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:10px;margin-bottom:1rem">
-    <div class="card"><p style="font-size:13px;font-weight:500;margin-bottom:2px">Soil humidity (%)</p><div class="chart-wrap"><canvas id="chart-humidity"></canvas></div></div>
-    <div class="card"><p style="font-size:13px;font-weight:500;margin-bottom:2px">Leaf drop</p><div class="chart-wrap"><canvas id="chart-leafdrop"></canvas></div></div>
-    <div class="card"><p style="font-size:13px;font-weight:500;margin-bottom:2px">Water applied (L)</p><div class="chart-wrap"><canvas id="chart-water"></canvas></div></div>
-  </div>`:'';
-  return`${chartHtml}<div class="card">
-    <div class="section-header"><p style="font-weight:500;font-size:14px">Visit observations (${data.length})</p></div>
-    <div style="overflow-x:auto"><table class="obs-table">
-      <thead><tr><th>Date</th><th>Soil humidity</th><th>Leaf drop</th><th>Water</th><th>New leaves</th><th>Foliage</th><th>Discolouration</th><th>Pest</th></tr></thead>
-      <tbody>${tableRows}</tbody>
-    </table></div>
-  </div>`;
-}
-
-function drawObsCharts(){
-  const t=TREES[currentTree];const d=treeData[t.ref];if(!d)return;
-  const data=d.visits.filter(e=>e.record_type!=='lab');
-  if(data.length<2)return;
-  const labels=data.map(e=>fmtDate(e.date));
-  const mk=(id,vals,col)=>{const ctx=document.getElementById(id);if(!ctx)return;charts[id]=new Chart(ctx,{type:'line',data:{labels,datasets:[{data:vals,borderColor:col,backgroundColor:col+'22',tension:0.3,pointRadius:4,fill:true,borderWidth:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{font:{size:10},maxRotation:45}},y:{beginAtZero:true,ticks:{font:{size:11}}}}}});};
-  mk('chart-humidity',data.map(e=>e.soil_humidity!=null?parseFloat(e.soil_humidity):null),'#1D9E75');
-  mk('chart-leafdrop',data.map(e=>e.leaf_drop!=null?parseFloat(e.leaf_drop):null),'#D85A30');
-  mk('chart-water',data.map(e=>e.water!=null?parseFloat(e.water):null),'#185FA5');
-}
-
-// ── PHOTOS ────────────────────────────────────────────────────────────────────
 function renderPhotos(){
-  const t=TREES[currentTree];const d=treeData[t.ref];if(!d)return'';
   return`<div class="card">
     <div class="section-header"><p style="font-weight:500;font-size:14px">Log photograph</p><span class="badge">Visit record</span></div>
     <div class="field-row">
@@ -621,8 +663,9 @@ function renderPhotos(){
       <div><label>Type</label><select id="p-type"><option>Full canopy</option><option>Close-up foliage</option><option>Bark / stem</option><option>Root zone</option><option>New growth</option><option>Pest / disease</option></select></div>
     </div>
     <div style="margin-bottom:10px"><label>Upload photo</label><input type="file" id="p-file" accept="image/*"></div>
-    <div style="margin-bottom:10px"><label>Notes</label><textarea id="p-notes"></textarea></div>
-    <button class="primary" id="p-save-btn" onclick="addPhotoRecord()">Save photograph</button>
+    <p style="font-size:11px;color:var(--color-text-secondary);margin-bottom:10px">Photos uploaded to Supabase Storage — persist across redeployments.</p>
+    <div style="margin-bottom:10px"><label>Notes</label><textarea id="p-notes" placeholder="Observations..."></textarea></div>
+    <button class="primary" id="p-save-btn" onclick="addPhoto()">Save photograph</button>
   </div>
   <div class="photo-sub-tab-bar">
     <button class="${currentPhotoSubTab==='progression'?'active':''}" onclick="setPhotoSubTab('progression')">Monthly progression</button>
@@ -631,84 +674,76 @@ function renderPhotos(){
   <div id="photo-content">${renderPhotoContent()}</div>`;
 }
 
-function setPhotoSubTab(tab){
-  currentPhotoSubTab=tab;
-  document.querySelectorAll('.photo-sub-tab-bar button').forEach((b,i)=>b.classList.toggle('active',(i===0&&tab==='progression')||(i===1&&tab==='all')));
+function setPhotoSubTab(t){
+  currentPhotoSubTab=t;
+  document.querySelectorAll('.photo-sub-tab-bar button').forEach((b,i)=>b.classList.toggle('active',(i===0&&t==='progression')||(i===1&&t==='all')));
   const pc=document.getElementById('photo-content');if(pc)pc.innerHTML=renderPhotoContent();
 }
 function renderPhotoContent(){return currentPhotoSubTab==='progression'?renderPhotoProgression():renderPhotoAll();}
-
 function renderPhotoProgression(){
-  const t=TREES[currentTree];const d=treeData[t.ref];if(!d||!d.photos.length)return'<p class="empty">No photographs logged yet.</p>';
-  const byPos={};POSITIONS.forEach(p=>byPos[p]=[]);
-  d.photos.forEach(e=>{const pos=e.position||'Custom';if(!byPos[pos])byPos[pos]=[];byPos[pos].push(e);});
-  const blocks=Object.entries(byPos).filter(([,arr])=>arr.length>0).map(([pos,arr])=>{
+  const data=load(currentTree,'photos');
+  if(!data.length)return'<p class="empty">No photographs logged yet.</p>';
+  const byPosition={};POSITIONS.forEach(p=>byPosition[p]=[]);
+  data.forEach(e=>{const pos=e.position||'Custom';if(!byPosition[pos])byPosition[pos]=[];byPosition[pos].push(e);});
+  const blocks=Object.entries(byPosition).filter(([,arr])=>arr.length>0).map(([pos,arr])=>{
     const sorted=[...arr].sort((a,b)=>a.date.localeCompare(b.date));
     const cells=sorted.map(e=>`<div class="prog-cell">
-      ${e.image_url?`<img src="${e.image_url}" alt="${pos}" loading="lazy">`:`<div class="no-img">No image</div>`}
-      <div class="prog-date">${fmtDate(e.date)}</div><div style="font-size:11px;color:var(--color-text-tertiary)">${e.type||''}</div>
+      ${(e.imageUrl||e.imageData)?`<img src="${e.imageUrl||e.imageData}" alt="${pos}" loading="lazy">`:`<div class="no-img">${e.filename||'No image'}</div>`}
+      <div class="prog-date">${fmtDate(e.date)}</div><div class="prog-type">${e.type}</div>
     </div>`).join('');
     return`<div class="progression-position"><h4>${pos} (${arr.length})</h4><div class="progression-row">${cells}</div></div>`;
   }).join('');
   return`<div class="card">${blocks}</div>`;
 }
-
 function renderPhotoAll(){
-  const t=TREES[currentTree];const d=treeData[t.ref];if(!d||!d.photos.length)return'<p class="empty">No photographs yet.</p>';
-  const thumbs=d.photos.slice().reverse().map(e=>`<div class="photo-thumb">
-    ${e.image_url?`<img src="${e.image_url}" alt="${e.position}" loading="lazy">`:`<div style="height:110px;display:flex;align-items:center;justify-content:center;color:var(--color-text-tertiary);font-size:12px">No image</div>`}
-    <div class="photo-meta">
-      <div class="photo-label">${e.position||'—'}</div>
-      <div class="photo-date">${fmtDate(e.date)} · ${e.type||''}</div>
+  const data=load(currentTree,'photos');
+  if(!data.length)return'<p class="empty">No photographs yet</p>';
+  const thumbs=data.slice().reverse().map((e,i)=>{
+    const imgHtml=(e.imageUrl||e.imageData)?`<img src="${e.imageUrl||e.imageData}" alt="${e.position}" loading="lazy">`:`<div style="height:110px;display:flex;align-items:center;justify-content:center;color:var(--color-text-tertiary);font-size:12px">No image</div>`;
+    return`<div class="photo-thumb">${imgHtml}<div class="photo-meta">
+      <div class="photo-label">${e.position}</div>
+      <div class="photo-date">${fmtDate(e.date)} · ${e.type}</div>
       ${e.notes?`<div style="font-size:11px;color:var(--color-text-secondary);margin-top:2px">${e.notes}</div>`:''}
-      <button class="danger" style="width:100%;margin-top:4px;padding:3px 0;font-size:11px" onclick="deletePhotoRecord('${e.id}','${e.image_url||''}')">Remove</button>
-    </div>
-  </div>`).join('');
+      <button class="danger photo-remove" onclick="deletePhoto(${data.length-1-i})">Remove</button>
+    </div></div>`;
+  }).join('');
   return`<div class="card"><div class="photo-grid">${thumbs}</div></div>`;
 }
-
-async function addPhotoRecord(){
-  const t=TREES[currentTree];
+async function addPhoto(){
   const fi=document.getElementById('p-file');
+  const d={date:fv('p-date'),position:fv('p-pos'),type:fv('p-type'),notes:fv('p-notes'),imageData:null,imageUrl:null,filename:''};
+  if(!d.date){alert('Date is required');return;}
+  const file=fi&&fi.files&&fi.files[0];
   const btn=document.getElementById('p-save-btn');
-  const date=fv('p-date');
-  if(!date){alert('Date is required');return;}
-  if(btn){btn.disabled=true;btn.textContent='Saving...';}
-  try{
-    let imageUrl=null;
-    const file=fi&&fi.files&&fi.files[0];
-    if(file){
-      btn.textContent='Uploading photo...';
-      imageUrl=await uploadPhoto(file,t.ref,date);
-    }
-    await sbInsert('photos',{tree_ref:t.ref,date,position:fv('p-pos'),type:fv('p-type'),notes:fv('p-notes')||null,image_url:imageUrl,filename:file?file.name:null});
-    await loadTree(t.ref);renderTab();
-  }catch(e){alert('Error: '+e.message);}
-  finally{if(btn){btn.disabled=false;btn.textContent='Save photograph';}}
+  if(file){
+    d.filename=file.name;
+    if(btn){btn.disabled=true;btn.textContent='Uploading...';}
+    try{const url=await uploadToStorage(file,TREES[currentTree].ref,d.date);d.imageUrl=url;d.imageData=null;}
+    catch(e){alert('Upload failed: '+e.message);if(btn){btn.disabled=false;btn.textContent='Save photograph';}return;}
+  }
+  const arr=load(currentTree,'photos');arr.push(d);save(currentTree,'photos',arr);
+  if(btn){btn.disabled=false;btn.textContent='Save photograph';}
+  renderTab();
 }
-
-async function deletePhotoRecord(id,url){
+async function deletePhoto(idx){
   if(!confirm('Remove this photo?'))return;
-  const t=TREES[currentTree];
-  try{
-    if(url)await deletePhoto(url);
-    await sbDelete('photos',id);
-    await loadTree(t.ref);renderTab();
-  }catch(e){alert('Error: '+e.message);}
+  const arr=load(currentTree,'photos');
+  const entry=arr[idx];
+  if(entry&&entry.imageUrl)await deleteFromStorage(entry.imageUrl);
+  arr.splice(idx,1);save(currentTree,'photos',arr);renderSummary();renderTab();
 }
 
-// ── TREATMENTS ────────────────────────────────────────────────────────────────
 function renderTreatments(){
-  const t=TREES[currentTree];const d=treeData[t.ref];if(!d)return'';
-  const entries=d.treatments.slice().reverse().map(e=>`
+  const data=load(currentTree,'treatments');
+  const entries=data.slice().reverse().map((e,i)=>`
     <div class="entry-item">
       <div><div style="font-weight:500;font-size:13px">${e.product}</div>
-      <div style="color:var(--color-text-secondary);font-size:12px;margin-top:2px">Method: ${e.method||'—'} · Conc: ${e.concentration||'—'} · Vol: ${e.volume||'—'}</div>
+      <div style="color:var(--color-text-secondary);font-size:12px;margin-top:2px">Method: ${e.method} · Conc: ${e.concentration||'—'} · Vol: ${e.volume||'—'}</div>
       ${e.pest?`<div style="font-size:12px;color:var(--color-text-danger);margin-top:2px">Pest: ${e.pest}</div>`:''}
       ${e.notes?`<div style="font-size:12px;color:var(--color-text-secondary);margin-top:2px">${e.notes}</div>`:''}</div>
       <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px">
         <span style="font-size:11px;color:var(--color-text-secondary);white-space:nowrap">${fmtDate(e.date)}</span>
-        <button class="danger" style="padding:2px 8px;font-size:11px" onclick="deleteTreatment('${e.id}')">Remove</button>
+        <button class="danger" style="padding:2px 8px;font-size:11px" onclick="deleteEntry('treatments',${data.length-1-i})">Remove</button>
       </div>
     </div>`).join('');
   return`<div class="card">
@@ -728,46 +763,30 @@ function renderTreatments(){
       <div><label>Substrate intervention</label><input type="text" id="t-substrate"></div>
     </div>
     <div style="margin-bottom:10px"><label>Notes</label><textarea id="t-notes"></textarea></div>
-    <button class="primary" id="t-save-btn" onclick="addTreatment()">Save treatment</button>
+    <button class="primary" onclick="addTreatment()">Save treatment</button>
   </div>
-  <div class="card"><div class="section-header"><p style="font-weight:500;font-size:14px">All records (${d.treatments.length})</p></div>
-    ${d.treatments.length===0?'<p class="empty">No records yet</p>':'<div class="entry-list">'+entries+'</div>'}
+  <div class="card"><div class="section-header"><p style="font-weight:500;font-size:14px">All records (${data.length})</p></div>
+    ${data.length===0?'<p class="empty">No records yet</p>':'<div class="entry-list">'+entries+'</div>'}
   </div>`;
 }
-
-async function addTreatment(){
-  const t=TREES[currentTree];
-  const btn=document.getElementById('t-save-btn');
-  if(btn){btn.disabled=true;btn.textContent='Saving...';}
-  try{
-    const row={tree_ref:t.ref,date:fv('t-date'),product:fv('t-product'),type:fv('t-type'),concentration:fv('t-conc')||null,volume:fv('t-vol')||null,method:fv('t-method'),pest:fv('t-pest')||null,substrate:fv('t-substrate')||null,notes:fv('t-notes')||null};
-    if(!row.date||!row.product){alert('Date and product are required');return;}
-    await sbInsert('treatments',row);
-    await loadTree(t.ref);renderSummary();renderTab();
-  }catch(e){alert('Error: '+e.message);}
-  finally{if(btn){btn.disabled=false;btn.textContent='Save treatment';}}
+function addTreatment(){
+  const d={date:fv('t-date'),product:fv('t-product'),type:fv('t-type'),concentration:fv('t-conc'),volume:fv('t-vol'),method:fv('t-method'),pest:fv('t-pest'),substrate:fv('t-substrate'),notes:fv('t-notes')};
+  if(!d.date||!d.product){alert('Date and product are required');return;}
+  const arr=load(currentTree,'treatments');arr.push(d);arr.sort((a,b)=>a.date.localeCompare(b.date));save(currentTree,'treatments',arr);renderSummary();renderTab();
 }
 
-async function deleteTreatment(id){
-  if(!confirm('Remove this record?'))return;
-  const t=TREES[currentTree];
-  try{await sbDelete('treatments',id);await loadTree(t.ref);renderSummary();renderTab();}
-  catch(e){alert('Error: '+e.message);}
-}
-
-// ── CANOPY ────────────────────────────────────────────────────────────────────
 function renderCanopy(){
-  const t=TREES[currentTree];const d=treeData[t.ref];if(!d)return'';
-  const entries=d.canopy.slice().reverse().map(e=>`
+  const data=load(currentTree,'canopy');
+  const entries=data.slice().reverse().map((e,i)=>`
     <div class="entry-item">
-      <div><div style="font-weight:500;font-size:13px">Spread ${parseFloat(e.spread).toFixed(1)}m · Height ${parseFloat(e.height).toFixed(1)}m · Growth pts ${e.growth_pts||'—'} · Density ${e.density?Math.round(e.density)+'%':'—'}</div>
+      <div><div style="font-weight:500;font-size:13px">Spread ${parseFloat(e.spread).toFixed(1)}m · Height ${parseFloat(e.height).toFixed(1)}m · Growth pts ${e.growthpts} · Density ${Math.round(e.density)}%</div>
       ${e.notes?`<div style="color:var(--color-text-secondary);font-size:12px;margin-top:3px">${e.notes}</div>`:''}</div>
       <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px">
         <span style="font-size:11px;color:var(--color-text-secondary);white-space:nowrap">${fmtDate(e.date)}</span>
-        <button class="danger" style="padding:2px 8px;font-size:11px" onclick="deleteCanopy('${e.id}')">Remove</button>
+        <button class="danger" style="padding:2px 8px;font-size:11px" onclick="deleteEntry('canopy',${data.length-1-i})">Remove</button>
       </div>
     </div>`).join('');
-  const sc=d.canopy.length>=2?`<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:10px">
+  const sc=data.length>=2?`<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:10px">
     <div class="card"><p style="font-size:13px;font-weight:500;margin-bottom:2px">Canopy spread (m)</p><div class="chart-wrap"><canvas id="chart-spread"></canvas></div></div>
     <div class="card"><p style="font-size:13px;font-weight:500;margin-bottom:2px">Tree height (m)</p><div class="chart-wrap"><canvas id="chart-height"></canvas></div></div>
     <div class="card"><p style="font-size:13px;font-weight:500;margin-bottom:2px">New growth points</p><div class="chart-wrap"><canvas id="chart-growth"></canvas></div></div>
@@ -784,48 +803,31 @@ function renderCanopy(){
       <div><label>New growth point count</label><input type="number" id="c-growth" step="1" placeholder="24"></div>
       <div><label>Canopy density (%)</label><input type="number" id="c-density" step="1" min="0" max="100" placeholder="78"></div>
     </div>
-    <div style="margin-bottom:10px"><label>Notes</label><textarea id="c-notes"></textarea></div>
-    <button class="primary" id="c-save-btn" onclick="addCanopy()">Save measurement</button>
+    <div style="margin-bottom:10px"><label>Notes</label><textarea id="c-notes" placeholder="Observations..."></textarea></div>
+    <button class="primary" onclick="addCanopy()">Save measurement</button>
   </div>${sc}
-  <div class="card"><div class="section-header"><p style="font-weight:500;font-size:14px">All records (${d.canopy.length})</p></div>
-    ${d.canopy.length===0?'<p class="empty">No records yet</p>':'<div class="entry-list">'+entries+'</div>'}
+  <div class="card"><div class="section-header"><p style="font-weight:500;font-size:14px">All records (${data.length})</p></div>
+    ${data.length===0?'<p class="empty">No records yet</p>':'<div class="entry-list">'+entries+'</div>'}
   </div>`;
 }
-
 function drawCanopyCharts(){
-  const t=TREES[currentTree];const d=treeData[t.ref];if(!d||d.canopy.length<2)return;
-  const labels=d.canopy.map(e=>fmtDate(e.date));
+  const data=load(currentTree,'canopy');if(data.length<2)return;
+  const labels=data.map(e=>fmtDate(e.date));
   const mk=(id,vals,col)=>{const ctx=document.getElementById(id);if(!ctx)return;charts[id]=new Chart(ctx,{type:'line',data:{labels,datasets:[{data:vals,borderColor:col,backgroundColor:col+'22',tension:0.3,pointRadius:4,fill:true,borderWidth:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{font:{size:10},maxRotation:45}},y:{ticks:{font:{size:11}}}}}});};
-  mk('chart-spread',d.canopy.map(e=>parseFloat(e.spread)),'#639922');
-  mk('chart-height',d.canopy.map(e=>parseFloat(e.height)),'#1D9E75');
-  mk('chart-growth',d.canopy.map(e=>parseInt(e.growth_pts)),'#BA7517');
-  mk('chart-density',d.canopy.map(e=>Math.round(parseFloat(e.density))),'#7F77DD');
+  mk('chart-spread',data.map(e=>parseFloat(e.spread)),'#639922');
+  mk('chart-height',data.map(e=>parseFloat(e.height)),'#1D9E75');
+  mk('chart-growth',data.map(e=>parseInt(e.growthpts)),'#BA7517');
+  mk('chart-density',data.map(e=>Math.round(parseFloat(e.density))),'#7F77DD');
+}
+function addCanopy(){
+  const d={date:fv('c-date'),spread:fv('c-spread'),height:fv('c-height'),growthpts:fv('c-growth'),density:fv('c-density'),notes:fv('c-notes')};
+  if(!d.date||!d.spread||!d.height){alert('Date, spread and height are required');return;}
+  const arr=load(currentTree,'canopy');arr.push(d);arr.sort((a,b)=>a.date.localeCompare(b.date));save(currentTree,'canopy',arr);renderSummary();renderTab();
 }
 
-async function addCanopy(){
-  const t=TREES[currentTree];
-  const btn=document.getElementById('c-save-btn');
-  if(btn){btn.disabled=true;btn.textContent='Saving...';}
-  try{
-    const row={tree_ref:t.ref,date:fv('c-date'),spread:fv('c-spread')||null,height:fv('c-height')||null,growth_pts:fv('c-growth')||null,density:fv('c-density')||null,notes:fv('c-notes')||null};
-    if(!row.date||!row.spread||!row.height){alert('Date, spread and height are required');return;}
-    await sbInsert('canopy',row);
-    await loadTree(t.ref);renderSummary();renderTab();
-  }catch(e){alert('Error: '+e.message);}
-  finally{if(btn){btn.disabled=false;btn.textContent='Save measurement';}}
-}
-
-async function deleteCanopy(id){
-  if(!confirm('Remove this record?'))return;
-  const t=TREES[currentTree];
-  try{await sbDelete('canopy',id);await loadTree(t.ref);renderSummary();renderTab();}
-  catch(e){alert('Error: '+e.message);}
-}
-
-// ── SIGN-OFF ──────────────────────────────────────────────────────────────────
 function renderSignoff(){
-  const t=TREES[currentTree];const d=treeData[t.ref];if(!d)return'';
-  const entries=d.signoffs.slice().reverse().map(e=>`
+  const data=load(currentTree,'signoffs');
+  const entries=data.slice().reverse().map((e,i)=>`
     <div class="sign-off">
       <div style="display:flex;justify-content:space-between;align-items:flex-start">
         <div>
@@ -833,7 +835,7 @@ function renderSignoff(){
           <p style="font-size:13px;color:#27500A">${e.commentary}</p>
           ${e.adjustments?`<p style="font-size:12px;color:#3B6D11;margin-top:4px">Programme adjustments: ${e.adjustments}</p>`:''}
         </div>
-        <button class="danger" style="padding:2px 8px;font-size:11px;flex-shrink:0;margin-left:8px" onclick="deleteSignoff('${e.id}')">Remove</button>
+        <button class="danger" style="padding:2px 8px;font-size:11px;flex-shrink:0;margin-left:8px" onclick="deleteEntry('signoffs',${data.length-1-i})">Remove</button>
       </div>
     </div>`).join('');
   return`<div class="card">
@@ -843,35 +845,23 @@ function renderSignoff(){
       <div><label>Senior horticultural lead</label><input type="text" id="so-lead" placeholder="Full name"></div>
     </div>
     <div style="margin-bottom:10px"><label>Commentary</label><textarea id="so-commentary" placeholder="Review trends, overall condition, concerns..."></textarea></div>
-    <div style="margin-bottom:10px"><label>Programme adjustments</label><textarea id="so-adj"></textarea></div>
-    <button class="primary" id="so-save-btn" onclick="addSignoff()">Save sign-off</button>
+    <div style="margin-bottom:10px"><label>Programme adjustments</label><textarea id="so-adj" placeholder="Any changes to feeding, treatment or monitoring schedule..."></textarea></div>
+    <button class="primary" onclick="addSignoff()">Save sign-off</button>
   </div>
-  <div class="card"><div class="section-header"><p style="font-weight:500;font-size:14px">All sign-offs (${d.signoffs.length})</p></div>
-    ${d.signoffs.length===0?'<p class="empty">No sign-offs yet</p>':entries}
+  <div class="card"><div class="section-header"><p style="font-weight:500;font-size:14px">All sign-offs (${data.length})</p></div>
+    ${data.length===0?'<p class="empty">No sign-offs yet</p>':entries}
   </div>`;
 }
-
-async function addSignoff(){
-  const t=TREES[currentTree];
-  const btn=document.getElementById('so-save-btn');
-  if(btn){btn.disabled=true;btn.textContent='Saving...';}
-  try{
-    const row={tree_ref:t.ref,date:fv('so-date'),lead:fv('so-lead'),commentary:fv('so-commentary'),adjustments:fv('so-adj')||null};
-    if(!row.date||!row.lead||!row.commentary){alert('Date, lead and commentary are required');return;}
-    await sbInsert('signoffs',row);
-    await loadTree(t.ref);renderSummary();renderTab();
-  }catch(e){alert('Error: '+e.message);}
-  finally{if(btn){btn.disabled=false;btn.textContent='Save sign-off';}}
+function addSignoff(){
+  const d={date:fv('so-date'),lead:fv('so-lead'),commentary:fv('so-commentary'),adjustments:fv('so-adj')};
+  if(!d.date||!d.lead||!d.commentary){alert('Date, lead name and commentary are required');return;}
+  const arr=load(currentTree,'signoffs');arr.push(d);save(currentTree,'signoffs',arr);renderSummary();renderTab();
 }
-
-async function deleteSignoff(id){
+function deleteEntry(section,idx){
   if(!confirm('Remove this record?'))return;
-  const t=TREES[currentTree];
-  try{await sbDelete('signoffs',id);await loadTree(t.ref);renderSummary();renderTab();}
-  catch(e){alert('Error: '+e.message);}
+  const arr=load(currentTree,section);arr.splice(idx,1);save(currentTree,section,arr);renderSummary();renderTab();
 }
 
-// ── EXPORTS ───────────────────────────────────────────────────────────────────
 function excelDate(ds){if(!ds)return'';const p=ds.split('-');return p.length===3?`${p[2]}/${p[1]}/${p[0]}`:ds;}
 function applyCell(ws,ref,value,type,bold,bg,fc){if(!ws[ref])ws[ref]={};ws[ref].v=value;ws[ref].t=type||'s';ws[ref].s={font:{name:'Arial',sz:bold?11:10,bold:!!bold,color:{rgb:fc||'333333'}},fill:{fgColor:{rgb:bg||'FFFFFF'},patternType:'solid'},alignment:{horizontal:'left',vertical:'center',wrapText:true},border:{top:{style:'thin',color:{rgb:'CCCCCC'}},bottom:{style:'thin',color:{rgb:'CCCCCC'}},left:{style:'thin',color:{rgb:'CCCCCC'}},right:{style:'thin',color:{rgb:'CCCCCC'}}}};}
 function makeHdr(ws,row,headers){headers.forEach((h,i)=>{const ref=XLSX.utils.encode_cell({r:row,c:i});applyCell(ws,ref,h,'s',true,'243D10','FFFFFF');ws[ref].s.font.sz=9;});}
@@ -879,94 +869,111 @@ function makeTitleRow(ws,ref,text){applyCell(ws,ref,text,'s',true,'3B6D11','FFFF
 function dataRows(ws,startRow,rows){rows.forEach((row,ri)=>{const bg=ri%2===0?'F4FAF0':'FFFFFF';row.forEach((val,ci)=>{const ref=XLSX.utils.encode_cell({r:startRow+ri,c:ci});applyCell(ws,ref,val===undefined||val===null?'':val,typeof val==='number'?'n':'s',false,bg);});});}
 function mergeRange(ws,r1,c1,r2,c2){if(!ws['!merges'])ws['!merges']=[];ws['!merges'].push({s:{r:r1,c:c1},e:{r:r2,c:c2}});}
 
-function buildExcelWorkbook(ref){
-  const d=treeData[ref];const t=TREES.find(x=>x.ref===ref);
+function buildExcelWorkbook(ti){
+  const t=TREES[ti],soil=load(ti,'soil'),photos=load(ti,'photos'),treatments=load(ti,'treatments'),canopy=load(ti,'canopy'),signoffs=load(ti,'signoffs');
   const wb=XLSX.utils.book_new();
-  const visits=d.visits;const labs=visits.filter(e=>e.record_type==='lab');const lab=labs[labs.length-1];
+  const labs=soil.filter(e=>e.recordType==='lab');const lab=labs[labs.length-1];
   const sum={};makeTitleRow(sum,'A1',`${t.name} | ${t.ref} — Tree Service Logbook`);mergeRange(sum,0,0,0,3);
   makeHdr(sum,2,['Date','Lead','Commentary','Programme adjustments']);
-  dataRows(sum,3,d.signoffs.length?d.signoffs.map(s=>[excelDate(s.date),s.lead,s.commentary,s.adjustments||'']):[[' ',' ',' ',' ']]);
-  sum['!cols']=[{wch:14},{wch:24},{wch:44},{wch:44}];sum['!ref']='A1:D'+(4+d.signoffs.length);
+  dataRows(sum,3,signoffs.length?signoffs.map(s=>[excelDate(s.date),s.lead,s.commentary,s.adjustments||'']):[[' ',' ',' ',' ']]);
+  sum['!cols']=[{wch:14},{wch:24},{wch:44},{wch:44}];sum['!ref']='A1:D'+(4+signoffs.length);
   XLSX.utils.book_append_sheet(wb,sum,'Summary');
+  if(lab){
+    const labSheet={};makeTitleRow(labSheet,'A1',`${t.name} (${t.ref}) — Lab Analysis & RAG`);mergeRange(labSheet,0,0,0,6);
+    makeHdr(labSheet,2,['Parameter','Value','Unit','RAG','Ideal (green)','Borderline (amber)','Action needed (red)']);
+    const params=[['pH','ph',lab.ph,''],['EC','ec',lab.ec,'µS/cm'],['Total N','nitrogen',lab.nitrogen,'mg/l'],['Phosphorus','phosphorus',lab.phosphorus,'mg/l'],['Potassium','potassium',lab.potassium,'mg/l'],['Calcium','calcium',lab.calcium,'mg/l'],['Magnesium','magnesium',lab.magnesium,'mg/l'],['Iron','iron',lab.iron||'','mg/l'],['Sodium','sodium',lab.sodium||'','mg/l']];
+    dataRows(labSheet,3,params.map(([lbl,key,val,unit])=>{const r=paramRAG(key,val);const d=RAG_DISPLAY[key];return[lbl,val||'—',unit,r?{G:'Good',A:'Borderline',R:'Action needed'}[r]:'—',d?d.green:'',d?d.amber:'',d?d.red:''];}));
+    labSheet['!cols']=[{wch:18},{wch:10},{wch:8},{wch:16},{wch:16},{wch:18},{wch:20}];labSheet['!ref']='A1:G'+(4+params.length);
+    XLSX.utils.book_append_sheet(wb,labSheet,'Lab Analysis');
+  }
   const sf={};makeTitleRow(sf,'A1',`${t.name} (${t.ref}) — Soil & Foliar`);mergeRange(sf,0,0,0,12);
-  makeHdr(sf,2,['Date','Type','pH','EC','N','P','K','Ca','Mg','Fe','Na','Lab ref','Notes']);
-  dataRows(sf,3,visits.length?visits.map(e=>[excelDate(e.date),e.record_type==='lab'?'Lab':'Visit',e.ph?parseFloat(e.ph):'',e.ec?parseFloat(e.ec):'',e.nitrogen||'',e.phosphorus||'',e.potassium||'',e.calcium||'',e.magnesium||'',e.iron||'',e.sodium||'',e.labref||'',e.notes||'']):[[' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ']]);
-  sf['!cols']=[{wch:13},{wch:8},{wch:8},{wch:10},{wch:8},{wch:8},{wch:8},{wch:8},{wch:8},{wch:8},{wch:8},{wch:20},{wch:44}];sf['!ref']='A1:M'+(4+visits.length);
+  makeHdr(sf,2,['Date','Type','pH','EC (µS/cm)','N','P','K','Ca','Mg','Fe','Na','Lab ref','Notes']);
+  dataRows(sf,3,soil.length?soil.map(e=>[excelDate(e.date),e.recordType==='lab'?'Lab':'Visit',e.ph?parseFloat(e.ph):'',e.ec?parseFloat(e.ec):'',e.nitrogen||'',e.phosphorus||'',e.potassium||'',e.calcium||'',e.magnesium||'',e.iron||'',e.sodium||'',e.labref||'',e.notes||'']):[[' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ']]);
+  sf['!cols']=[{wch:13},{wch:8},{wch:8},{wch:12},{wch:8},{wch:8},{wch:8},{wch:8},{wch:8},{wch:8},{wch:8},{wch:20},{wch:44}];sf['!ref']='A1:M'+(4+soil.length);
   XLSX.utils.book_append_sheet(wb,sf,'Soil & Foliar');
-  const obsRows=visits.filter(e=>e.record_type!=='lab');
+  const obsRows=soil.filter(e=>e.recordType!=='lab');
   const obs={};makeTitleRow(obs,'A1',`${t.name} (${t.ref}) — Visit Observations`);mergeRange(obs,0,0,0,7);
-  makeHdr(obs,2,['Date','Soil humidity','Leaf drop','Water (L)','New leaves','Foliage','Discolouration','Pest']);
-  dataRows(obs,3,obsRows.length?obsRows.map(e=>[excelDate(e.date),e.soil_humidity!=null?parseFloat(e.soil_humidity):'',e.leaf_drop!=null?parseFloat(e.leaf_drop):'',e.water!=null?parseFloat(e.water):'',e.new_leaves||'',e.foliage||'',e.discolouration||'',e.pest||'']):[[' ',' ',' ',' ',' ',' ',' ',' ']]);
-  obs['!cols']=[{wch:13},{wch:14},{wch:12},{wch:10},{wch:12},{wch:14},{wch:14},{wch:18}];obs['!ref']='A1:H'+(4+obsRows.length);
+  makeHdr(obs,2,['Date','Soil humidity (%)','Leaf drop','Water (L)','New leaves','Foliage','Discolouration','Pest']);
+  dataRows(obs,3,obsRows.length?obsRows.map(e=>[excelDate(e.date),e.soilHumidity!==''?parseFloat(e.soilHumidity):'',e.leafDrop!==''?parseFloat(e.leafDrop):'',e.water!==''?parseFloat(e.water):'',e.newLeaves||'',e.foliage||'',e.discolouration||'',e.pest||'']):[[' ',' ',' ',' ',' ',' ',' ',' ']]);
+  obs['!cols']=[{wch:13},{wch:16},{wch:12},{wch:12},{wch:14},{wch:16},{wch:16},{wch:20}];obs['!ref']='A1:H'+(4+obsRows.length);
   XLSX.utils.book_append_sheet(wb,obs,'Visit Observations');
   const tr={};makeTitleRow(tr,'A1',`${t.name} (${t.ref}) — Treatments`);mergeRange(tr,0,0,0,8);
   makeHdr(tr,2,['Date','Product','Type','Concentration','Volume','Method','Pest','Substrate','Notes']);
-  dataRows(tr,3,d.treatments.length?d.treatments.map(e=>[excelDate(e.date),e.product,e.type||'',e.concentration||'',e.volume||'',e.method||'',e.pest||'',e.substrate||'',e.notes||'']):[[' ',' ',' ',' ',' ',' ',' ',' ',' ']]);
-  tr['!cols']=[{wch:13},{wch:28},{wch:16},{wch:14},{wch:10},{wch:16},{wch:18},{wch:18},{wch:36}];tr['!ref']='A1:I'+(4+d.treatments.length);
+  dataRows(tr,3,treatments.length?treatments.map(e=>[excelDate(e.date),e.product,e.type||'',e.concentration||'',e.volume||'',e.method||'',e.pest||'',e.substrate||'',e.notes||'']):[[' ',' ',' ',' ',' ',' ',' ',' ',' ']]);
+  tr['!cols']=[{wch:13},{wch:28},{wch:16},{wch:14},{wch:12},{wch:16},{wch:20},{wch:20},{wch:36}];tr['!ref']='A1:I'+(4+treatments.length);
   XLSX.utils.book_append_sheet(wb,tr,'Treatments');
+  const ph={};makeTitleRow(ph,'A1',`${t.name} (${t.ref}) — Photographs`);mergeRange(ph,0,0,0,4);
+  makeHdr(ph,2,['Date','Position','Type','URL','Notes']);
+  dataRows(ph,3,photos.length?photos.map(e=>[excelDate(e.date),e.position,e.type,e.imageUrl||e.filename||'',e.notes||'']):[[' ',' ',' ',' ',' ']]);
+  ph['!cols']=[{wch:13},{wch:22},{wch:22},{wch:60},{wch:40}];ph['!ref']='A1:E'+(4+photos.length);
+  XLSX.utils.book_append_sheet(wb,ph,'Photographs');
   const ca={};makeTitleRow(ca,'A1',`${t.name} (${t.ref}) — Canopy`);mergeRange(ca,0,0,0,5);
   makeHdr(ca,2,['Date','Canopy spread (m)','Height (m)','New growth points','Density (%)','Notes']);
-  dataRows(ca,3,d.canopy.length?d.canopy.map(e=>[excelDate(e.date),e.spread?parseFloat(e.spread):'',e.height?parseFloat(e.height):'',e.growth_pts?parseInt(e.growth_pts):'',e.density?Math.round(parseFloat(e.density)):'',e.notes||'']):[[' ',' ',' ',' ',' ',' ']]);
-  ca['!cols']=[{wch:13},{wch:18},{wch:14},{wch:20},{wch:14},{wch:32}];ca['!ref']='A1:F'+(4+d.canopy.length);
+  dataRows(ca,3,canopy.length?canopy.map(e=>[excelDate(e.date),e.spread?parseFloat(e.spread):'',e.height?parseFloat(e.height):'',e.growthpts?parseInt(e.growthpts):'',e.density?Math.round(parseFloat(e.density)):'',e.notes||'']):[[' ',' ',' ',' ',' ',' ']]);
+  ca['!cols']=[{wch:13},{wch:18},{wch:14},{wch:20},{wch:14},{wch:32}];ca['!ref']='A1:F'+(4+canopy.length);
   XLSX.utils.book_append_sheet(wb,ca,'Canopy');
   return wb;
 }
 
-function exportTreeExcel(i){const t=TREES[i];if(!treeData[t.ref]){alert('Please open this tree logbook first');return;}XLSX.writeFile(buildExcelWorkbook(t.ref),`${t.ref}_${t.name.replace(/\s+/g,'_')}_Logbook.xlsx`);}
-async function exportAllExcel(){
-  await loadAllTrees();
-  TREES.forEach(t=>XLSX.writeFile(buildExcelWorkbook(t.ref),`${t.ref}_${t.name.replace(/\s+/g,'_')}_Logbook.xlsx`));
+function exportTreeExcel(i){const t=TREES[i];XLSX.writeFile(buildExcelWorkbook(i),`${t.ref}_${t.name.replace(/\s+/g,'_')}_Logbook.xlsx`);}
+function exportAllExcel(){TREES.forEach((_,i)=>exportTreeExcel(i));}
+
+function exportTreePDF(i){
+  const{jsPDF}=window.jspdf;const doc=new jsPDF({unit:'mm',format:'a4'});
+  const t=TREES[i],soil=load(i,'soil'),canopy=load(i,'canopy'),treatments=load(i,'treatments'),signoffs=load(i,'signoffs');
+  const rag=calcTreeRAG(i);const ragLabels={R:'Action needed',A:'Borderline',G:'Good',null:'No data'};
+  const pW=210,m=18,cW=pW-m*2;let y=m;
+  const chk=(h=10)=>{if(y+h>285){doc.addPage();y=m;}};
+  const ln=(txt,sz=11,bold=false,col=[40,40,40])=>{doc.setFontSize(sz);doc.setFont('helvetica',bold?'bold':'normal');doc.setTextColor(...col);const ls=doc.splitTextToSize(txt,cW);chk(ls.length*sz*0.4+2);doc.text(ls,m,y);y+=ls.length*(sz*0.42)+1;};
+  const rule=()=>{chk(4);doc.setDrawColor(59,109,17);doc.setLineWidth(0.3);doc.line(m,y,pW-m,y);y+=4;};
+  doc.setFillColor(59,109,17);doc.rect(0,0,210,28,'F');doc.setTextColor(255,255,255);doc.setFontSize(16);doc.setFont('helvetica','bold');doc.text(t.name,m,13);doc.setFontSize(10);doc.setFont('helvetica','normal');doc.text(`${t.ref} · Logbook · ${new Date().toLocaleDateString('en-GB')} · RAG: ${ragLabels[rag]||'No data'}`,m,21);y=36;
+  const lab=soil.find(e=>e.recordType==='lab');
+  if(lab){ln('Lab analysis (Cawood NRM)',13,true,[30,80,10]);rule();ln(`${fmtDate(lab.date)} · Ref: ${lab.labref||'—'}`,10);ln(`pH ${lab.ph}  EC ${lab.ec}  N ${lab.nitrogen||'—'}  P ${lab.phosphorus||'—'}  K ${lab.potassium||'—'}  Ca ${lab.calcium||'—'}  Mg ${lab.magnesium||'—'}  Fe ${lab.iron||'—'}  Na ${lab.sodium||'—'} mg/l`,10);if(lab.notes)ln(lab.notes,9,false,[100,100,100]);y+=4;}
+  const vs=soil.filter(e=>e.recordType!=='lab');
+  ln('Visit observations',13,true,[30,80,10]);rule();
+  if(!vs.length)ln('No visit records.',10,false,[120,120,120]);
+  else vs.forEach(e=>{ln(`${fmtDate(e.date)}  EC ${e.ec||'—'}  Humidity ${e.soilHumidity!==''?e.soilHumidity+'%':'—'}  Leaf drop ${e.leafDrop!==''?e.leafDrop:'—'}  Water ${e.water!==''?e.water+'L':'—'}  Pest: ${e.pest||'—'}`,10);if(e.notes)ln(e.notes,9,false,[100,100,100]);y+=1;});
+  y+=4;ln('Treatments',13,true,[30,80,10]);rule();
+  if(!treatments.length)ln('No records.',10,false,[120,120,120]);
+  else treatments.forEach(e=>{ln(`${fmtDate(e.date)}  ${e.product}`,10,true);if(e.notes)ln(e.notes,9,false,[100,100,100]);y+=1;});
+  y+=4;ln('Sign-offs',13,true,[30,80,10]);rule();
+  if(!signoffs.length)ln('No sign-offs.',10,false,[120,120,120]);
+  else signoffs.forEach(e=>{ln(`${fmtDate(e.date)} — ${e.lead}`,10,true);ln(e.commentary,10);if(e.adjustments)ln('Adjustments: '+e.adjustments,9,false,[80,100,60]);y+=2;});
+  doc.save(`${t.ref}_${t.name.replace(/\s+/g,'_')}_Logbook.pdf`);
 }
 
-async function exportAllPDF(){
+function exportAllPDF(){
   const{jsPDF}=window.jspdf;const doc=new jsPDF({unit:'mm',format:'a4'});const m=18,pW=210;
   const ragLabels={R:'Action needed',A:'Borderline',G:'Good',null:'No data'};
-  await loadAllTrees();
   TREES.forEach((t,i)=>{
     if(i>0)doc.addPage();
-    const d=treeData[t.ref];const rag=calcRAG(d.visits);
+    const rag=calcTreeRAG(i);
     doc.setFillColor(59,109,17);doc.rect(0,0,210,28,'F');doc.setTextColor(255,255,255);doc.setFontSize(16);doc.setFont('helvetica','bold');doc.text(t.name,m,13);doc.setFontSize(10);doc.setFont('helvetica','normal');doc.text(`${t.ref} · ${new Date().toLocaleDateString('en-GB')} · RAG: ${ragLabels[rag]||'No data'}`,m,21);
-    let y=36;const lab=d.visits.find(e=>e.record_type==='lab');const lc=d.canopy[d.canopy.length-1];
+    let y=36;const signoffs=load(i,'signoffs'),soil=load(i,'soil'),canopy=load(i,'canopy');
+    const lab=soil.find(e=>e.recordType==='lab');const lc=canopy[canopy.length-1];
     doc.setFontSize(10);doc.setFont('helvetica','normal');doc.setTextColor(60,60,60);
     if(lab)doc.text(`Lab: pH ${lab.ph}  EC ${lab.ec}  N ${lab.nitrogen||'—'}  P ${lab.phosphorus||'—'}  K ${lab.potassium||'—'} mg/l`,m,y),y+=6;
     doc.text(`Spread: ${lc?parseFloat(lc.spread).toFixed(1)+'m':'—'}`,m,y);y+=8;
     doc.setDrawColor(59,109,17);doc.setLineWidth(0.3);doc.line(m,y,pW-m,y);y+=5;
-    if(!d.signoffs.length){doc.setTextColor(150,150,150);doc.text('No sign-offs recorded.',m,y);}
-    else d.signoffs.forEach(e=>{
+    if(!signoffs.length){doc.setTextColor(150,150,150);doc.text('No sign-offs recorded.',m,y);}
+    else signoffs.forEach(e=>{
       if(y>270){doc.addPage();y=20;}
       doc.setFontSize(10);doc.setFont('helvetica','bold');doc.setTextColor(40,80,20);doc.text(`${fmtDate(e.date)} — ${e.lead}`,m,y);y+=5;
-      doc.setFont('helvetica','normal');doc.setTextColor(60,60,60);const ls=doc.splitTextToSize(e.commentary,pW-m*2);doc.text(ls,m,y);y+=ls.length*4.5+3;
+      doc.setFont('helvetica','normal');doc.setTextColor(60,60,60);const ls2=doc.splitTextToSize(e.commentary,pW-m*2);doc.text(ls2,m,y);y+=ls2.length*4.5+3;
     });
   });
   doc.save(`all_tree_signoffs_${new Date().toISOString().split('T')[0]}.pdf`);
 }
 
-async function exportTreePDF(i){
-  const{jsPDF}=window.jspdf;const doc=new jsPDF({unit:'mm',format:'a4'});
-  const t=TREES[i];const d=treeData[t.ref];
-  const ragLabels={R:'Action needed',A:'Borderline',G:'Good',null:'No data'};
-  const rag=calcRAG(d.visits);
-  const pW=210,m=18,cW=pW-m*2;let y=m;
-  const chk=(h=10)=>{if(y+h>285){doc.addPage();y=m;}};
-  const ln=(txt,sz=11,bold=false,col=[40,40,40])=>{doc.setFontSize(sz);doc.setFont('helvetica',bold?'bold':'normal');doc.setTextColor(...col);const ls=doc.splitTextToSize(txt,cW);chk(ls.length*sz*0.4+2);doc.text(ls,m,y);y+=ls.length*(sz*0.42)+1;};
-  const rule=()=>{chk(4);doc.setDrawColor(59,109,17);doc.setLineWidth(0.3);doc.line(m,y,pW-m,y);y+=4;};
-  doc.setFillColor(59,109,17);doc.rect(0,0,210,28,'F');doc.setTextColor(255,255,255);doc.setFontSize(16);doc.setFont('helvetica','bold');doc.text(t.name,m,13);doc.setFontSize(10);doc.setFont('helvetica','normal');doc.text(`${t.ref} · ${new Date().toLocaleDateString('en-GB')} · RAG: ${ragLabels[rag]||'No data'}`,m,21);y=36;
-  const lab=d.visits.find(e=>e.record_type==='lab');
-  if(lab){ln('Lab analysis',13,true,[30,80,10]);rule();ln(`${fmtDate(lab.date)}  pH ${lab.ph}  EC ${lab.ec}  N ${lab.nitrogen||'—'}  P ${lab.phosphorus||'—'}  K ${lab.potassium||'—'} mg/l`,10);if(lab.notes)ln(lab.notes,9,false,[100,100,100]);y+=4;}
-  const vs=d.visits.filter(e=>e.record_type!=='lab');
-  ln('Visit observations',13,true,[30,80,10]);rule();
-  if(!vs.length)ln('No records.',10,false,[120,120,120]);
-  else vs.forEach(e=>{ln(`${fmtDate(e.date)}  EC ${e.ec||'—'}  pH ${e.ph||'—'}  Humidity ${e.soil_humidity!=null?e.soil_humidity+'%':'—'}  Leaf drop ${e.leaf_drop!=null?e.leaf_drop:'—'}  Pest: ${e.pest||'—'}`,10);if(e.notes)ln(e.notes,9,false,[100,100,100]);y+=1;});
-  y+=4;ln('Treatments',13,true,[30,80,10]);rule();
-  if(!d.treatments.length)ln('No records.',10,false,[120,120,120]);
-  else d.treatments.forEach(e=>{ln(`${fmtDate(e.date)}  ${e.product}`,10,true);if(e.notes)ln(e.notes,9,false,[100,100,100]);y+=1;});
-  y+=4;ln('Sign-offs',13,true,[30,80,10]);rule();
-  if(!d.signoffs.length)ln('No sign-offs.',10,false,[120,120,120]);
-  else d.signoffs.forEach(e=>{ln(`${fmtDate(e.date)} — ${e.lead}`,10,true);ln(e.commentary,10);if(e.adjustments)ln('Adjustments: '+e.adjustments,9,false,[80,100,60]);y+=2;});
-  doc.save(`${t.ref}_${t.name.replace(/\s+/g,'_')}_Logbook.pdf`);
+function exportTreeJSON(i){
+  const t=TREES[i];
+  const d={tree:t,soil:load(i,'soil'),photos:load(i,'photos').map(p=>({...p,imageData:'[omitted]'})),treatments:load(i,'treatments'),canopy:load(i,'canopy'),signoffs:load(i,'signoffs')};
+  const b=new Blob([JSON.stringify(d,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=`${t.ref}_${t.name.replace(/\s+/g,'_')}.json`;a.click();
 }
 
-// ── INIT ──────────────────────────────────────────────────────────────────────
+seedData();
+const lu=localStorage.getItem('logbook_last_updated');
+if(lu)document.getElementById('last-updated').textContent='Last updated '+new Date(lu).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});
 setView('dashboard');
 </script>
 </body>
