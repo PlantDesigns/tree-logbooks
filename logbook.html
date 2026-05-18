@@ -117,8 +117,8 @@ textarea{min-height:70px;resize:vertical}
 <div id="view-trees" style="display:none"></div>
 </div>
 <script>
-const SUPA_URL='https://mcsofjeuutimqohsdhej.supabase.co';
-const SUPA_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1jc29mamV1dXRpbXFvaHNkaGVqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY0MDk3NjUsImV4cCI6MjA5MTk4NTc2NX0.1pK8Kg6lKvkurJmFdzq8-hSJK5y-0z_lPtg9xZCtbRk';
+const SUPA_URL='https://wujwuspbwwvvbhzwnupv.supabase.co';
+const SUPA_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind1and1c3Bid3d2dmJoendudXB2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY2MTQ0ODMsImV4cCI6MjA5MjE5MDQ4M30.SQcff7OLA9Jq0NkkC5753UQpraIH3BMA-zPrUfLlKhE';
 const STORAGE_BUCKET='photos';
 
 async function compressImage(file,maxW,quality){return new Promise(res=>{const img=new Image(),url=URL.createObjectURL(file);img.onload=()=>{let w=img.width,h=img.height;if(w>maxW){h=Math.round(h*maxW/w);w=maxW;}const c=document.createElement('canvas');c.width=w;c.height=h;c.getContext('2d').drawImage(img,0,0,w,h);res(c.toDataURL('image/jpeg',quality));URL.revokeObjectURL(url);};img.src=url;});}
@@ -246,7 +246,6 @@ const REPORT31=[
   {water:8,leafDrop:0,soilHumidity:17,newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',ec:'110',treatment:'Balanced liquid feed (20-10-20 + micros)'}
 ];
 
-// Report #32 — Tong Zhang, 01/05/2026 (first report with pH readings for all trees)
 const REPORT32=[
   {water:8,leafDrop:7,soilHumidity:20,newLeaves:'Few',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',ph:'6.4',ec:'280',treatment:'Balanced liquid feed + Potassium sulphate supplement'},
   {water:8,leafDrop:9,soilHumidity:18,newLeaves:'Few',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',ph:'6.6',ec:'110',treatment:'Balanced liquid feed High P + Potassium sulphate supplement'},
@@ -262,6 +261,38 @@ const REPORT32=[
   {water:8,leafDrop:2,soilHumidity:18,newLeaves:'Few',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',ph:'6.5',ec:'220',treatment:'Balanced liquid feed + Potassium sulphate supplement'}
 ];
 
+// Report #35 — Saskia Portman, 13/05/2026
+const REPORT35=[
+  {water:6,leafDrop:4,soilHumidity:21,newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',ph:'6.8',ec:'90',treatment:'Balanced liquid feed (20-10-20 + micros), Intensive feed + Epsom salts'},
+  {water:8,leafDrop:11,soilHumidity:19,newLeaves:'Many',discolouration:'Low',foliage:'Asymetric',pest:'Mealy Bug',ph:'6.7',ec:'70',treatment:'Balanced liquid feed (20-10-20 + micros)'},
+  {water:8,leafDrop:5,soilHumidity:19,newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',ph:'6.4',ec:'80',treatment:'Balanced liquid feed (20-10-20 + micros)'},
+  {water:6,leafDrop:1,soilHumidity:21,newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',ph:'6.4',ec:'180',treatment:'Balanced liquid feed (20-10-20 + micros), Acidifying drench (Iron sulphate)'},
+  {water:8,leafDrop:0,soilHumidity:18,newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',ph:'6.6',ec:'100',treatment:'Balanced liquid feed (20-10-20 + micros), Targeted micronutrient acidifying treatment'},
+  {water:8,leafDrop:5,soilHumidity:18,newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',ph:'6.5',ec:'70',treatment:'Balanced liquid feed (20-10-20 + micros)'},
+  {water:10,leafDrop:3,soilHumidity:15,newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',ph:'6.5',ec:'40',treatment:'Balanced liquid feed (20-10-20 + micros)'},
+  {water:12,leafDrop:1,soilHumidity:13,newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',ph:'6.7',ec:'130',treatment:'Balanced liquid feed (20-10-20 + micros), Acidifying feed (ericaceous)'},
+  {water:6,leafDrop:9,soilHumidity:20,newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',ph:'6.9',ec:'30',treatment:'Balanced liquid feed (20-10-20 + micros), Acidifying drench (Iron sulphate), Acidifying feed (ericaceous)'},
+  {water:8,leafDrop:7,soilHumidity:18,newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',ph:'6.8',ec:'60',treatment:'Balanced liquid feed (20-10-20 + micros), Targeted micronutrient acidifying treatment'},
+  {water:8,leafDrop:1,soilHumidity:19,newLeaves:'Many',discolouration:'Low',foliage:'Some Gaps',pest:'Mealy Bug',ph:'6.2',ec:'260',treatment:'Balanced liquid feed (20-10-20 + micros), Acidifying feed (ericaceous)'},
+  {water:8,leafDrop:2,soilHumidity:18,newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',ph:'6.5',ec:'0.16',treatment:'Balanced liquid feed (20-10-20 + micros)'}
+];
+
+// Report #36 — Tong Zhang, 15/05/2026
+const REPORT36=[
+  {water:8,leafDrop:5,soilHumidity:19,newLeaves:'Few',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',ph:'6.2',ec:'0.18',treatment:'Potassium sulphate'},
+  {water:8,leafDrop:13,soilHumidity:18,newLeaves:'Few',discolouration:'Low',foliage:'Some Gaps',pest:'Mealy Bug',ph:'6.3',ec:'0.17',treatment:'Potassium sulphate'},
+  {water:8,leafDrop:10,soilHumidity:20,newLeaves:'Few',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',ph:'6.5',ec:'0.12',treatment:'Potassium sulphate'},
+  {water:8,leafDrop:5,soilHumidity:20,newLeaves:'Few',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',ph:'6.3',ec:'0.25',treatment:'Potassium sulphate, Standard NPK + iron sulphate'},
+  {water:8,leafDrop:1,soilHumidity:19,newLeaves:'Few',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',ph:'6.5',ec:'0.28',treatment:'Potassium sulphate, Epsom salt'},
+  {water:6,leafDrop:11,soilHumidity:23,newLeaves:'Few',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',ph:'6.2',ec:'0.29',treatment:'Potassium sulphate'},
+  {water:8,leafDrop:8,soilHumidity:21,newLeaves:'Few',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',ph:'6.4',ec:'0.45',treatment:'Potassium sulphate'},
+  {water:10,leafDrop:14,soilHumidity:17,newLeaves:'Few',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',ph:'6.6',ec:'0.42',treatment:'Potassium sulphate'},
+  {water:8,leafDrop:16,soilHumidity:19,newLeaves:'Few',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',ph:'6.7',ec:'0.29',treatment:'Potassium sulphate, Epsom salt'},
+  {water:10,leafDrop:8,soilHumidity:16,newLeaves:'Few',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',ph:'6.5',ec:'0.34',treatment:'Potassium sulphate, Epsom salt'},
+  {water:10,leafDrop:10,soilHumidity:17,newLeaves:'Few',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',ph:'6.5',ec:'0.1',treatment:'Potassium sulphate'},
+  {water:10,leafDrop:2,soilHumidity:16,newLeaves:'Few',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',ph:'6.3',ec:'0.13',treatment:'Potassium sulphate'}
+];
+
 let currentTree=0,currentTab=0,currentView='dashboard',currentPhotoSubTab='progression';
 let charts={};
 
@@ -274,7 +305,6 @@ function fmtDate(ds){if(!ds)return'—';const p=ds.split('-');if(p.length!==3)re
 function lastVisitDate(t){const s=['soil','canopy','treatments','photos'];let l='';s.forEach(sec=>{const d=load(t,sec);if(d.length){const x=d[d.length-1].date;if(x>l)l=x;}});return l;}
 
 function seedData(){
-  // Seed base visits + lab data only if never done before
   if(!localStorage.getItem('logbook_seeded_v4')&&!localStorage.getItem('logbook_seeded_v9')&&!localStorage.getItem('logbook_seeded_v10')){
     TREES.forEach((_,i)=>{
       const existing=load(i,'soil');
@@ -300,7 +330,6 @@ function seedData(){
     localStorage.setItem('logbook_seeded_v10','true');
   }
 
-  // Always apply pH corrections for R3/R4 (idempotent)
   [2,3].forEach(i=>{
     const soil=load(i,'soil');
     const labIdx=soil.findIndex(e=>e.recordType==='lab');
@@ -311,7 +340,6 @@ function seedData(){
     }
   });
 
-  // Always add Report #31 if not present — safe, never overwrites existing data
   const R31_DATE='2026-04-29';
   TREES.forEach((_,i)=>{
     const r=REPORT31[i];
@@ -329,7 +357,6 @@ function seedData(){
     }
   });
 
-  // Always add Report #32 if not present — safe, never overwrites existing data
   const R32_DATE='2026-05-01';
   TREES.forEach((_,i)=>{
     const r=REPORT32[i];
@@ -342,6 +369,40 @@ function seedData(){
     const treatments=load(i,'treatments');
     if(!treatments.find(t=>t.notes&&t.notes.includes('Report #32'))){
       treatments.push({date:R32_DATE,product:r.treatment,type:'Foliar feed',concentration:'Per programme',volume:`${r.water}L`,method:'Root drench',pest:r.pest,substrate:'',notes:'Report #32 — Tong Zhang'});
+      treatments.sort((a,b)=>a.date.localeCompare(b.date));
+      save(i,'treatments',treatments);
+    }
+  });
+
+  const R35_DATE='2026-05-13';
+  TREES.forEach((_,i)=>{
+    const r=REPORT35[i];
+    const soil=load(i,'soil');
+    if(!soil.find(e=>e.date===R35_DATE&&e.notes&&e.notes.includes('Report #35'))){
+      soil.push({date:R35_DATE,recordType:'visit',ph:r.ph||'',ec:r.ec,soilHumidity:r.soilHumidity,leafDrop:r.leafDrop,water:r.water,newLeaves:r.newLeaves,discolouration:r.discolouration,foliage:r.foliage,pest:r.pest,nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:`Report #35 — Saskia Portman. ${r.treatment}`});
+      soil.sort((a,b)=>a.date.localeCompare(b.date));
+      save(i,'soil',soil);
+    }
+    const treatments=load(i,'treatments');
+    if(!treatments.find(t=>t.notes&&t.notes.includes('Report #35'))){
+      treatments.push({date:R35_DATE,product:r.treatment,type:'Foliar feed',concentration:'Per programme',volume:`${r.water}L`,method:'Root drench',pest:r.pest,substrate:'',notes:'Report #35 — Saskia Portman'});
+      treatments.sort((a,b)=>a.date.localeCompare(b.date));
+      save(i,'treatments',treatments);
+    }
+  });
+
+  const R36_DATE='2026-05-15';
+  TREES.forEach((_,i)=>{
+    const r=REPORT36[i];
+    const soil=load(i,'soil');
+    if(!soil.find(e=>e.date===R36_DATE&&e.notes&&e.notes.includes('Report #36'))){
+      soil.push({date:R36_DATE,recordType:'visit',ph:r.ph||'',ec:r.ec,soilHumidity:r.soilHumidity,leafDrop:r.leafDrop,water:r.water,newLeaves:r.newLeaves,discolouration:r.discolouration,foliage:r.foliage,pest:r.pest,nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:`Report #36 — Tong Zhang. ${r.treatment}`});
+      soil.sort((a,b)=>a.date.localeCompare(b.date));
+      save(i,'soil',soil);
+    }
+    const treatments=load(i,'treatments');
+    if(!treatments.find(t=>t.notes&&t.notes.includes('Report #36'))){
+      treatments.push({date:R36_DATE,product:r.treatment,type:'Foliar feed',concentration:'Per programme',volume:`${r.water}L`,method:'Root drench',pest:r.pest,substrate:'',notes:'Report #36 — Tong Zhang'});
       treatments.sort((a,b)=>a.date.localeCompare(b.date));
       save(i,'treatments',treatments);
     }
@@ -383,9 +444,9 @@ function renderDashboard(){
     </div>`;
   }).join('');
   el.innerHTML=`
-    <div class="success-notice">✓ Reports #31 (29/04/2026 — Saskia Portman) and #32 (01/05/2026 — Tong Zhang) loaded. Report #32 includes pH readings for all 12 trees for the first time.</div>
+    <div class="success-notice">✓ Reports #35 (13/05/2026 — Saskia Portman) and #36 (15/05/2026 — Tong Zhang) loaded.</div>
     <div class="correction-notice">Lab corrections applied: Treeyonce R3 pH = 8.1 · Queen La Treefa R4 pH = 7.7 · EC ideal range = 200–500 µS/cm.</div>
-    <div class="import-notice">Data from service reports #25–31 and Cawood NRM lab analyses (Mar 2026). Click any tree for full logbook and RAG ratings.</div>
+    <div class="import-notice">Data from service reports #25–36 and Cawood NRM lab analyses (Mar 2026). Click any tree for full logbook and RAG ratings.</div>
     <div class="dash-grid">${cards}</div>
     <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
       <button onclick="exportAllPDF()" class="primary">Export all sign-offs — PDF</button>
