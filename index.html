@@ -357,6 +357,22 @@ const REPORT36=[
   {water:10,leafDrop:2,soilHumidity:16,newLeaves:'Few',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',ph:'6.3',ec:'130',treatment:'Potassium sulphate'}
 ];
 
+// Report #37 — Saskia Portman, 20/05/2026
+const REPORT37=[
+  {water:8,leafDrop:22,soilHumidity:20,newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',ph:'6.5',ec:'250',treatment:'Balanced liquid feed (20-10-20 + micros)'},
+  {water:8,leafDrop:3,soilHumidity:18,newLeaves:'Many',discolouration:'Low',foliage:'Asymetric',pest:'Mealy Bug',ph:'6.8',ec:'60',treatment:'Balanced liquid feed (20-10-20 + micros)'},
+  {water:10,leafDrop:1,soilHumidity:16,newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',ph:'6.7',ec:'90',treatment:'Balanced liquid feed (20-10-20 + micros)'},
+  {water:8,leafDrop:2,soilHumidity:21,newLeaves:'Many',discolouration:'Low',foliage:'Some Gaps',pest:'Mealy Bug',ph:'6.4',ec:'140',treatment:'Balanced liquid feed (20-10-20 + micros)'},
+  {water:8,leafDrop:3,soilHumidity:18,newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',ph:'6.5',ec:'140',treatment:'Balanced liquid feed (20-10-20 + micros)'},
+  {water:8,leafDrop:0,soilHumidity:20,newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',ph:'6.5',ec:'250',treatment:'Balanced liquid feed (20-10-20 + micros)'},
+  {water:8,leafDrop:6,soilHumidity:19,newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',ph:'6.5',ec:'250',treatment:'Balanced liquid feed (20-10-20 + micros)'},
+  {water:8,leafDrop:3,soilHumidity:19,newLeaves:'Many',discolouration:'Low',foliage:'Some Gaps',pest:'Mealy Bug',ph:'6.1',ec:'230',treatment:'Balanced liquid feed (20-10-20 + micros)'},
+  {water:8,leafDrop:7,soilHumidity:21,newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',ph:'6.9',ec:'220',treatment:'Acidifying feed (ericaceous), Balanced liquid feed (20-10-20 + micros)'},
+  {water:8,leafDrop:0,soilHumidity:20,newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',ph:'6.4',ec:'300',treatment:'Acidifying feed (ericaceous), Balanced liquid feed (20-10-20 + micros)'},
+  {water:6,leafDrop:1,soilHumidity:24,newLeaves:'Many',discolouration:'Low',foliage:'Some Gaps',pest:'Mealy Bug',ph:'6.8',ec:'360',treatment:'Balanced liquid feed (20-10-20 + micros)'},
+  {water:8,leafDrop:0,soilHumidity:21,newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',ph:'6.5',ec:'40',treatment:'Acidifying feed (ericaceous), Balanced liquid feed (20-10-20 + micros)'}
+];
+
 let currentTree=0,currentTab=0,currentView='dashboard',currentPhotoSubTab='progression';
 let charts={};
 
@@ -536,6 +552,24 @@ function seedData(){
     }
   });
 
+
+
+  const R37_DATE='2026-05-20';
+  TREES.forEach((_,i)=>{
+    const r=REPORT37[i];
+    const soil=load(i,'soil');
+    if(!soil.find(e=>e.date===R37_DATE&&e.notes&&e.notes.includes('Report #37'))){
+      soil.push({date:R37_DATE,recordType:'visit',ph:r.ph||'',ec:r.ec,soilHumidity:r.soilHumidity,leafDrop:r.leafDrop,water:r.water,newLeaves:r.newLeaves,discolouration:r.discolouration,foliage:r.foliage,pest:r.pest,nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:`Report #37 — Saskia Portman. ${r.treatment}`});
+      soil.sort((a,b)=>a.date.localeCompare(b.date));
+      save(i,'soil',soil);
+    }
+    const treatments=load(i,'treatments');
+    if(!treatments.find(t=>t.notes&&t.notes.includes('Report #37'))){
+      treatments.push({date:R37_DATE,product:r.treatment,type:'Foliar feed',concentration:'Per programme',volume:`${r.water}L`,method:'Root drench',pest:r.pest,substrate:'',notes:'Report #37 — Saskia Portman'});
+      treatments.sort((a,b)=>a.date.localeCompare(b.date));
+      save(i,'treatments',treatments);
+    }
+  });
 
   // Baseline canopy measurements — 14 Apr 2026
   if(!localStorage.getItem('logbook_canopy_baseline_v2')){
