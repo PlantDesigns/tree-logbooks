@@ -536,6 +536,36 @@ function seedData(){
     }
   });
 
+
+  // Baseline canopy measurements — 14 Apr 2026
+  if(!localStorage.getItem('logbook_canopy_baseline_v2')){
+    const CANOPY_BASELINE_DATE = '2026-04-14';
+    const CANOPY_BASELINE = [
+      {spread:2.30, height:5.811, density:74},  // R1 Forest Whitaker
+      {spread:2.60, height:4.863, density:65},  // R2 Keanu Leaves
+      {spread:2.92, height:5.827, density:75},  // R3 Treeyonce
+      {spread:2.80, height:5.662, density:84},  // R4 Queen La Treefa
+      {spread:2.60, height:5.875, density:75},  // R5 Tree Diddy
+      {spread:2.83, height:5.831, density:75},  // R6 Morgan Treeman
+      {spread:3.06, height:5.991, density:69},  // L1 Chris Pine
+      {spread:2.66, height:5.900, density:64},  // L2 Spruce Willis
+      {spread:2.80, height:5.914, density:74},  // L3 Wiz Khalifa
+      {spread:2.60, height:5.692, density:56},  // L4 Elijah Wood
+      {spread:3.30, height:5.900, density:72},  // L5 Woody Harrelson
+      {spread:2.85, height:5.926, density:69},  // L6 Justin Timberlake
+    ];
+    TREES.forEach(function(_,i){
+      var cb=CANOPY_BASELINE[i];
+      var canopy=load(i,'canopy');
+      if(!canopy.find(function(e){return e.date===CANOPY_BASELINE_DATE;})){
+        canopy.push({date:CANOPY_BASELINE_DATE,spread:cb.spread,height:cb.height,growthpts:'',density:cb.density,notes:'Baseline measurement — 14 Apr 2026'});
+        canopy.sort(function(a,b){return a.date.localeCompare(b.date);});
+        save(i,'canopy',canopy);
+      }
+    });
+    localStorage.setItem('logbook_canopy_baseline_v2','true');
+  }
+
   localStorage.setItem('logbook_last_updated',new Date().toISOString());
 }
 
