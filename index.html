@@ -2888,6 +2888,620 @@ function seedCoventJuly2026(){
   }
 }
 
+function seedRegentAug2026(){
+  if(!localStorage.getItem('logbook_seeded_regent_aug2026')){
+    (function(){
+      var _sk='logbook_regent-street_0_soil';
+      var _e=JSON.parse(localStorage.getItem(_sk)||'[]');
+      var _d=_e.map(function(x){return x.date;});
+      var _n=[
+          {date:'2026-08-12',ph:'6.7',ec:'0.21',recordType:'visit',soilHumidity:'17',leafDrop:'11',water:'10',newLeaves:'Few',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:'Balanced liquid feed'},
+          {date:'2026-08-07',ph:'6.5',ec:'50',recordType:'visit',soilHumidity:'23',leafDrop:'3',water:'6',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-08-05',ph:'6.6',ec:'100',recordType:'visit',soilHumidity:'20',leafDrop:'0',water:'8',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-31',ph:'6.5',ec:'260',recordType:'visit',soilHumidity:'22',leafDrop:'8',water:'6',newLeaves:'Few',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-29',ph:'6.6',ec:'180',recordType:'visit',soilHumidity:'18',leafDrop:'16',water:'8',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-24',ph:'6.6',ec:'290',recordType:'visit',soilHumidity:'22',leafDrop:'9',water:'6',newLeaves:'Few',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:'Potassium sulphate supplement'},
+          {date:'2026-07-22',ph:'6.4',ec:'180',recordType:'visit',soilHumidity:'22',leafDrop:'9',water:'6',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''}
+      ].filter(function(x){return _d.indexOf(x.date)===-1;});
+      if(_n.length){
+        var _m=_e.concat(_n).sort(function(a,b){return a.date<b.date?-1:1;});
+        localStorage.setItem(_sk,JSON.stringify(_m));
+      }
+    })();
+    (function(){
+      var _sk='logbook_regent-street_1_soil';
+      var _e=JSON.parse(localStorage.getItem(_sk)||'[]');
+      var _d=_e.map(function(x){return x.date;});
+      var _n=[
+          {date:'2026-08-12',ph:'6.7',ec:'0.07',recordType:'visit',soilHumidity:'16',leafDrop:'9',water:'10',newLeaves:'Few',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:'Balanced liquid feed'},
+          {date:'2026-08-07',ph:'6.6',ec:'360',recordType:'visit',soilHumidity:'18',leafDrop:'5',water:'8',newLeaves:'Many',discolouration:'Medium',foliage:'Asymetric',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-08-05',ph:'6.6',ec:'90',recordType:'visit',soilHumidity:'19',leafDrop:'1',water:'8',newLeaves:'Many',discolouration:'Medium',foliage:'Asymetric',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-31',ph:'6.4',ec:'130',recordType:'visit',soilHumidity:'22',leafDrop:'10',water:'6',newLeaves:'Few',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-29',ph:'6.5',ec:'80',recordType:'visit',soilHumidity:'21',leafDrop:'6',water:'8',newLeaves:'Many',discolouration:'Low',foliage:'Asymetric',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-24',ph:'6.5',ec:'110',recordType:'visit',soilHumidity:'16',leafDrop:'8',water:'10',newLeaves:'Few',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:'Potassium sulphate supplement'},
+          {date:'2026-07-22',ph:'6.6',ec:'0.13',recordType:'visit',soilHumidity:'19',leafDrop:'5',water:'8',newLeaves:'Many',discolouration:'Medium',foliage:'Asymetric',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''}
+      ].filter(function(x){return _d.indexOf(x.date)===-1;});
+      if(_n.length){
+        var _m=_e.concat(_n).sort(function(a,b){return a.date<b.date?-1:1;});
+        localStorage.setItem(_sk,JSON.stringify(_m));
+      }
+    })();
+    (function(){
+      var _sk='logbook_regent-street_2_soil';
+      var _e=JSON.parse(localStorage.getItem(_sk)||'[]');
+      var _d=_e.map(function(x){return x.date;});
+      var _n=[
+          {date:'2026-08-12',ph:'6.6',ec:'0.1',recordType:'visit',soilHumidity:'16',leafDrop:'4',water:'10',newLeaves:'None',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:'Balanced liquid feed'},
+          {date:'2026-08-07',ph:'6.5',ec:'180',recordType:'visit',soilHumidity:'15',leafDrop:'0',water:'10',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-08-05',ph:'6.4',ec:'40',recordType:'visit',soilHumidity:'16',leafDrop:'0',water:'10',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-31',ph:'6.6',ec:'70',recordType:'visit',soilHumidity:'18',leafDrop:'14',water:'8',newLeaves:'Few',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-29',ph:'6.4',ec:'120',recordType:'visit',soilHumidity:'19',leafDrop:'23',water:'8',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-24',ph:'6.7',ec:'190',recordType:'visit',soilHumidity:'20',leafDrop:'63',water:'8',newLeaves:'Few',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:'Potassium sulphate supplement'},
+          {date:'2026-07-22',ph:'6.4',ec:'60',recordType:'visit',soilHumidity:'18',leafDrop:'42',water:'8',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''}
+      ].filter(function(x){return _d.indexOf(x.date)===-1;});
+      if(_n.length){
+        var _m=_e.concat(_n).sort(function(a,b){return a.date<b.date?-1:1;});
+        localStorage.setItem(_sk,JSON.stringify(_m));
+      }
+    })();
+    (function(){
+      var _sk='logbook_regent-street_3_soil';
+      var _e=JSON.parse(localStorage.getItem(_sk)||'[]');
+      var _d=_e.map(function(x){return x.date;});
+      var _n=[
+          {date:'2026-08-12',ph:'6.3',ec:'0.31',recordType:'visit',soilHumidity:'18',leafDrop:'10',water:'8',newLeaves:'None',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:'Balanced liquid feed'},
+          {date:'2026-08-07',ph:'6.9',ec:'109',recordType:'visit',soilHumidity:'19',leafDrop:'5',water:'8',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-08-05',ph:'6.7',ec:'180',recordType:'visit',soilHumidity:'20',leafDrop:'1',water:'8',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-31',ph:'6.4',ec:'270',recordType:'visit',soilHumidity:'16',leafDrop:'6',water:'10',newLeaves:'Few',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-29',ph:'6.5',ec:'360',recordType:'visit',soilHumidity:'24',leafDrop:'9',water:'6',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-24',ph:'6.3',ec:'210',recordType:'visit',soilHumidity:'19',leafDrop:'37',water:'8',newLeaves:'Few',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:'Potassium sulphate supplement and iron sulphate'},
+          {date:'2026-07-22',ph:'6.6',ec:'190',recordType:'visit',soilHumidity:'19',leafDrop:'9',water:'8',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:'Acidifying drench (Iron sulphate)'}
+      ].filter(function(x){return _d.indexOf(x.date)===-1;});
+      if(_n.length){
+        var _m=_e.concat(_n).sort(function(a,b){return a.date<b.date?-1:1;});
+        localStorage.setItem(_sk,JSON.stringify(_m));
+      }
+    })();
+    (function(){
+      var _sk='logbook_regent-street_4_soil';
+      var _e=JSON.parse(localStorage.getItem(_sk)||'[]');
+      var _d=_e.map(function(x){return x.date;});
+      var _n=[
+          {date:'2026-08-12',ph:'6.7',ec:'0.11',recordType:'visit',soilHumidity:'16',leafDrop:'10',water:'10',newLeaves:'None',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:'Balanced liquid feed'},
+          {date:'2026-08-07',ph:'6.4',ec:'30',recordType:'visit',soilHumidity:'22',leafDrop:'4',water:'6',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-08-05',ph:'6.4',ec:'110',recordType:'visit',soilHumidity:'19',leafDrop:'1',water:'8',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:'Targeted micronutrient acidifying treatment'},
+          {date:'2026-07-31',ph:'6.5',ec:'170',recordType:'visit',soilHumidity:'23',leafDrop:'6',water:'6',newLeaves:'Few',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-29',ph:'6.7',ec:'80',recordType:'visit',soilHumidity:'19',leafDrop:'11',water:'8',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-24',ph:'6.8',ec:'130',recordType:'visit',soilHumidity:'23',leafDrop:'9',water:'6',newLeaves:'Few',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:'Potassium sulphate supplement'},
+          {date:'2026-07-22',ph:'6.8',ec:'100',recordType:'visit',soilHumidity:'20',leafDrop:'5',water:'8',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''}
+      ].filter(function(x){return _d.indexOf(x.date)===-1;});
+      if(_n.length){
+        var _m=_e.concat(_n).sort(function(a,b){return a.date<b.date?-1:1;});
+        localStorage.setItem(_sk,JSON.stringify(_m));
+      }
+    })();
+    (function(){
+      var _sk='logbook_regent-street_5_soil';
+      var _e=JSON.parse(localStorage.getItem(_sk)||'[]');
+      var _d=_e.map(function(x){return x.date;});
+      var _n=[
+          {date:'2026-08-12',ph:'6.6',ec:'0.14',recordType:'visit',soilHumidity:'21',leafDrop:'5',water:'6',newLeaves:'None',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:'Balanced liquid feed'},
+          {date:'2026-08-07',ph:'6.5',ec:'130',recordType:'visit',soilHumidity:'23',leafDrop:'5',water:'6',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-08-05',ph:'6.8',ec:'210',recordType:'visit',soilHumidity:'17',leafDrop:'1',water:'10',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-31',ph:'6.5',ec:'440',recordType:'visit',soilHumidity:'24',leafDrop:'13',water:'6',newLeaves:'Few',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-29',ph:'6.9',ec:'150',recordType:'visit',soilHumidity:'20',leafDrop:'8',water:'8',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-24',ph:'6.5',ec:'250',recordType:'visit',soilHumidity:'23',leafDrop:'12',water:'6',newLeaves:'None',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:'Potassium sulphate supplement'},
+          {date:'2026-07-22',ph:'6.9',ec:'70',recordType:'visit',soilHumidity:'24',leafDrop:'10',water:'6',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''}
+      ].filter(function(x){return _d.indexOf(x.date)===-1;});
+      if(_n.length){
+        var _m=_e.concat(_n).sort(function(a,b){return a.date<b.date?-1:1;});
+        localStorage.setItem(_sk,JSON.stringify(_m));
+      }
+    })();
+    (function(){
+      var _sk='logbook_regent-street_6_soil';
+      var _e=JSON.parse(localStorage.getItem(_sk)||'[]');
+      var _d=_e.map(function(x){return x.date;});
+      var _n=[
+          {date:'2026-08-12',ph:'6.8',ec:'0.26',recordType:'visit',soilHumidity:'16',leafDrop:'9',water:'10',newLeaves:'None',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:'Balanced liquid feed'},
+          {date:'2026-08-07',ph:'6.7',ec:'140',recordType:'visit',soilHumidity:'21',leafDrop:'2',water:'6',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-08-05',ph:'6.4',ec:'60',recordType:'visit',soilHumidity:'23',leafDrop:'0',water:'6',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-31',ph:'6.5',ec:'440',recordType:'visit',soilHumidity:'16',leafDrop:'3',water:'10',newLeaves:'Few',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-29',ph:'6.6',ec:'100',recordType:'visit',soilHumidity:'20',leafDrop:'4',water:'8',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-24',ph:'6.7',ec:'230',recordType:'visit',soilHumidity:'16',leafDrop:'5',water:'10',newLeaves:'Few',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:'Potassium sulphate supplement'},
+          {date:'2026-07-22',ph:'6.9',ec:'0.16',recordType:'visit',soilHumidity:'23',leafDrop:'0',water:'6',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''}
+      ].filter(function(x){return _d.indexOf(x.date)===-1;});
+      if(_n.length){
+        var _m=_e.concat(_n).sort(function(a,b){return a.date<b.date?-1:1;});
+        localStorage.setItem(_sk,JSON.stringify(_m));
+      }
+    })();
+    (function(){
+      var _sk='logbook_regent-street_7_soil';
+      var _e=JSON.parse(localStorage.getItem(_sk)||'[]');
+      var _d=_e.map(function(x){return x.date;});
+      var _n=[
+          {date:'2026-08-12',ph:'6.5',ec:'0.17',recordType:'visit',soilHumidity:'18',leafDrop:'5',water:'10',newLeaves:'None',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:'Balanced liquid feed, Acidifying feed (ericaceous)'},
+          {date:'2026-08-07',ph:'6.6',ec:'200',recordType:'visit',soilHumidity:'18',leafDrop:'0',water:'8',newLeaves:'Many',discolouration:'Low',foliage:'Some Gaps',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-08-05',ph:'6.6',ec:'180',recordType:'visit',soilHumidity:'18',leafDrop:'0',water:'8',newLeaves:'Many',discolouration:'Low',foliage:'Some Gaps',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:'Acidifying feed (ericaceous)'},
+          {date:'2026-07-31',ph:'6.5',ec:'370',recordType:'visit',soilHumidity:'20',leafDrop:'4',water:'8',newLeaves:'Few',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-29',ph:'6.9',ec:'160',recordType:'visit',soilHumidity:'15',leafDrop:'15',water:'10',newLeaves:'Many',discolouration:'Low',foliage:'Some Gaps',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-24',ph:'6.7',ec:'280',recordType:'visit',soilHumidity:'16',leafDrop:'12',water:'10',newLeaves:'Few',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:'Potassium sulphate supplement'},
+          {date:'2026-07-22',ph:'6.9',ec:'160',recordType:'visit',soilHumidity:'22',leafDrop:'5',water:'6',newLeaves:'Many',discolouration:'Low',foliage:'Some Gaps',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''}
+      ].filter(function(x){return _d.indexOf(x.date)===-1;});
+      if(_n.length){
+        var _m=_e.concat(_n).sort(function(a,b){return a.date<b.date?-1:1;});
+        localStorage.setItem(_sk,JSON.stringify(_m));
+      }
+    })();
+    (function(){
+      var _sk='logbook_regent-street_8_soil';
+      var _e=JSON.parse(localStorage.getItem(_sk)||'[]');
+      var _d=_e.map(function(x){return x.date;});
+      var _n=[
+          {date:'2026-08-12',ph:'6.7',ec:'0.23',recordType:'visit',soilHumidity:'21',leafDrop:'11',water:'8',newLeaves:'None',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:'Balanced liquid feed, Acidifying feed (ericaceous)'},
+          {date:'2026-08-07',ph:'6.5',ec:'69',recordType:'visit',soilHumidity:'18',leafDrop:'2',water:'8',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-08-05',ph:'6.7',ec:'140',recordType:'visit',soilHumidity:'20',leafDrop:'0',water:'8',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:'Acidifying feed (ericaceous)'},
+          {date:'2026-07-31',ph:'6.6',ec:'190',recordType:'visit',soilHumidity:'22',leafDrop:'2',water:'6',newLeaves:'Few',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-29',ph:'6.6',ec:'330',recordType:'visit',soilHumidity:'20',leafDrop:'5',water:'8',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-24',ph:'6.5',ec:'80',recordType:'visit',soilHumidity:'18',leafDrop:'11',water:'8',newLeaves:'Few',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:'Potassium sulphate supplement'},
+          {date:'2026-07-22',ph:'6.6',ec:'0.27',recordType:'visit',soilHumidity:'23',leafDrop:'2',water:'6',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:'Acidifying drench (Iron sulphate)'}
+      ].filter(function(x){return _d.indexOf(x.date)===-1;});
+      if(_n.length){
+        var _m=_e.concat(_n).sort(function(a,b){return a.date<b.date?-1:1;});
+        localStorage.setItem(_sk,JSON.stringify(_m));
+      }
+    })();
+    (function(){
+      var _sk='logbook_regent-street_9_soil';
+      var _e=JSON.parse(localStorage.getItem(_sk)||'[]');
+      var _d=_e.map(function(x){return x.date;});
+      var _n=[
+          {date:'2026-08-12',ph:'6.6',ec:'0.19',recordType:'visit',soilHumidity:'17',leafDrop:'36',water:'10',newLeaves:'None',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:'Balanced liquid feed'},
+          {date:'2026-08-07',ph:'6.5',ec:'270',recordType:'visit',soilHumidity:'20',leafDrop:'20',water:'8',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-08-05',ph:'6.5',ec:'100',recordType:'visit',soilHumidity:'16',leafDrop:'4',water:'10',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:'Targeted micronutrient acidifying treatment'},
+          {date:'2026-07-31',ph:'6.6',ec:'140',recordType:'visit',soilHumidity:'21',leafDrop:'8',water:'8',newLeaves:'Few',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-29',ph:'6.6',ec:'150',recordType:'visit',soilHumidity:'17',leafDrop:'17',water:'10',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-24',ph:'6.5',ec:'120',recordType:'visit',soilHumidity:'179',leafDrop:'18',water:'10',newLeaves:'Few',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:'Potassium sulphate supplement'},
+          {date:'2026-07-22',ph:'6.2',ec:'0.11',recordType:'visit',soilHumidity:'17',leafDrop:'4',water:'10',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''}
+      ].filter(function(x){return _d.indexOf(x.date)===-1;});
+      if(_n.length){
+        var _m=_e.concat(_n).sort(function(a,b){return a.date<b.date?-1:1;});
+        localStorage.setItem(_sk,JSON.stringify(_m));
+      }
+    })();
+    (function(){
+      var _sk='logbook_regent-street_10_soil';
+      var _e=JSON.parse(localStorage.getItem(_sk)||'[]');
+      var _d=_e.map(function(x){return x.date;});
+      var _n=[
+          {date:'2026-08-12',ph:'6.8',ec:'0.12',recordType:'visit',soilHumidity:'17',leafDrop:'8',water:'10',newLeaves:'None',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:'Balanced liquid feed, Acidifying feed (ericaceous)'},
+          {date:'2026-08-07',ph:'6.8',ec:'160',recordType:'visit',soilHumidity:'21',leafDrop:'2',water:'6',newLeaves:'Many',discolouration:'Low',foliage:'Some Gaps',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-08-05',ph:'6.4',ec:'160',recordType:'visit',soilHumidity:'17',leafDrop:'2',water:'10',newLeaves:'Many',discolouration:'Low',foliage:'Some Gaps',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:'Acidifying feed (ericaceous)'},
+          {date:'2026-07-31',ph:'6.3',ec:'520',recordType:'visit',soilHumidity:'20',leafDrop:'2',water:'8',newLeaves:'Few',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-29',ph:'6.4',ec:'230',recordType:'visit',soilHumidity:'22',leafDrop:'0',water:'6',newLeaves:'Many',discolouration:'Low',foliage:'Some Gaps',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-24',ph:'6.1',ec:'240',recordType:'visit',soilHumidity:'19',leafDrop:'5',water:'8',newLeaves:'Few',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:'Potassium sulphate supplement'},
+          {date:'2026-07-22',ph:'6.3',ec:'0.23',recordType:'visit',soilHumidity:'18',leafDrop:'5',water:'8',newLeaves:'Many',discolouration:'Low',foliage:'Some Gaps',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''}
+      ].filter(function(x){return _d.indexOf(x.date)===-1;});
+      if(_n.length){
+        var _m=_e.concat(_n).sort(function(a,b){return a.date<b.date?-1:1;});
+        localStorage.setItem(_sk,JSON.stringify(_m));
+      }
+    })();
+    (function(){
+      var _sk='logbook_regent-street_11_soil';
+      var _e=JSON.parse(localStorage.getItem(_sk)||'[]');
+      var _d=_e.map(function(x){return x.date;});
+      var _n=[
+          {date:'2026-08-12',ph:'Image',ec:'6.7',recordType:'visit',soilHumidity:'16',leafDrop:'1',water:'10',newLeaves:'None',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:'Balanced liquid feed'},
+          {date:'2026-08-07',ph:'Image',ec:'6.4',recordType:'visit',soilHumidity:'17',leafDrop:'0',water:'10',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-08-05',ph:'Image',ec:'6.6',recordType:'visit',soilHumidity:'20',leafDrop:'1',water:'8',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-31',ph:'Image',ec:'6.6',recordType:'visit',soilHumidity:'15',leafDrop:'4',water:'12',newLeaves:'Few',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-29',ph:'Image',ec:'6.6',recordType:'visit',soilHumidity:'19',leafDrop:'3',water:'8',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-24',ph:'Image',ec:'6.8',recordType:'visit',soilHumidity:'19',leafDrop:'4',water:'8',newLeaves:'Few',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:'Potassium sulphate supplement'},
+          {date:'2026-07-22',ph:'Image',ec:'6.7',recordType:'visit',soilHumidity:'15',leafDrop:'4',water:'10',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''}
+      ].filter(function(x){return _d.indexOf(x.date)===-1;});
+      if(_n.length){
+        var _m=_e.concat(_n).sort(function(a,b){return a.date<b.date?-1:1;});
+        localStorage.setItem(_sk,JSON.stringify(_m));
+      }
+    })();
+    localStorage.setItem('logbook_seeded_regent_aug2026','true');
+  }
+}
+
+function seedBromptonAug2026(){
+  if(!localStorage.getItem('logbook_seeded_br_aug2026')){
+    (function(){
+      var _sk='logbook_brompton-road_0_soil';
+      var _e=JSON.parse(localStorage.getItem(_sk)||'[]');
+      var _d=_e.map(function(x){return x.date;});
+      var _n=[
+          {date:'2026-08-11',ph:'',ec:'',recordType:'visit',soilHumidity:'14',leafDrop:'16',water:'8',newLeaves:'Many',discolouration:'Low',foliage:'Some Gaps',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-08-06',ph:'',ec:'',recordType:'visit',soilHumidity:'18',leafDrop:'26',water:'8',newLeaves:'Many',discolouration:'Low',foliage:'Some Gaps',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-08-04',ph:'',ec:'',recordType:'visit',soilHumidity:'17',leafDrop:'23',water:'8',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-30',ph:'',ec:'',recordType:'visit',soilHumidity:'13',leafDrop:'88',water:'8',newLeaves:'Many',discolouration:'Low',foliage:'Some Gaps',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:'Leaf drop high due to dusting'},
+          {date:'2026-07-28',ph:'',ec:'',recordType:'visit',soilHumidity:'20',leafDrop:'54',water:'8',newLeaves:'Many',discolouration:'Low',foliage:'Some Gaps',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-23',ph:'',ec:'',recordType:'visit',soilHumidity:'18',leafDrop:'18',water:'8',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''}
+      ].filter(function(x){return _d.indexOf(x.date)===-1;});
+      if(_n.length){
+        var _m=_e.concat(_n).sort(function(a,b){return a.date<b.date?-1:1;});
+        localStorage.setItem(_sk,JSON.stringify(_m));
+      }
+    })();
+    (function(){
+      var _sk='logbook_brompton-road_1_soil';
+      var _e=JSON.parse(localStorage.getItem(_sk)||'[]');
+      var _d=_e.map(function(x){return x.date;});
+      var _n=[
+          {date:'2026-08-11',ph:'',ec:'',recordType:'visit',soilHumidity:'8',leafDrop:'18',water:'8',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-08-06',ph:'',ec:'',recordType:'visit',soilHumidity:'9',leafDrop:'18',water:'8',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-08-04',ph:'',ec:'',recordType:'visit',soilHumidity:'6',leafDrop:'17',water:'8',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-30',ph:'',ec:'',recordType:'visit',soilHumidity:'10',leafDrop:'52',water:'8',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-28',ph:'',ec:'',recordType:'visit',soilHumidity:'7',leafDrop:'34',water:'8',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-23',ph:'',ec:'',recordType:'visit',soilHumidity:'11',leafDrop:'36',water:'8',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''}
+      ].filter(function(x){return _d.indexOf(x.date)===-1;});
+      if(_n.length){
+        var _m=_e.concat(_n).sort(function(a,b){return a.date<b.date?-1:1;});
+        localStorage.setItem(_sk,JSON.stringify(_m));
+      }
+    })();
+    (function(){
+      var _sk='logbook_brompton-road_2_soil';
+      var _e=JSON.parse(localStorage.getItem(_sk)||'[]');
+      var _d=_e.map(function(x){return x.date;});
+      var _n=[
+          {date:'2026-08-11',ph:'',ec:'',recordType:'visit',soilHumidity:'13',leafDrop:'7',water:'8',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-08-06',ph:'',ec:'',recordType:'visit',soilHumidity:'14',leafDrop:'9',water:'8',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-08-04',ph:'',ec:'',recordType:'visit',soilHumidity:'8',leafDrop:'7',water:'8',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-30',ph:'',ec:'',recordType:'visit',soilHumidity:'14',leafDrop:'18',water:'8',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-28',ph:'',ec:'',recordType:'visit',soilHumidity:'12',leafDrop:'16',water:'8',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-23',ph:'',ec:'',recordType:'visit',soilHumidity:'16',leafDrop:'12',water:'8',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''}
+      ].filter(function(x){return _d.indexOf(x.date)===-1;});
+      if(_n.length){
+        var _m=_e.concat(_n).sort(function(a,b){return a.date<b.date?-1:1;});
+        localStorage.setItem(_sk,JSON.stringify(_m));
+      }
+    })();
+    (function(){
+      var _sk='logbook_brompton-road_3_soil';
+      var _e=JSON.parse(localStorage.getItem(_sk)||'[]');
+      var _d=_e.map(function(x){return x.date;});
+      var _n=[
+          {date:'2026-08-11',ph:'',ec:'',recordType:'visit',soilHumidity:'12',leafDrop:'25',water:'8',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-08-06',ph:'',ec:'',recordType:'visit',soilHumidity:'20',leafDrop:'8',water:'8',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-08-04',ph:'',ec:'',recordType:'visit',soilHumidity:'11',leafDrop:'3',water:'8',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-30',ph:'',ec:'',recordType:'visit',soilHumidity:'14',leafDrop:'7',water:'8',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-28',ph:'',ec:'',recordType:'visit',soilHumidity:'11',leafDrop:'39',water:'8',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-23',ph:'',ec:'',recordType:'visit',soilHumidity:'11',leafDrop:'4',water:'8',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''}
+      ].filter(function(x){return _d.indexOf(x.date)===-1;});
+      if(_n.length){
+        var _m=_e.concat(_n).sort(function(a,b){return a.date<b.date?-1:1;});
+        localStorage.setItem(_sk,JSON.stringify(_m));
+      }
+    })();
+    (function(){
+      var _sk='logbook_brompton-road_4_soil';
+      var _e=JSON.parse(localStorage.getItem(_sk)||'[]');
+      var _d=_e.map(function(x){return x.date;});
+      var _n=[
+          {date:'2026-08-11',ph:'',ec:'',recordType:'visit',soilHumidity:'12',leafDrop:'14',water:'8',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-08-06',ph:'',ec:'',recordType:'visit',soilHumidity:'23',leafDrop:'10',water:'8',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-08-04',ph:'',ec:'',recordType:'visit',soilHumidity:'14',leafDrop:'13',water:'8',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-30',ph:'',ec:'',recordType:'visit',soilHumidity:'14',leafDrop:'30',water:'8',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-28',ph:'',ec:'',recordType:'visit',soilHumidity:'15',leafDrop:'42',water:'8',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-23',ph:'',ec:'',recordType:'visit',soilHumidity:'14',leafDrop:'44',water:'8',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''}
+      ].filter(function(x){return _d.indexOf(x.date)===-1;});
+      if(_n.length){
+        var _m=_e.concat(_n).sort(function(a,b){return a.date<b.date?-1:1;});
+        localStorage.setItem(_sk,JSON.stringify(_m));
+      }
+    })();
+    (function(){
+      var _sk='logbook_brompton-road_5_soil';
+      var _e=JSON.parse(localStorage.getItem(_sk)||'[]');
+      var _d=_e.map(function(x){return x.date;});
+      var _n=[
+          {date:'2026-08-11',ph:'',ec:'',recordType:'visit',soilHumidity:'10',leafDrop:'23',water:'8',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-08-06',ph:'',ec:'',recordType:'visit',soilHumidity:'14',leafDrop:'19',water:'8',newLeaves:'Many',discolouration:'Low',foliage:'Some Gaps',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-08-04',ph:'',ec:'',recordType:'visit',soilHumidity:'14',leafDrop:'17',water:'8',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-30',ph:'',ec:'',recordType:'visit',soilHumidity:'20',leafDrop:'69',water:'8',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-28',ph:'',ec:'',recordType:'visit',soilHumidity:'15',leafDrop:'66',water:'8',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-23',ph:'',ec:'',recordType:'visit',soilHumidity:'21',leafDrop:'16',water:'8',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''}
+      ].filter(function(x){return _d.indexOf(x.date)===-1;});
+      if(_n.length){
+        var _m=_e.concat(_n).sort(function(a,b){return a.date<b.date?-1:1;});
+        localStorage.setItem(_sk,JSON.stringify(_m));
+      }
+    })();
+    (function(){
+      var _sk='logbook_brompton-road_6_soil';
+      var _e=JSON.parse(localStorage.getItem(_sk)||'[]');
+      var _d=_e.map(function(x){return x.date;});
+      var _n=[
+          {date:'2026-08-11',ph:'',ec:'',recordType:'visit',soilHumidity:'8',leafDrop:'20',water:'8',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-08-06',ph:'',ec:'',recordType:'visit',soilHumidity:'8',leafDrop:'12',water:'10',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-08-04',ph:'',ec:'',recordType:'visit',soilHumidity:'8',leafDrop:'12',water:'8',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-30',ph:'',ec:'',recordType:'visit',soilHumidity:'12',leafDrop:'17',water:'8',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-28',ph:'',ec:'',recordType:'visit',soilHumidity:'8',leafDrop:'21',water:'8',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-23',ph:'',ec:'',recordType:'visit',soilHumidity:'13',leafDrop:'16',water:'8',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''}
+      ].filter(function(x){return _d.indexOf(x.date)===-1;});
+      if(_n.length){
+        var _m=_e.concat(_n).sort(function(a,b){return a.date<b.date?-1:1;});
+        localStorage.setItem(_sk,JSON.stringify(_m));
+      }
+    })();
+    (function(){
+      var _sk='logbook_brompton-road_7_soil';
+      var _e=JSON.parse(localStorage.getItem(_sk)||'[]');
+      var _d=_e.map(function(x){return x.date;});
+      var _n=[
+          {date:'2026-08-11',ph:'',ec:'',recordType:'visit',soilHumidity:'8',leafDrop:'22',water:'8',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-08-06',ph:'',ec:'',recordType:'visit',soilHumidity:'19',leafDrop:'34',water:'8',newLeaves:'Many',discolouration:'Low',foliage:'Some Gaps',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-08-04',ph:'',ec:'',recordType:'visit',soilHumidity:'9',leafDrop:'21',water:'8',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-30',ph:'',ec:'',recordType:'visit',soilHumidity:'11',leafDrop:'35',water:'8',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-28',ph:'',ec:'',recordType:'visit',soilHumidity:'9',leafDrop:'52',water:'8',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-23',ph:'',ec:'',recordType:'visit',soilHumidity:'13',leafDrop:'55',water:'10',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''}
+      ].filter(function(x){return _d.indexOf(x.date)===-1;});
+      if(_n.length){
+        var _m=_e.concat(_n).sort(function(a,b){return a.date<b.date?-1:1;});
+        localStorage.setItem(_sk,JSON.stringify(_m));
+      }
+    })();
+    (function(){
+      var _sk='logbook_brompton-road_8_soil';
+      var _e=JSON.parse(localStorage.getItem(_sk)||'[]');
+      var _d=_e.map(function(x){return x.date;});
+      var _n=[
+          {date:'2026-08-11',ph:'',ec:'',recordType:'visit',soilHumidity:'10',leafDrop:'10',water:'8',newLeaves:'Few',discolouration:'Medium',foliage:'Uniform',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-08-06',ph:'',ec:'',recordType:'visit',soilHumidity:'11',leafDrop:'15',water:'8',newLeaves:'Many',discolouration:'Medium',foliage:'Uniform',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-08-04',ph:'',ec:'',recordType:'visit',soilHumidity:'10',leafDrop:'5',water:'8',newLeaves:'Few',discolouration:'Medium',foliage:'Some Gaps',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-30',ph:'',ec:'',recordType:'visit',soilHumidity:'14',leafDrop:'20',water:'8',newLeaves:'Few',discolouration:'Medium',foliage:'Uniform',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-28',ph:'',ec:'',recordType:'visit',soilHumidity:'10',leafDrop:'22',water:'8',newLeaves:'Few',discolouration:'Medium',foliage:'Uniform',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-23',ph:'',ec:'',recordType:'visit',soilHumidity:'14',leafDrop:'21',water:'8',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''}
+      ].filter(function(x){return _d.indexOf(x.date)===-1;});
+      if(_n.length){
+        var _m=_e.concat(_n).sort(function(a,b){return a.date<b.date?-1:1;});
+        localStorage.setItem(_sk,JSON.stringify(_m));
+      }
+    })();
+    (function(){
+      var _sk='logbook_brompton-road_9_soil';
+      var _e=JSON.parse(localStorage.getItem(_sk)||'[]');
+      var _d=_e.map(function(x){return x.date;});
+      var _n=[
+          {date:'2026-08-11',ph:'',ec:'',recordType:'visit',soilHumidity:'15',leafDrop:'10',water:'8',newLeaves:'Few',discolouration:'Medium',foliage:'Uniform',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-08-06',ph:'',ec:'',recordType:'visit',soilHumidity:'16',leafDrop:'12',water:'8',newLeaves:'Many',discolouration:'Medium',foliage:'Uniform',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-08-04',ph:'',ec:'',recordType:'visit',soilHumidity:'9',leafDrop:'9',water:'8',newLeaves:'Few',discolouration:'Medium',foliage:'Uniform',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-30',ph:'',ec:'',recordType:'visit',soilHumidity:'18',leafDrop:'19',water:'8',newLeaves:'Few',discolouration:'Medium',foliage:'Uniform',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-28',ph:'',ec:'',recordType:'visit',soilHumidity:'12',leafDrop:'23',water:'8',newLeaves:'Few',discolouration:'Medium',foliage:'Uniform',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-23',ph:'',ec:'',recordType:'visit',soilHumidity:'13',leafDrop:'38',water:'8',newLeaves:'Few',discolouration:'Medium',foliage:'Uniform',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''}
+      ].filter(function(x){return _d.indexOf(x.date)===-1;});
+      if(_n.length){
+        var _m=_e.concat(_n).sort(function(a,b){return a.date<b.date?-1:1;});
+        localStorage.setItem(_sk,JSON.stringify(_m));
+      }
+    })();
+    (function(){
+      var _sk='logbook_brompton-road_10_soil';
+      var _e=JSON.parse(localStorage.getItem(_sk)||'[]');
+      var _d=_e.map(function(x){return x.date;});
+      var _n=[
+          {date:'2026-08-11',ph:'',ec:'',recordType:'visit',soilHumidity:'16',leafDrop:'6',water:'8',newLeaves:'Few',discolouration:'Medium',foliage:'Uniform',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-08-06',ph:'',ec:'',recordType:'visit',soilHumidity:'20',leafDrop:'2',water:'8',newLeaves:'Many',discolouration:'Medium',foliage:'Uniform',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-08-04',ph:'',ec:'',recordType:'visit',soilHumidity:'12',leafDrop:'1',water:'8',newLeaves:'Few',discolouration:'Medium',foliage:'Uniform',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-30',ph:'',ec:'',recordType:'visit',soilHumidity:'14',leafDrop:'2',water:'8',newLeaves:'Few',discolouration:'Medium',foliage:'Uniform',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-28',ph:'',ec:'',recordType:'visit',soilHumidity:'13',leafDrop:'7',water:'8',newLeaves:'Few',discolouration:'Medium',foliage:'Uniform',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-23',ph:'',ec:'',recordType:'visit',soilHumidity:'13',leafDrop:'8',water:'8',newLeaves:'Few',discolouration:'Medium',foliage:'Uniform',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''}
+      ].filter(function(x){return _d.indexOf(x.date)===-1;});
+      if(_n.length){
+        var _m=_e.concat(_n).sort(function(a,b){return a.date<b.date?-1:1;});
+        localStorage.setItem(_sk,JSON.stringify(_m));
+      }
+    })();
+    (function(){
+      var _sk='logbook_brompton-road_11_soil';
+      var _e=JSON.parse(localStorage.getItem(_sk)||'[]');
+      var _d=_e.map(function(x){return x.date;});
+      var _n=[
+          {date:'2026-08-11',ph:'',ec:'',recordType:'visit',soilHumidity:'13',leafDrop:'9',water:'8',newLeaves:'Few',discolouration:'Medium',foliage:'Asymetric',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-08-06',ph:'',ec:'',recordType:'visit',soilHumidity:'16',leafDrop:'9',water:'8',newLeaves:'Many',discolouration:'Medium',foliage:'Asymetric',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-08-04',ph:'',ec:'',recordType:'visit',soilHumidity:'12',leafDrop:'4',water:'8',newLeaves:'Few',discolouration:'Medium',foliage:'Asymetric',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-30',ph:'',ec:'',recordType:'visit',soilHumidity:'18',leafDrop:'12',water:'8',newLeaves:'Many',discolouration:'Low',foliage:'Uniform',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:'Leaf drop higher due to dusting'},
+          {date:'2026-07-28',ph:'',ec:'',recordType:'visit',soilHumidity:'10',leafDrop:'29',water:'8',newLeaves:'Few',discolouration:'Medium',foliage:'Uniform',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-23',ph:'',ec:'',recordType:'visit',soilHumidity:'20',leafDrop:'30',water:'8',newLeaves:'Many',discolouration:'Medium',foliage:'Some Gaps',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''}
+      ].filter(function(x){return _d.indexOf(x.date)===-1;});
+      if(_n.length){
+        var _m=_e.concat(_n).sort(function(a,b){return a.date<b.date?-1:1;});
+        localStorage.setItem(_sk,JSON.stringify(_m));
+      }
+    })();
+    localStorage.setItem('logbook_seeded_br_aug2026','true');
+  }
+}
+
+function seedWhiteCityAug2026(){
+  if(!localStorage.getItem('logbook_seeded_wc_aug2026')){
+    (function(){
+      var _sk='logbook_white-city_0_soil';
+      var _e=JSON.parse(localStorage.getItem(_sk)||'[]');
+      var _d=_e.map(function(x){return x.date;});
+      var _n=[
+          {date:'2026-08-11',ph:'',ec:'',recordType:'visit',soilHumidity:'21',leafDrop:'0',water:'5',newLeaves:'Few',discolouration:'Low',foliage:'Some Gaps',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-08-07',ph:'',ec:'',recordType:'visit',soilHumidity:'35',leafDrop:'0',water:'5',newLeaves:'Few',discolouration:'Low',foliage:'Uniform',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-08-04',ph:'',ec:'',recordType:'visit',soilHumidity:'19',leafDrop:'4',water:'5',newLeaves:'Few',discolouration:'Low',foliage:'Some Gaps',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-31',ph:'',ec:'',recordType:'visit',soilHumidity:'19',leafDrop:'3',water:'5',newLeaves:'Few',discolouration:'Low',foliage:'Some Gaps',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-28',ph:'',ec:'',recordType:'visit',soilHumidity:'21',leafDrop:'12',water:'5',newLeaves:'Few',discolouration:'Low',foliage:'Some Gaps',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-27',ph:'',ec:'',recordType:'visit',soilHumidity:'19',leafDrop:'2',water:'5',newLeaves:'Few',discolouration:'Low',foliage:'Some Gaps',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''}
+      ].filter(function(x){return _d.indexOf(x.date)===-1;});
+      if(_n.length){
+        var _m=_e.concat(_n).sort(function(a,b){return a.date<b.date?-1:1;});
+        localStorage.setItem(_sk,JSON.stringify(_m));
+      }
+    })();
+    (function(){
+      var _sk='logbook_white-city_1_soil';
+      var _e=JSON.parse(localStorage.getItem(_sk)||'[]');
+      var _d=_e.map(function(x){return x.date;});
+      var _n=[
+          {date:'2026-08-11',ph:'',ec:'',recordType:'visit',soilHumidity:'19',leafDrop:'4',water:'5',newLeaves:'Few',discolouration:'Low',foliage:'Some Gaps',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-08-07',ph:'',ec:'',recordType:'visit',soilHumidity:'30',leafDrop:'0',water:'5',newLeaves:'Few',discolouration:'Low',foliage:'Uniform',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-08-04',ph:'',ec:'',recordType:'visit',soilHumidity:'21',leafDrop:'8',water:'5',newLeaves:'Few',discolouration:'Low',foliage:'Some Gaps',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-31',ph:'',ec:'',recordType:'visit',soilHumidity:'21',leafDrop:'2',water:'5',newLeaves:'Few',discolouration:'Low',foliage:'Some Gaps',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-28',ph:'',ec:'',recordType:'visit',soilHumidity:'20',leafDrop:'9',water:'5',newLeaves:'Few',discolouration:'Low',foliage:'Some Gaps',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-27',ph:'',ec:'',recordType:'visit',soilHumidity:'21',leafDrop:'4',water:'5',newLeaves:'Few',discolouration:'Low',foliage:'Some Gaps',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''}
+      ].filter(function(x){return _d.indexOf(x.date)===-1;});
+      if(_n.length){
+        var _m=_e.concat(_n).sort(function(a,b){return a.date<b.date?-1:1;});
+        localStorage.setItem(_sk,JSON.stringify(_m));
+      }
+    })();
+    (function(){
+      var _sk='logbook_white-city_2_soil';
+      var _e=JSON.parse(localStorage.getItem(_sk)||'[]');
+      var _d=_e.map(function(x){return x.date;});
+      var _n=[
+          {date:'2026-08-11',ph:'',ec:'',recordType:'visit',soilHumidity:'17',leafDrop:'2',water:'5',newLeaves:'Few',discolouration:'Low',foliage:'Some Gaps',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-08-07',ph:'',ec:'',recordType:'visit',soilHumidity:'15',leafDrop:'14',water:'5',newLeaves:'Few',discolouration:'Low',foliage:'Uniform',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-08-04',ph:'',ec:'',recordType:'visit',soilHumidity:'19',leafDrop:'7',water:'5',newLeaves:'Few',discolouration:'Low',foliage:'Some Gaps',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-31',ph:'',ec:'',recordType:'visit',soilHumidity:'17',leafDrop:'3',water:'5',newLeaves:'Few',discolouration:'Low',foliage:'Some Gaps',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-28',ph:'',ec:'',recordType:'visit',soilHumidity:'23',leafDrop:'8',water:'5',newLeaves:'Few',discolouration:'Low',foliage:'Some Gaps',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-27',ph:'',ec:'',recordType:'visit',soilHumidity:'18',leafDrop:'2',water:'5',newLeaves:'Few',discolouration:'Low',foliage:'Some Gaps',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''}
+      ].filter(function(x){return _d.indexOf(x.date)===-1;});
+      if(_n.length){
+        var _m=_e.concat(_n).sort(function(a,b){return a.date<b.date?-1:1;});
+        localStorage.setItem(_sk,JSON.stringify(_m));
+      }
+    })();
+    (function(){
+      var _sk='logbook_white-city_3_soil';
+      var _e=JSON.parse(localStorage.getItem(_sk)||'[]');
+      var _d=_e.map(function(x){return x.date;});
+      var _n=[
+          {date:'2026-08-11',ph:'',ec:'',recordType:'visit',soilHumidity:'21',leafDrop:'3',water:'5',newLeaves:'Few',discolouration:'Low',foliage:'Some Gaps',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-08-07',ph:'',ec:'',recordType:'visit',soilHumidity:'22',leafDrop:'7',water:'5',newLeaves:'Few',discolouration:'Low',foliage:'Some Gaps',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:'Could not collect leaf count for trees 1 and 2 as access issues delayed arrival.'},
+          {date:'2026-08-04',ph:'',ec:'',recordType:'visit',soilHumidity:'20',leafDrop:'5',water:'5',newLeaves:'Few',discolouration:'Low',foliage:'Some Gaps',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-31',ph:'',ec:'',recordType:'visit',soilHumidity:'19',leafDrop:'6',water:'5',newLeaves:'Few',discolouration:'Low',foliage:'Some Gaps',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-28',ph:'',ec:'',recordType:'visit',soilHumidity:'24',leafDrop:'13',water:'5',newLeaves:'Few',discolouration:'Low',foliage:'Some Gaps',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-27',ph:'',ec:'',recordType:'visit',soilHumidity:'20',leafDrop:'3',water:'5',newLeaves:'Few',discolouration:'Low',foliage:'Some Gaps',pest:'None observed',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''}
+      ].filter(function(x){return _d.indexOf(x.date)===-1;});
+      if(_n.length){
+        var _m=_e.concat(_n).sort(function(a,b){return a.date<b.date?-1:1;});
+        localStorage.setItem(_sk,JSON.stringify(_m));
+      }
+    })();
+    localStorage.setItem('logbook_seeded_wc_aug2026','true');
+  }
+}
+
+function seedCoventAug2026(){
+  if(!localStorage.getItem('logbook_seeded_cg_aug2026')){
+    (function(){
+      var _sk='logbook_covent-garden_0_soil';
+      var _e=JSON.parse(localStorage.getItem(_sk)||'[]');
+      var _d=_e.map(function(x){return x.date;});
+      var _n=[
+          {date:'2026-08-11',ph:'',ec:'',recordType:'visit',soilHumidity:'30',leafDrop:'1',water:'5',newLeaves:'Few',discolouration:'Low',foliage:'Some Gaps',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:'Potassium sulphate'},
+          {date:'2026-08-06',ph:'',ec:'',recordType:'visit',soilHumidity:'30',leafDrop:'0',water:'10',newLeaves:'Few',discolouration:'Low',foliage:'Some Gaps',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-08-04',ph:'',ec:'',recordType:'visit',soilHumidity:'28',leafDrop:'5',water:'5',newLeaves:'Few',discolouration:'Low',foliage:'Some Gaps',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:'Balance feed, Epsom salt and potassium sulphate'},
+          {date:'2026-07-30',ph:'',ec:'',recordType:'visit',soilHumidity:'25',leafDrop:'17',water:'10',newLeaves:'Few',discolouration:'Low',foliage:'Some Gaps',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:'Balance feed'},
+          {date:'2026-07-28',ph:'',ec:'',recordType:'visit',soilHumidity:'20',leafDrop:'3',water:'5',newLeaves:'Few',discolouration:'Low',foliage:'Asymetric',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-23',ph:'',ec:'',recordType:'visit',soilHumidity:'25',leafDrop:'1',water:'10',newLeaves:'Few',discolouration:'Low',foliage:'Some Gaps',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''}
+      ].filter(function(x){return _d.indexOf(x.date)===-1;});
+      if(_n.length){
+        var _m=_e.concat(_n).sort(function(a,b){return a.date<b.date?-1:1;});
+        localStorage.setItem(_sk,JSON.stringify(_m));
+      }
+    })();
+    (function(){
+      var _sk='logbook_covent-garden_1_soil';
+      var _e=JSON.parse(localStorage.getItem(_sk)||'[]');
+      var _d=_e.map(function(x){return x.date;});
+      var _n=[
+          {date:'2026-08-11',ph:'',ec:'',recordType:'visit',soilHumidity:'20',leafDrop:'2',water:'5',newLeaves:'Few',discolouration:'Low',foliage:'Some Gaps',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:'Potassium sulphate and Epsom salt'},
+          {date:'2026-08-06',ph:'',ec:'',recordType:'visit',soilHumidity:'20',leafDrop:'1',water:'10',newLeaves:'Few',discolouration:'Low',foliage:'Some Gaps',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-08-04',ph:'',ec:'',recordType:'visit',soilHumidity:'25',leafDrop:'4',water:'5',newLeaves:'Few',discolouration:'Low',foliage:'Some Gaps',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:'Balance feed'},
+          {date:'2026-07-30',ph:'',ec:'',recordType:'visit',soilHumidity:'25',leafDrop:'15',water:'10',newLeaves:'Few',discolouration:'Low',foliage:'Some Gaps',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:'Balance feed'},
+          {date:'2026-07-28',ph:'',ec:'',recordType:'visit',soilHumidity:'19',leafDrop:'5',water:'5',newLeaves:'Few',discolouration:'Low',foliage:'Asymetric',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-23',ph:'',ec:'',recordType:'visit',soilHumidity:'25',leafDrop:'2',water:'10',newLeaves:'Few',discolouration:'Low',foliage:'Some Gaps',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''}
+      ].filter(function(x){return _d.indexOf(x.date)===-1;});
+      if(_n.length){
+        var _m=_e.concat(_n).sort(function(a,b){return a.date<b.date?-1:1;});
+        localStorage.setItem(_sk,JSON.stringify(_m));
+      }
+    })();
+    (function(){
+      var _sk='logbook_covent-garden_2_soil';
+      var _e=JSON.parse(localStorage.getItem(_sk)||'[]');
+      var _d=_e.map(function(x){return x.date;});
+      var _n=[
+          {date:'2026-08-11',ph:'',ec:'',recordType:'visit',soilHumidity:'20',leafDrop:'3',water:'5',newLeaves:'Few',discolouration:'Low',foliage:'Some Gaps',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:'Potassium sulphate'},
+          {date:'2026-08-06',ph:'',ec:'',recordType:'visit',soilHumidity:'28',leafDrop:'2',water:'10',newLeaves:'Few',discolouration:'Low',foliage:'Some Gaps',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-08-04',ph:'',ec:'',recordType:'visit',soilHumidity:'23',leafDrop:'5',water:'5',newLeaves:'Few',discolouration:'Low',foliage:'Some Gaps',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:'Balance feed, Epsom salt and potassium sulphate'},
+          {date:'2026-07-30',ph:'',ec:'',recordType:'visit',soilHumidity:'22',leafDrop:'24',water:'10',newLeaves:'Few',discolouration:'Low',foliage:'Some Gaps',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:'Balance feed'},
+          {date:'2026-07-28',ph:'',ec:'',recordType:'visit',soilHumidity:'18',leafDrop:'5',water:'5',newLeaves:'Few',discolouration:'Low',foliage:'Asymetric',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-23',ph:'',ec:'',recordType:'visit',soilHumidity:'25',leafDrop:'2',water:'10',newLeaves:'Few',discolouration:'Low',foliage:'Some Gaps',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''}
+      ].filter(function(x){return _d.indexOf(x.date)===-1;});
+      if(_n.length){
+        var _m=_e.concat(_n).sort(function(a,b){return a.date<b.date?-1:1;});
+        localStorage.setItem(_sk,JSON.stringify(_m));
+      }
+    })();
+    (function(){
+      var _sk='logbook_covent-garden_3_soil';
+      var _e=JSON.parse(localStorage.getItem(_sk)||'[]');
+      var _d=_e.map(function(x){return x.date;});
+      var _n=[
+          {date:'2026-08-11',ph:'',ec:'',recordType:'visit',soilHumidity:'18',leafDrop:'1',water:'5',newLeaves:'Few',discolouration:'Low',foliage:'Some Gaps',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:'\'-'},
+          {date:'2026-08-06',ph:'',ec:'',recordType:'visit',soilHumidity:'20',leafDrop:'1',water:'10',newLeaves:'Few',discolouration:'Low',foliage:'Some Gaps',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-08-04',ph:'',ec:'',recordType:'visit',soilHumidity:'20',leafDrop:'2',water:'5',newLeaves:'Few',discolouration:'Low',foliage:'Some Gaps',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:'Balance feed and iron sulphate'},
+          {date:'2026-07-30',ph:'',ec:'',recordType:'visit',soilHumidity:'22',leafDrop:'15',water:'10',newLeaves:'Few',discolouration:'Low',foliage:'Some Gaps',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:'Balance feed'},
+          {date:'2026-07-28',ph:'',ec:'',recordType:'visit',soilHumidity:'16',leafDrop:'6',water:'5',newLeaves:'Few',discolouration:'Low',foliage:'Asymetric',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-23',ph:'',ec:'',recordType:'visit',soilHumidity:'20',leafDrop:'2',water:'10',newLeaves:'Few',discolouration:'Low',foliage:'Some Gaps',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''}
+      ].filter(function(x){return _d.indexOf(x.date)===-1;});
+      if(_n.length){
+        var _m=_e.concat(_n).sort(function(a,b){return a.date<b.date?-1:1;});
+        localStorage.setItem(_sk,JSON.stringify(_m));
+      }
+    })();
+    (function(){
+      var _sk='logbook_covent-garden_4_soil';
+      var _e=JSON.parse(localStorage.getItem(_sk)||'[]');
+      var _d=_e.map(function(x){return x.date;});
+      var _n=[
+          {date:'2026-08-11',ph:'',ec:'',recordType:'visit',soilHumidity:'20',leafDrop:'40',water:'5',newLeaves:'Few',discolouration:'Low',foliage:'Some Gaps',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:'Potassium sulphate'},
+          {date:'2026-08-06',ph:'',ec:'',recordType:'visit',soilHumidity:'20',leafDrop:'4',water:'10',newLeaves:'Few',discolouration:'Low',foliage:'Some Gaps',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-08-04',ph:'',ec:'',recordType:'visit',soilHumidity:'16',leafDrop:'13',water:'5',newLeaves:'Few',discolouration:'Low',foliage:'Some Gaps',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:'Balance feed and Epsom salt'},
+          {date:'2026-07-30',ph:'',ec:'',recordType:'visit',soilHumidity:'22',leafDrop:'25',water:'10',newLeaves:'Few',discolouration:'Low',foliage:'Some Gaps',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:'Balance feed'},
+          {date:'2026-07-28',ph:'',ec:'',recordType:'visit',soilHumidity:'17',leafDrop:'25',water:'5',newLeaves:'Few',discolouration:'Low',foliage:'Asymetric',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-23',ph:'',ec:'',recordType:'visit',soilHumidity:'20',leafDrop:'3',water:'10',newLeaves:'Few',discolouration:'Low',foliage:'Some Gaps',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''}
+      ].filter(function(x){return _d.indexOf(x.date)===-1;});
+      if(_n.length){
+        var _m=_e.concat(_n).sort(function(a,b){return a.date<b.date?-1:1;});
+        localStorage.setItem(_sk,JSON.stringify(_m));
+      }
+    })();
+    (function(){
+      var _sk='logbook_covent-garden_5_soil';
+      var _e=JSON.parse(localStorage.getItem(_sk)||'[]');
+      var _d=_e.map(function(x){return x.date;});
+      var _n=[
+          {date:'2026-08-11',ph:'',ec:'',recordType:'visit',soilHumidity:'14',leafDrop:'2',water:'5',newLeaves:'Few',discolouration:'Low',foliage:'Some Gaps',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:'Potassium sulphate'},
+          {date:'2026-08-06',ph:'',ec:'',recordType:'visit',soilHumidity:'18',leafDrop:'2',water:'10',newLeaves:'Few',discolouration:'Low',foliage:'Some Gaps',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-08-04',ph:'',ec:'',recordType:'visit',soilHumidity:'15',leafDrop:'0',water:'5',newLeaves:'Few',discolouration:'Low',foliage:'Some Gaps',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:'Balance feed'},
+          {date:'2026-07-30',ph:'',ec:'',recordType:'visit',soilHumidity:'20',leafDrop:'4',water:'10',newLeaves:'Few',discolouration:'Low',foliage:'Some Gaps',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:'Balance feed'},
+          {date:'2026-07-28',ph:'',ec:'',recordType:'visit',soilHumidity:'18',leafDrop:'3',water:'5',newLeaves:'Few',discolouration:'Low',foliage:'Asymetric',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''},
+          {date:'2026-07-23',ph:'',ec:'',recordType:'visit',soilHumidity:'20',leafDrop:'0',water:'10',newLeaves:'Few',discolouration:'Low',foliage:'Some Gaps',pest:'Mealy Bug',nitrogen:'',phosphorus:'',potassium:'',calcium:'',magnesium:'',iron:'',sodium:'',labref:'',notes:''}
+      ].filter(function(x){return _d.indexOf(x.date)===-1;});
+      if(_n.length){
+        var _m=_e.concat(_n).sort(function(a,b){return a.date<b.date?-1:1;});
+        localStorage.setItem(_sk,JSON.stringify(_m));
+      }
+    })();
+    localStorage.setItem('logbook_seeded_cg_aug2026','true');
+  }
+}
+
 seedData();
 seedMultiSiteData();
 seedRegentJuly2026();
@@ -2895,6 +3509,10 @@ seedWhiteCityJuly2026();
 seedBromptonJuly2026();
 seedCoventJuly2026();
 seedRegentJuly2026();
+seedRegentAug2026();
+seedBromptonAug2026();
+seedWhiteCityAug2026();
+seedCoventAug2026();
 const lu=localStorage.getItem('logbook_last_updated');
 if(lu)document.getElementById('last-updated').textContent='Last updated '+new Date(lu).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});
 // Initialise site subtitle
