@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tree Logbooks — Back Soon</title>
+<style>
+  :root {
+    --green-dark: #1f3d2b;
+    --green-mid: #2f5d3e;
+    --green-light: #6fae7c;
+    --cream: #f6f4ee;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    background: radial-gradient(circle at 30% 20%, var(--green-mid), var(--green-dark) 70%);
+    color: var(--cream);
+    text-align: center;
+    padding: 24px;
+  }
+  .card {
+    max-width: 480px;
+    width: 100%;
+  }
+  .icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+  }
+  h1 {
+    font-size: 28px;
+    margin: 0 0 12px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+  p.sub {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #d7e6da;
+    margin: 0 0 32px;
+  }
+  .countdown {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  .unit {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 12px;
+    padding: 14px 12px;
+    min-width: 68px;
+  }
+  .unit .num {
+    font-size: 26px;
+    font-weight: 700;
+    display: block;
+    font-variant-numeric: tabular-nums;
+  }
+  .unit .label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #b7ccbc;
+    margin-top: 4px;
+    display: block;
+  }
+  .relaunch {
+    font-size: 14px;
+    color: #b7ccbc;
+  }
+  .footer {
+    margin-top: 40px;
+    font-size: 12px;
+    color: #8faa96;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="icon">🌳</div>
+    <h1>Tree Logbooks is getting some care</h1>
+    <p class="sub">We're carrying out scheduled maintenance and updates. All records are safe — we'll be back shortly.</p>
+
+    <div class="countdown" id="countdown">
+      <div class="unit"><span class="num" id="days">--</span><span class="label">Days</span></div>
+      <div class="unit"><span class="num" id="hours">--</span><span class="label">Hours</span></div>
+      <div class="unit"><span class="num" id="mins">--</span><span class="label">Mins</span></div>
+      <div class="unit"><span class="num" id="secs">--</span><span class="label">Secs</span></div>
+    </div>
+
+    <div class="relaunch">Expected back: <strong>Monday 7 September, 3:00pm (London time)</strong></div>
+
+    <div class="footer">Plant Designs — Tree Service Logbooks</div>
+  </div>
+
+<script>
+  // Target: Monday 7 September 2026, 15:00 London time (BST, UTC+1)
+  const target = new Date("2026-09-07T15:00:00+01:00").getTime();
+
+  function tick() {
+    const now = Date.now();
+    let diff = Math.max(0, target - now);
+
+    const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+    diff -= d * (1000 * 60 * 60 * 24);
+    const h = Math.floor(diff / (1000 * 60 * 60));
+    diff -= h * (1000 * 60 * 60);
+    const m = Math.floor(diff / (1000 * 60));
+    diff -= m * (1000 * 60);
+    const s = Math.floor(diff / 1000);
+
+    document.getElementById("days").textContent = d;
+    document.getElementById("hours").textContent = String(h).padStart(2, "0");
+    document.getElementById("mins").textContent = String(m).padStart(2, "0");
+    document.getElementById("secs").textContent = String(s).padStart(2, "0");
+  }
+
+  tick();
+  setInterval(tick, 1000);
+</script>
+</body>
+</html>
